@@ -1,4 +1,5 @@
-name: Build TontinePro Togo APK
+
+name: Generer APK TontinePro Togo
 
 on:
   workflow_dispatch:
@@ -25,11 +26,10 @@ jobs:
         with:
           gradle-version: '8.9'
 
-      - name: Installer Android SDK
+      - name: Configurer Android SDK
         uses: android-actions/setup-android@v3
-
-      - name: Installer Android 35
-        run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
+        with:
+          packages: ''
 
       - name: Compiler APK
         run: gradle assembleDebug --stacktrace
