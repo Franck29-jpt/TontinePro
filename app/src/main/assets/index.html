@@ -191,7 +191,16 @@ function changerGroupe() {
 
 function ajouterMembre() {
   const g = actuel();
-  if (!g || g.demarree) return;
+
+if (!g) {
+  alert("Veuillez d'abord créer ou sélectionner un groupe.");
+  return;
+}
+
+if (g.demarree) {
+  alert("Impossible d'ajouter un membre : la tontine a déjà démarré.");
+  return;
+}
 
   const nom = document.getElementById("membre")
     .value.trim();
