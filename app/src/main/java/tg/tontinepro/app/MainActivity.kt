@@ -1,4 +1,3 @@
-
 package tg.tontinepro.app
 
 import android.os.Bundle
