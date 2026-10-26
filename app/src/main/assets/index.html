@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+ content="width=device-width, initial-scale=1">
+
+<title>TontinePro Togo</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f3f6f9;
+  color: #243447;
+}
+header {
+  background: #087b5b;
+  color: white;
+  padding: 24px 16px;
+  text-align: center;
+}
+main { padding: 16px; }
+.card {
+  background: white;
+  padding: 18px;
+  margin-bottom: 14px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px #0001;
+}
+button {
+  background: #087b5b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  width: 100%;
+  margin-top: 8px;
+  font-size: 15px;
+}
+input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 11px;
+  margin: 7px 0;
+}
+small { color: #667; }
+</style>
+</head>
+
+<body>
+<header>
+  <h1>TontinePro Togo</h1>
+  <p>Ensemble, finançons nos activités</p>
+</header>
+
+<main>
+  <div class="card">
+    <h2>Bienvenue</h2>
+    <p>Gestion des tontines rotatives
+    avec dépôt de garantie initial.</p>
+    <small>Version de démonstration</small>
+  </div>
+
+  <div class="card">
+    <h2>Créer une tontine</h2>
+    <input id="nom" placeholder="Nom du groupe">
+    <input id="montant" type="number"
+      min="1" placeholder="Cotisation en FCFA">
+    <input id="garantie" type="number"
+      min="0" placeholder="Garantie en FCFA">
+    <button onclick="creer()">
+      Enregistrer la tontine
+    </button>
+  </div>
+
+  <div class="card">
+    <h2>Mes tontines</h2>
+    <div id="liste">Aucune tontine créée.</div>
+  </div>
+
+  <div class="card">
+    <h2>Crédits</h2>
+    <p>Module de demande de crédit
+    à développer après la gestion
+    des garanties et des cotisations.</p>
+  </div>
+</main>
+
+<script>
+let groupes = JSON.parse(
+  localStorage.getItem("groupes") || "[]"
+);
+
+function afficher() {
+  const liste = document.getElementById("liste");
+  liste.replaceChildren();
+
+  if (groupes.length === 0) {
+    liste.textContent = "Aucune tontine créée.";
+    return;
+  }
+
+  groupes.forEach(g => {
+    const p = document.createElement("p");
+    p.textContent = g.nom + " — Cotisation : "
+      + g.montant + " FCFA — Garantie : "
+      + g.garantie + " FCFA";
+    liste.appendChild(p);
+  });
+}
+
+function creer() {
+  const nom = document.getElementById("nom").value.trim();
+  const montant = Number(
+    document.getElementById("montant").value
+  );
+  const garantie = Number(
+    document.getElementById("garantie").value
+  );
+
+  if (!nom || montant <= 0 || garantie <= 0) {
+    alert("Veuillez remplir tous les champs.");
+    return;
+  }
+
+  groupes.push({ nom, montant, garantie });
+  localStorage.setItem(
+    "groupes", JSON.stringify(groupes)
+  );
+
+  afficher();
+  alert("Tontine enregistrée en démonstration.");
+}
+
+afficher();
+</script>
+</body>
+</html>
