@@ -1,12 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport"
  content="width=device-width, initial-scale=1">
-
 <title>TontinePro Togo</title>
-
 <style>
 body {
   font-family: Arial, sans-serif;
@@ -17,121 +16,300 @@ body {
 header {
   background: #087b5b;
   color: white;
-  padding: 24px 16px;
   text-align: center;
+  padding: 22px;
 }
-main { padding: 16px; }
+main { padding: 15px; }
 .card {
   background: white;
-  padding: 18px;
-  margin-bottom: 14px;
   border-radius: 12px;
-  box-shadow: 0 2px 6px #0001;
+  padding: 16px;
+  margin-bottom: 15px;
+}
+input, select, button {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px;
+  margin: 6px 0;
+  font-size: 15px;
 }
 button {
   background: #087b5b;
   color: white;
-  border: none;
+  border: 0;
   border-radius: 8px;
-  padding: 12px;
-  width: 100%;
-  margin-top: 8px;
-  font-size: 15px;
 }
-input {
-  box-sizing: border-box;
-  width: 100%;
-  padding: 11px;
-  margin: 7px 0;
+button:disabled {
+  background: #999;
 }
-small { color: #667; }
+.member {
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+.ok { color: green; }
+.no { color: #b00020; }
+small { color: #666; }
 </style>
 </head>
-
 <body>
+
 <header>
-  <h1>TontinePro Togo</h1>
-  <p>Ensemble, finançons nos activités</p>
+<h1>TontinePro Togo</h1>
+<p>Tontines rotatives sécurisées</p>
 </header>
 
 <main>
-  <div class="card">
-    <h2>Bienvenue</h2>
-    <p>Gestion des tontines rotatives
-    avec dépôt de garantie initial.</p>
-    <small>Version de démonstration</small>
-  </div>
 
-  <div class="card">
-    <h2>Créer une tontine</h2>
-    <input id="nom" placeholder="Nom du groupe">
-    <input id="montant" type="number"
-      min="1" placeholder="Cotisation en FCFA">
-    <input id="garantie" type="number"
-      min="0" placeholder="Garantie en FCFA">
-    <button onclick="creer()">
-      Enregistrer la tontine
-    </button>
-  </div>
+<div class="card">
+<h2>Créer une tontine</h2>
+<input id="nom"
+ placeholder="Nom du groupe">
+<input id="cotisation" type="number"
+ min="1" placeholder="Cotisation en FCFA">
+<input id="garantie" type="number"
+ min="1" placeholder="Garantie par membre en FCFA">
+<button onclick="creerGroupe()">
+Créer le groupe
+</button>
+</div>
 
-  <div class="card">
-    <h2>Mes tontines</h2>
-    <div id="liste">Aucune tontine créée.</div>
-  </div>
+<div class="card">
+<h2>Gestion du groupe</h2>
+<select id="groupes"
+ onchange="afficher()"></select>
+<p id="details"></p>
+<p id="statut"></p>
+</div>
 
-  <div class="card">
-    <h2>Crédits</h2>
-    <p>Module de demande de crédit
-    à développer après la gestion
-    des garanties et des cotisations.</p>
-  </div>
+<div class="card">
+<h2>Ajouter un membre</h2>
+<input id="membre"
+ placeholder="Nom du membre">
+<button onclick="ajouterMembre()">
+Ajouter le membre
+</button>
+</div>
+
+<div class="card">
+<h2>Membres et garanties</h2>
+<div id="membres"></div>
+</div>
+
+<div class="card">
+<h2>Démarrage de la tontine</h2>
+<button id="demarrer"
+ onclick="demarrerTontine()">
+Démarrer la tontine
+</button>
+<p id="message"></p>
+</div>
+
 </main>
 
 <script>
+const cle = "tontinepro_groupes_v2";
 let groupes = JSON.parse(
-  localStorage.getItem("groupes") || "[]"
+  localStorage.getItem(cle) || "[]"
 );
 
-function afficher() {
-  const liste = document.getElementById("liste");
-  liste.replaceChildren();
+let selection = 0;
 
-  if (groupes.length === 0) {
-    liste.textContent = "Aucune tontine créée.";
-    return;
-  }
-
-  groupes.forEach(g => {
-    const p = document.createElement("p");
-    p.textContent = g.nom + " — Cotisation : "
-      + g.montant + " FCFA — Garantie : "
-      + g.garantie + " FCFA";
-    liste.appendChild(p);
-  });
+function sauvegarder() {
+  localStorage.setItem(
+    cle, JSON.stringify(groupes)
+  );
 }
 
-function creer() {
-  const nom = document.getElementById("nom").value.trim();
-  const montant = Number(
-    document.getElementById("montant").value
+function groupeActuel() {
+  return groupes[selection];
+}
+
+function creerGroupe() {
+  const nom = document.getElementById("nom")
+    .value.trim();
+  const cotisation = Number(
+    document.getElementById("cotisation").value
   );
   const garantie = Number(
     document.getElementById("garantie").value
   );
 
-  if (!nom || montant <= 0 || garantie <= 0) {
+  if (!nom || cotisation <= 0 ||
+      garantie <= 0) {
     alert("Veuillez remplir tous les champs.");
     return;
   }
 
-  groupes.push({ nom, montant, garantie });
-  localStorage.setItem(
-    "groupes", JSON.stringify(groupes)
+  groupes.push({
+    nom: nom,
+    cotisation: cotisation,
+    garantie: garantie,
+    membres: [],
+    demarree: false
+  });
+
+  selection = groupes.length - 1;
+  sauvegarder();
+  afficher();
+}
+
+function ajouterMembre() {
+  const g = groupeActuel();
+  if (!g) {
+    alert("Créez d'abord un groupe.");
+    return;
+  }
+  if (g.demarree) {
+    alert("Le groupe a déjà démarré.");
+    return;
+  }
+
+  const nom = document.getElementById("membre")
+    .value.trim();
+
+  if (!nom) {
+    alert("Saisissez le nom du membre.");
+    return;
+  }
+
+  g.membres.push({
+    nom: nom,
+    garantieVersee: false
+  });
+
+  document.getElementById("membre").value = "";
+  sauvegarder();
+  afficher();
+}
+
+function confirmerGarantie(index) {
+  const g = groupeActuel();
+  if (!g || g.demarree) return;
+
+  const m = g.membres[index];
+  if (!m || m.garantieVersee) return;
+
+  const confirmation = confirm(
+    "Confirmer la réception de " +
+    g.garantie + " FCFA pour " + m.nom +
+    " ? (Simulation uniquement)"
   );
 
+  if (!confirmation) return;
+
+  m.garantieVersee = true;
+  sauvegarder();
   afficher();
-  alert("Tontine enregistrée en démonstration.");
 }
+
+function toutesGarantiesVersees(g) {
+  return g.membres.length >= 2 &&
+    g.membres.every(
+      m => m.garantieVersee === true
+    );
+}
+
+function demarrerTontine() {
+  const g = groupeActuel();
+  if (!g) return;
+
+  if (!toutesGarantiesVersees(g)) {
+    alert(
+      "Démarrage impossible : toutes les " +
+      "garanties doivent être versées."
+    );
+    return;
+  }
+
+  if (g.demarree) return;
+
+  g.demarree = true;
+  sauvegarder();
+  afficher();
+  alert("Tontine démarrée avec succès !");
+}
+
+function afficher() {
+  const select = document.getElementById("groupes");
+  select.replaceChildren();
+
+  groupes.forEach((g, i) => {
+    const option = document.createElement("option");
+    option.value = i;
+    option.textContent = g.nom;
+    select.appendChild(option);
+  });
+
+  if (groupes.length === 0) {
+    document.getElementById("details").textContent =
+      "Aucun groupe créé.";
+    document.getElementById("statut").textContent = "";
+    document.getElementById("membres").textContent = "";
+    document.getElementById("demarrer").disabled = true;
+    document.getElementById("message").textContent = "";
+    return;
+  }
+
+  if (select.dataset.ready === "yes") {
+    selection = Number(select.value);
+  }
+
+  if (!groupes[selection]) selection = 0;
+  select.value = selection;
+
+  const g = groupeActuel();
+
+  document.getElementById("details").textContent =
+    "Cotisation : " + g.cotisation +
+    " FCFA | Garantie : " + g.garantie +
+    " FCFA par membre";
+
+  document.getElementById("statut").textContent =
+    g.demarree ? "Statut : EN COURS" :
+    "Statut : EN ATTENTE DES GARANTIES";
+
+  const liste = document.getElementById("membres");
+  liste.replaceChildren();
+
+  g.membres.forEach((m, i) => {
+    const div = document.createElement("div");
+    div.className = "member";
+
+    const nom = document.createElement("strong");
+    nom.textContent = m.nom;
+    div.appendChild(nom);
+
+    const p = document.createElement("p");
+    p.className = m.garantieVersee ? "ok" : "no";
+    p.textContent = m.garantieVersee ?
+      "Garantie confirmée" : "Garantie non versée";
+    div.appendChild(p);
+
+    if (!m.garantieVersee && !g.demarree) {
+      const btn = document.createElement("button");
+      btn.textContent = "Confirmer la garantie";
+      btn.onclick = () => confirmerGarantie(i);
+      div.appendChild(btn);
+    }
+
+    liste.appendChild(div);
+  });
+
+  const autorise = toutesGarantiesVersees(g);
+  document.getElementById("demarrer").disabled =
+    !autorise || g.demarree;
+
+  document.getElementById("message").textContent =
+    g.demarree ? "Cycle démarré." :
+    autorise ? "Toutes les garanties sont confirmées." :
+    "Démarrage bloqué : garanties manquantes.";
+}
+
+document.getElementById("groupes")
+  .addEventListener("change", function() {
+    selection = Number(this.value);
+    afficher();
+  });
 
 afficher();
 </script>
