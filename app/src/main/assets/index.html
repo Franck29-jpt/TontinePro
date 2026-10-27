@@ -122,6 +122,28 @@ Démarrer la tontine
 <h2>6. Suivi des tours</h2>
 <div id="tours"></div>
 </section>
+  
+<section class="card">
+  <h2>7. Historique financier</h2>
+
+  <p>
+    Consultez les opérations enregistrées
+    pour chaque membre de la tontine.
+  </p>
+
+  <label for="historiqueMembre">
+    Sélectionner un membre
+  </label>
+
+  <select id="historiqueMembre"
+          onchange="afficherHistorique()">
+    <option value="">Tous les membres</option>
+  </select>
+
+  <div id="historiqueFinancier">
+    Aucun historique disponible.
+  </div>
+</section>
 
 </main>
 
