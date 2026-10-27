@@ -145,6 +145,23 @@ Démarrer la tontine
   </div>
 </section>
 
+<section class="card">
+  <h2>8. Tableau financier individuel</h2>
+
+  <label for="ficheMembre">
+    Choisir un membre
+  </label>
+
+  <select id="ficheMembre"
+          onchange="afficherFicheFinanciere()">
+    <option value="">Sélectionner un membre</option>
+  </select>
+
+  <div id="ficheFinanciere">
+    Sélectionnez un membre pour voir sa situation.
+  </div>
+</section>
+
 </main>
 
 <script>
@@ -216,6 +233,59 @@ function creerGroupe() {
 
   selection = groupes.length - 1;
   sauvegarder();
+
+function afficherFicheFinanciere() {
+  const g = actuel();
+  const select = document.getElementById("ficheMembre");
+  const zone = document.getElementById("ficheFinanciere");
+
+  if (!select || !zone) return;
+
+  zone.replaceChildren();
+
+  if (!g || !select.value) {
+    zone.textContent =
+      "Sélectionnez un membre pour voir sa situation.";
+    return;
+  }
+
+  const membre = g.membres.find(
+    m => m.id === select.value
+  );
+
+  if (!membre) return;
+
+  const operations = Array.isArray(g.historique)
+    ? g.historique.filter(
+        op => op.membreId === membre.id
+      )
+    : [];
+
+  const total = prefixe => operations
+    .filter(op => op.type.startsWith(prefixe))
+    .reduce((somme, op) =>
+      somme + Number(op.montant || 0), 0);
+
+  const garanties = total("Dépôt de garantie");
+  const cotisations = total("Cotisation - Tour");
+  const cagnottes = total("Cagnotte reçue - Tour");
+
+  const titre = document.createElement("h3");
+  titre.textContent = "Situation de " + membre.nom;
+  zone.appendChild(titre);
+
+  [
+    ["Total des garanties", garanties],
+    ["Total des cotisations", cotisations],
+    ["Total des cagnottes reçues", cagnottes]
+  ].forEach(([libelle, montant]) => {
+    const ligne = document.createElement("p");
+    ligne.textContent =
+      libelle + " : " + argent(montant);
+    zone.appendChild(ligne);
+  });
+}
+
   afficher();
 }
 
@@ -505,6 +575,38 @@ function afficher() {
   if (groupes.length) select.value = selection;
 
   const g = actuel(); 
+  
+  const ficheSelect = document.getElementById(
+    "ficheMembre"
+  );
+
+  if (ficheSelect) {
+    const ancienMembre = ficheSelect.value;
+    ficheSelect.replaceChildren();
+
+    const optionVide = document.createElement("option");
+    optionVide.value = "";
+    optionVide.textContent = "Sélectionner un membre";
+    ficheSelect.appendChild(optionVide);
+
+    if (g) {
+      g.membres.forEach(m => {
+        const option = document.createElement("option");
+        option.value = m.id;
+        option.textContent = m.nom;
+        ficheSelect.appendChild(option);
+      });
+    }
+
+    if (Array.from(ficheSelect.options).some(
+      o => o.value === ancienMembre
+    )) {
+      ficheSelect.value = ancienMembre;
+    }
+
+    afficherFicheFinanciere();
+  }
+
   const historiqueSelect = document.getElementById(
     "historiqueMembre"
   );
