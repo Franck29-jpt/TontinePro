@@ -158,6 +158,30 @@ button:disabled { background: #999; }
 
 <main>
 
+<div id="pageAccueil" class="card"
+     style="text-align:center; padding:30px 18px;">
+
+  <h2 style="color:#087b5b;">
+    Bienvenue sur TontinePro Togo
+  </h2>
+
+  <p>
+    Ensemble, finançons nos activités.
+  </p>
+
+  <p>
+    Votre espace de gestion des tontines
+    rotatives, des garanties, des cotisations
+    et des cagnottes.
+  </p>
+
+  <p style="font-weight:bold;">
+    Appuyez sur le bouton ☰ en bas à droite
+    pour accéder aux fonctionnalités.
+  </p>
+
+</div>
+
 <section class="card">
 <h2>1. Créer un groupe</h2>
 <input id="nom" placeholder="Nom du groupe">
@@ -292,6 +316,13 @@ function basculerMenu() {
 }
 
 function ouvrirRubrique(numero) {
+  
+  const accueil = document.getElementById("pageAccueil");
+
+  if (accueil) {
+    accueil.style.display = "none";
+  }
+
   const sections = document.querySelectorAll("main > section.card");
 
   sections.forEach((section, index) => {
@@ -982,7 +1013,13 @@ function afficherHistorique() {
     zone.appendChild(ligne);
   });
 }
-afficher(); ouvrirRubrique(1);
- </script>
+
+afficher();
+
+document.querySelectorAll("main > section.card")
+  .forEach(section => {
+    section.style.display = "none";
+  });
+</script>
 </body>
 </html>
