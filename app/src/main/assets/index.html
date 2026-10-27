@@ -3,75 +3,225 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#123D78">
 <title>TontinePro Togo</title>
+
 <style>
+:root {
+  --bleu: #123D78;
+  --bleu-clair: #e8f0fa;
+  --fond: #f2f5fa;
+  --texte: #213047;
+  --bordure: #dce3ed;
+  --vert: #16734b;
+  --rouge: #b42332;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f3f6f9;
-  color: #253447;
+  font-family: Arial, system-ui, sans-serif;
+  background: var(--fond);
+  color: var(--texte);
+  line-height: 1.5;
 }
-header {
-  background: #087b5b;
-  color: white;
-  padding: 20px;
-  text-align: center;
+
+main {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 16px 14px 35px;
 }
-main { padding: 14px; }
+
 .card {
-  background: white;
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 14px;
+  background: #ffffff;
+  border: 1px solid var(--bordure);
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 14px rgba(18,61,120,.06);
 }
+
+h1, h2, h3 {
+  line-height: 1.3;
+}
+
+h2 {
+  color: var(--bleu);
+  font-size: 21px;
+}
+
+h3 {
+  font-size: 17px;
+}
+
 input, select, button {
   box-sizing: border-box;
   width: 100%;
+  min-height: 44px;
   padding: 11px;
-  margin: 5px 0;
+  margin: 6px 0 12px;
   font-size: 15px;
+  font-family: inherit;
 }
+
+input, select {
+  background: #ffffff;
+  border: 1px solid #aebccd;
+  border-radius: 9px;
+  color: var(--texte);
+}
+
+input:focus, select:focus, button:focus-visible {
+  outline: 3px solid #83b8ff;
+  outline-offset: 2px;
+}
+
 button {
   border: 0;
-  border-radius: 7px;
-  background: #087b5b;
-  color: white;
+  border-radius: 9px;
+  background: var(--bleu);
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
 }
-button:disabled { background: #999; }
-.secondary { background: #456276; }
+
+button:disabled {
+  background: #929aa5;
+  color: #ffffff;
+  cursor: not-allowed;
+}
+
+button:active:not(:disabled) {
+  opacity: .85;
+}
+
+.secondary {
+  background: #52677e;
+}
+
 .item {
-  border-bottom: 1px solid #ddd;
-  padding: 10px 0;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--bordure);
 }
-.ok { color: #087b5b; }
-.no { color: #b00020; }
-.note { font-size: 13px; color: #666; }
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.ok {
+  color: var(--vert);
+  font-weight: 600;
+}
+
+.no {
+  color: var(--rouge);
+  font-weight: 600;
+}
+
+.note {
+  color: #566477;
+  font-size: 13px;
+}
+
 .row {
   display: flex;
-  gap: 8px;
   align-items: center;
+  gap: 8px;
 }
-.row button { width: auto; flex: 1; }
-  
-/* Menu latéral rétractable */
 
+.row button {
+  flex: 1;
+  width: auto;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* PAGE D'ACCUEIL */
+
+#pageAccueil {
+  padding: 0;
+  overflow: hidden;
+}
+
+.accueil-entete {
+  background: var(--bleu);
+  color: #ffffff;
+  text-align: center;
+  padding: 34px 20px;
+}
+
+.accueil-entete h1 {
+  font-size: 25px;
+  margin: 0 0 12px;
+}
+
+.accueil-entete p {
+  margin: 10px 0;
+}
+
+.accueil-contenu {
+  padding: 20px;
+}
+
+.accueil-contenu h2 {
+  text-align: center;
+  font-size: 18px;
+}
+
+.accueil-grille {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.accueil-grille button {
+  min-height: 100px;
+  margin: 0;
+  padding: 14px 8px;
+  border: 1px solid #c9d9ee;
+  border-radius: 13px;
+  background: var(--bleu-clair);
+  color: var(--bleu);
+  font-size: 15px;
+  font-weight: bold;
+  box-shadow: 0 3px 8px rgba(18,61,120,.08);
+}
+
+.accueil-grille button:active {
+  background: #d5e5fa;
+}
+
+/* MENU FLOTTANT */
 
 #menuBouton {
   position: fixed;
   right: 16px;
-  bottom: 85px;
+  bottom: 80px;
   width: 58px;
   height: 58px;
+  min-height: 58px;
   padding: 0;
-  border: none;
+  margin: 0;
+  border: 2px solid var(--bleu);
   border-radius: 50%;
   background: #ffffff;
-color: #123D78;
+  color: var(--bleu);
   font-size: 27px;
-  font-weight: bold;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 14px rgba(0,0,0,.22);
   z-index: 1100;
-  cursor: pointer;
+}
+
+#menuFond {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  z-index: 1190;
 }
 
 #menuLateral {
@@ -79,86 +229,133 @@ color: #123D78;
   position: fixed;
   top: 0;
   left: 0;
-  width: 75%;
-  max-width: 280px;
+  width: 82%;
+  max-width: 310px;
   height: 100vh;
+  height: 100dvh;
   overflow-y: auto;
-  background: #123D78;
-  padding: 20px 12px;
-  box-sizing: border-box;
+  background: var(--bleu);
+  padding: 20px 14px 35px;
   z-index: 1200;
-  box-shadow: 3px 0 12px rgba(0,0,0,0.25);
+  box-shadow: 4px 0 16px rgba(0,0,0,.25);
 }
 
 #menuLateral.ouvert {
   display: block;
 }
 
+#menuLateral h2 {
+  color: #ffffff;
+  font-size: 19px;
+  margin: 0 0 15px;
+}
+
 #menuLateral button {
   display: block;
   width: 100%;
-  margin: 8px 0;
+  min-height: 46px;
   padding: 12px;
+  margin: 8px 0;
   text-align: left;
   background: #ffffff;
-  color: #123D78;
-  border-radius: 8px;
+  color: var(--bleu);
+  border-radius: 9px;
 }
 
-#signatureDoctorale {
-  background: #123D78;
-  color: white;
-  text-align: center;
-  padding: 18px 12px;
-  margin-top: 25px;
-  margin-bottom: 70px;
+/* INFORMATIONS FINANCIERES */
+
+.resume-financier {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.resume-case {
+  background: var(--bleu-clair);
   border-radius: 10px;
+  padding: 13px;
+}
+
+.resume-case span {
+  display: block;
+  font-size: 13px;
+  color: #46566a;
+}
+
+.resume-case strong {
+  display: block;
+  margin-top: 4px;
+  color: var(--bleu);
+  font-size: 18px;
+}
+
+.message {
+  padding: 12px;
+  border-radius: 9px;
+  background: var(--bleu-clair);
+  margin: 12px 0;
+}
+
+/* SIGNATURE */
+
+#signatureDoctorale {
+  max-width: 850px;
+  margin: 20px auto 85px;
+  padding: 20px 14px;
+  text-align: center;
+  background: var(--bleu);
+  color: #ffffff;
+  border-radius: 12px;
 }
 
 #signatureDoctorale strong {
   font-size: 15px;
+  font-style: italic;
 }
 
 #signatureDoctorale p {
   font-size: 12px;
   margin: 8px 0;
+  font-style: normal;
 }
 
 #signatureDoctorale small {
   font-size: 11px;
 }
 
-#pageAccueil button {
-  background: #ffffff;
-  color: #123D78;
-  border: none;
-  border-radius: 14px;
-  padding: 22px 10px;
-  min-height: 95px;
-  font-size: 15px;
-  font-weight: bold;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  cursor: pointer;
-}
+@media (min-width: 600px) {
+  .resume-financier {
+    grid-template-columns: repeat(3, 1fr);
+  }
 
-#pageAccueil button:active {
-  background: #dce8f7;
-  transform: scale(0.97);
+  .accueil-grille {
+    gap: 16px;
+  }
 }
-
 </style>
 </head>
+
 <body>
 
-<header>
-  
-<button id="menuBouton"
-        type="button"
-        onclick="basculerMenu()"
-        aria-label="Ouvrir ou fermer le menu">
- 
+<button
+  id="menuBouton"
+  type="button"
+  onclick="basculerMenu()"
+  aria-label="Ouvrir ou fermer le menu"
+  aria-controls="menuLateral"
+  aria-expanded="false"
+>☰</button>
+
+<div id="menuFond" onclick="fermerMenu()" hidden></div>
+
 <nav id="menuLateral" aria-label="Navigation principale">
+  <h2>TontinePro Togo</h2>
+
+  <button type="button" onclick="retourAccueil()">
+    Accueil
+  </button>
+
   <button type="button" onclick="ouvrirRubrique(1)">
     1. Créer un groupe
   </button>
@@ -194,120 +391,168 @@ color: #123D78;
 
 <main>
 
+<!-- PAGE D'ACCUEIL -->
 
-<div style="
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin-top:25px;">
+<div id="pageAccueil" class="card">
 
-  <button type="button" onclick="ouvrirRubrique(2)">
-    👥 Mes groupes
-  </button>
+  <div class="accueil-entete">
+    <h1>Bienvenue sur TontinePro Togo</h1>
+    <p><strong>Ensemble, finançons nos activités.</strong></p>
+    <p>
+      Votre espace de gestion des tontines rotatives,
+      des garanties, des cotisations et des cagnottes.
+    </p>
+  </div>
 
-  <button type="button" onclick="ouvrirRubrique(6)">
-    💰 Mes tontines
-  </button>
+  <div class="accueil-contenu">
+    <h2>Accès rapides</h2>
 
-  <button type="button" onclick="ouvrirRubrique(8)">
-    📊 Mes finances
-  </button>
+    <div class="accueil-grille">
+      <button type="button" onclick="ouvrirRubrique(2)">
+        👥 Mes groupes
+      </button>
 
-  <button type="button" onclick="ouvrirRubrique(7)">
-    📋 Historique financier
-  </button>
+      <button type="button" onclick="ouvrirRubrique(6)">
+        💰 Mes tontines
+      </button>
 
-</div>
-<div id="pageAccueil" class="card"
-     style="text-align:center; padding:30px 18px;
-            background:#123D78; color:white;">
+      <button type="button" onclick="ouvrirRubrique(8)">
+        📊 Mes finances
+      </button>
 
-  <h2 style="color:white;">
-    Bienvenue sur TontinePro Togo
-  </h2>
+      <button type="button" onclick="ouvrirRubrique(7)">
+        📋 Historique financier
+      </button>
+    </div>
 
-  <p>
-    Ensemble, finançons nos activités.
-  </p>
+    <p class="note">
+      Utilisez le bouton ☰ en bas à droite pour accéder
+      à toutes les fonctionnalités.
+    </p>
 
-  <p>
-    Votre espace de gestion des tontines
-    rotatives, des garanties, des cotisations
-    et des cagnottes.
-  </p>
-
-  <p style="font-weight:bold;">
-    Appuyez sur le bouton ☰ en bas à droite
-    pour accéder aux fonctionnalités.
-  </p>
+    <p class="note">
+      Version de prototype : les versements sont simulés
+      et les données sont enregistrées sur cet appareil.
+    </p>
+  </div>
 
 </div>
 
-<section class="card">
-<h2>1. Créer un groupe</h2>
-<input id="nom" placeholder="Nom du groupe">
-<input id="cotisation" type="number" min="1"
- placeholder="Cotisation par membre en FCFA">
-<input id="garantie" type="number" min="1"
- placeholder="Garantie initiale en FCFA">
-<select id="periode">
-<option value="Journalière">Journalière</option>
-<option value="Hebdomadaire">Hebdomadaire</option>
-<option value="Mensuelle">Mensuelle</option>
-</select>
-<button onclick="creerGroupe()">Créer le groupe</button>
+<!-- RUBRIQUE 1 -->
+
+<section class="card" hidden>
+  <h2>1. Créer un groupe</h2>
+
+  <label for="nom">Nom du groupe</label>
+  <input id="nom" type="text"
+    placeholder="Ex. : Tontine des entrepreneurs">
+
+  <label for="cotisation">
+    Cotisation par membre (FCFA)
+  </label>
+  <input id="cotisation" type="number" min="1" step="1"
+    placeholder="Ex. : 5000">
+
+  <label for="garantie">
+    Dépôt de garantie initial (FCFA)
+  </label>
+  <input id="garantie" type="number" min="1" step="1"
+    placeholder="Ex. : 10000">
+
+  <label for="periode">Périodicité</label>
+  <select id="periode">
+    <option value="Journalière">Journalière</option>
+    <option value="Hebdomadaire">Hebdomadaire</option>
+    <option value="Mensuelle">Mensuelle</option>
+  </select>
+
+  <button type="button" onclick="creerGroupe()">
+    Créer le groupe
+  </button>
 </section>
 
-<section class="card">
-<h2>2. Groupe sélectionné</h2>
-<select id="groupes" onchange="changerGroupe()"></select>
-<p id="details"></p>
-<p id="statut"></p>
+<!-- RUBRIQUE 2 -->
+
+<section class="card" hidden>
+  <h2>2. Groupe sélectionné</h2>
+
+  <label for="groupes">Choisir un groupe</label>
+  <select id="groupes" onchange="changerGroupe()"></select>
+
+  <p id="details"></p>
+  <p id="statut"></p>
 </section>
 
-<section class="card">
-<h2>3. Inscrire les membres</h2>
-<input id="membre" placeholder="Nom du membre">
-<button id="ajoutBtn" onclick="ajouterMembre()">
-Ajouter le membre
-</button>
-<div id="membres"></div>
+<!-- RUBRIQUE 3 -->
+
+<section class="card" hidden>
+  <h2>3. Inscrire les membres</h2>
+
+  <label for="membre">Nom du membre</label>
+  <input id="membre" type="text"
+    placeholder="Nom et prénom du membre">
+
+  <button id="ajoutBtn" type="button"
+    onclick="ajouterMembre()">
+    Ajouter le membre
+  </button>
+
+  <div id="membres"></div>
 </section>
 
-<section class="card">
-<h2>4. Choisir l'ordre de passage</h2>
-<select id="mode" onchange="changerMode()">
-<option value="tirage">Tirage au sort</option>
-<option value="collectif">Choix collectif</option>
-</select>
-<button id="tirageBtn" onclick="tirerAuSort()">
-Effectuer le tirage au sort
-</button>
-<div id="ordre"></div>
-<p class="note">
-L'ordre doit être validé avant le démarrage.
-</p>
+<!-- RUBRIQUE 4 -->
+
+<section class="card" hidden>
+  <h2>4. Choisir l'ordre de passage</h2>
+
+  <label for="mode">Mode de désignation</label>
+  <select id="mode" onchange="changerMode()">
+    <option value="tirage">Tirage au sort</option>
+    <option value="collectif">Choix collectif</option>
+  </select>
+
+  <button id="tirageBtn" type="button"
+    onclick="tirerAuSort()">
+    Effectuer le tirage au sort
+  </button>
+
+  <div id="ordre"></div>
+
+  <p class="note">
+    L'ordre de passage doit être validé avant
+    le démarrage de la tontine.
+  </p>
 </section>
 
-<section class="card">
-<h2>5. Démarrer la tontine</h2>
-<p id="conditions"></p>
-<button id="demarrerBtn" onclick="demarrer()">
-Démarrer la tontine
-</button>
+<!-- RUBRIQUE 5 -->
+
+<section class="card" hidden>
+  <h2>5. Démarrer la tontine</h2>
+
+  <p id="conditions"></p>
+
+  <button id="demarrerBtn" type="button"
+    onclick="demarrer()">
+    Démarrer la tontine
+  </button>
 </section>
 
-<section class="card">
-<h2>6. Suivi des tours</h2>
-<div id="tours"></div>
+<!-- RUBRIQUE 6 -->
+
+<section class="card" hidden>
+  <h2>6. Suivi des tours</h2>
+
+  <div id="tours"></div>
 </section>
-  
-<section class="card">
+
+<!-- RUBRIQUE 7 -->
+
+<section class="card" hidden>
   <h2>7. Historique financier</h2>
 
   <p>
     Consultez les opérations enregistrées
-    pour chaque membre de la tontine.
+    pour les membres du groupe sélectionné.
   </p>
 
   <label for="historiqueMembre">
@@ -315,16 +560,16 @@ Démarrer la tontine
   </label>
 
   <select id="historiqueMembre"
-          onchange="afficherHistorique()">
+    onchange="afficherHistorique()">
     <option value="">Tous les membres</option>
   </select>
 
-  <div id="historiqueFinancier">
-    Aucun historique disponible.
-  </div>
+  <div id="historiqueFinancier"></div>
 </section>
 
-<section class="card">
+<!-- RUBRIQUE 8 -->
+
+<section class="card" hidden>
   <h2>8. Tableau financier individuel</h2>
 
   <label for="ficheMembre">
@@ -332,98 +577,186 @@ Démarrer la tontine
   </label>
 
   <select id="ficheMembre"
-          onchange="afficherFicheFinanciere()">
+    onchange="afficherFicheFinanciere()">
     <option value="">Sélectionner un membre</option>
   </select>
 
-  <div id="ficheFinanciere">
-    Sélectionnez un membre pour voir sa situation.
-  </div>
+  <div id="ficheFinanciere"></div>
 </section>
 
 </main>
 
 <footer id="signatureDoctorale">
- <strong style="font-style: italic !important;">
-  <em>Dr SOSSO Essossimna</em>
-</strong>
+  <strong><em>Dr SOSSO Essossimna</em></strong>
 
   <p>
     Une application issue des travaux
     de recherche doctorale
   </p>
+
   <small>© 2026 — TontinePro Togo</small>
 </footer>
 
 <script>
+"use strict";
+
 const CLE = "tontinepro_rotation_v1";
+
 let groupes = [];
 let selection = 0;
 
+/* CHARGEMENT DES DONNEES */
+
 try {
-  const valeur = JSON.parse(localStorage.getItem(CLE));
-  if (Array.isArray(valeur)) groupes = valeur;
-} catch (e) {
-  alert("Impossible de lire les données enregistrées.");
+  const donnees = JSON.parse(localStorage.getItem(CLE));
+
+  if (Array.isArray(donnees)) {
+    groupes = donnees;
+  }
+} catch (erreur) {
+  alert(
+    "Impossible de lire les données enregistrées. " +
+    "Aucune donnée existante n'a été supprimée."
+  );
 }
 
-f
+/* NAVIGATION */
+
+function fermerMenu() {
+  const menu = document.getElementById("menuLateral");
+  const fond = document.getElementById("menuFond");
+  const bouton = document.getElementById("menuBouton");
+
+  menu.classList.remove("ouvert");
+  fond.hidden = true;
+  bouton.setAttribute("aria-expanded", "false");
+}
+
 function basculerMenu() {
   const menu = document.getElementById("menuLateral");
+  const fond = document.getElementById("menuFond");
+  const bouton = document.getElementById("menuBouton");
 
-  if (!menu) {
-    alert("Erreur : menu latéral introuvable.");
-    return;
-  }
+  const ouvert = menu.classList.toggle("ouvert");
 
-  menu.classList.toggle("ouvert");
+  fond.hidden = !ouvert;
+  bouton.setAttribute("aria-expanded", String(ouvert));
 }
 
-  if (menu.classList.contains("ouvert")) {
-    menu.classList.remove("ouvert");
-    alert("Menu fermé");
-  } else {
-    menu.classList.add("ouvert");
-    alert("Menu ouvert");
-  }
-}
+function retourAccueil() {
+  document.getElementById("pageAccueil").hidden = false;
 
-function ouvrirRubrique(numero) {
-  
-  const accueil = document.getElementById("pageAccueil");
+  document.querySelectorAll("main > section.card")
+    .forEach(section => {
+      section.hidden = true;
+    });
 
-  if (accueil) {
-    accueil.style.display = "none";
-  }
-
-  const sections = document.querySelectorAll("main > section.card");
-
-  sections.forEach((section, index) => {
-    section.style.display =
-      index === numero - 1 ? "block" : "none";
-  });
-
-  const menu = document.getElementById("menuLateral");
-
-  if (menu) {
-    menu.classList.remove("ouvert");
-  }
-
+  fermerMenu();
   window.scrollTo(0, 0);
 }
 
+function ouvrirRubrique(numero) {
+  const sections =
+    document.querySelectorAll("main > section.card");
+
+  if (!Number.isInteger(numero) ||
+      numero < 1 ||
+      numero > sections.length) {
+    return;
+  }
+
+  document.getElementById("pageAccueil").hidden = true;
+
+  sections.forEach((section, index) => {
+    section.hidden = index !== numero - 1;
+  });
+
+  fermerMenu();
+  window.scrollTo(0, 0);
+}
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    fermerMenu();
+  }
+});
+
+/* UTILITAIRES */
+
 function sauvegarder() {
-  localStorage.setItem(CLE, JSON.stringify(groupes));
+  try {
+    localStorage.setItem(CLE, JSON.stringify(groupes));
+    return true;
+  } catch (erreur) {
+    alert(
+      "Impossible d'enregistrer les données sur cet appareil. " +
+      "Vérifiez l'espace de stockage disponible."
+    );
+    return false;
+  }
 }
 
 function actuel() {
   return groupes[selection] || null;
 }
 
-function argent(n) {
-  return Number(n).toLocaleString("fr-FR") + " FCFA";
+function argent(valeur) {
+  const montant = Number(valeur);
+
+  if (!Number.isFinite(montant)) {
+    return "Montant indisponible";
+  }
+
+  return montant.toLocaleString("fr-FR") + " FCFA";
 }
 
+function memeId(a, b) {
+  return String(a) === String(b);
+}
+
+function membreParId(g, id) {
+  return g.membres.find(m => memeId(m.id, id));
+}
+
+function creerElement(tag, texte, classe) {
+  const element = document.createElement(tag);
+
+  if (texte !== undefined) {
+    element.textContent = texte;
+  }
+
+  if (classe) {
+    element.className = classe;
+  }
+
+  return element;
+}
+
+function bouton(texte, action, parent, desactive) {
+  const element = document.createElement("button");
+
+  element.type = "button";
+  element.textContent = texte;
+  element.disabled = Boolean(desactive);
+
+  element.addEventListener("click", action);
+  parent.appendChild(element);
+
+  return element;
+}
+
+function operationValide(op) {
+  return op &&
+    typeof op.type === "string" &&
+    Number.isFinite(Number(op.montant)) &&
+    Number(op.montant) >= 0;
+}
+
+function historiqueGroupe(g) {
+  return Array.isArray(g.historique)
+    ? g.historique.filter(operationValide)
+    : [];
+}
 
 function enregistrerOperation(g, type, membre, montant, tour) {
   if (!Array.isArray(g.historique)) {
@@ -439,114 +772,108 @@ function enregistrerOperation(g, type, membre, montant, tour) {
     date: new Date().toLocaleString("fr-FR")
   });
 }
+
+/* CREATION DES GROUPES */
+
 function creerGroupe() {
-  const nom = document.getElementById("nom").value.trim();
+  const nom =
+    document.getElementById("nom").value.trim();
+
   const cotisation = Number(
     document.getElementById("cotisation").value
   );
+
   const garantie = Number(
     document.getElementById("garantie").value
   );
-  const periode = document.getElementById("periode").value;
 
-  if (!nom || !Number.isSafeInteger(cotisation) ||
+  const periode =
+    document.getElementById("periode").value;
+
+  if (!nom ||
+      !Number.isSafeInteger(cotisation) ||
       !Number.isSafeInteger(garantie) ||
-      cotisation <= 0 || garantie <= 0) {
+      cotisation <= 0 ||
+      garantie <= 0) {
     alert("Veuillez saisir des informations valides.");
     return;
   }
 
-  groupes.push({
-    nom, cotisation, garantie, periode,
+  const nouveauGroupe = {
+    nom: nom,
+    cotisation: cotisation,
+    garantie: garantie,
+    periode: periode,
     membres: [],
     mode: "tirage",
     ordre: [],
     ordreValide: false,
     demarree: false,
     tourActuel: 0,
-    paiements: []
-  });
+    paiements: [],
+    historique: []
+  };
 
+  groupes.push(nouveauGroupe);
   selection = groupes.length - 1;
-  sauvegarder();
-  afficher();
-}
 
-function afficherFicheFinanciere() {
-  const g = actuel();
-  const select = document.getElementById("ficheMembre");
-  const zone = document.getElementById("ficheFinanciere");
-
-  if (!select || !zone) return;
-
-  zone.replaceChildren();
-
-  if (!g || !select.value) {
-    zone.textContent =
-      "Sélectionnez un membre pour voir sa situation.";
+  if (!sauvegarder()) {
+    groupes.pop();
+    selection = Math.max(0, groupes.length - 1);
     return;
   }
 
-  const membre = g.membres.find(
-  m => String(m.id) === String(select.value)
-);
+  document.getElementById("nom").value = "";
+  document.getElementById("cotisation").value = "";
+  document.getElementById("garantie").value = "";
 
-  if (!membre) return;
-
-  const operations = Array.isArray(g.historique)
-    ? g.historique.filter(
-        op => String(op.membreId) === String(membre.id)
-      )
-    : [];
-
-  const total = prefixe => operations
-    .filter(op => op.type.startsWith(prefixe))
-    .reduce((somme, op) =>
-      somme + Number(op.montant || 0), 0);
-
-  const garanties = total("Dépôt de garantie");
-  const cotisations = total("Cotisation - Tour");
-  const cagnottes = total("Cagnotte reçue - Tour");
-
-  const titre = document.createElement("h3");
-  titre.textContent = "Situation de " + membre.nom;
-  zone.appendChild(titre);
-
-  [
-    ["Total des garanties", garanties],
-    ["Total des cotisations", cotisations],
-    ["Total des cagnottes reçues", cagnottes]
-  ].forEach(([libelle, montant]) => {
-    const ligne = document.createElement("p");
-    ligne.textContent =
-      libelle + " : " + argent(montant);
-    zone.appendChild(ligne);
-  });
   afficher();
+  ouvrirRubrique(3);
+
+  alert(
+    "Groupe créé avec succès. " +
+    "Vous pouvez maintenant inscrire les membres."
+  );
 }
 
 function changerGroupe() {
-  selection = Number(
-    document.getElementById("groupes").value
-  );
+  const valeur =
+    Number(document.getElementById("groupes").value);
+
+  if (!Number.isInteger(valeur) ||
+      valeur < 0 ||
+      valeur >= groupes.length) {
+    return;
+  }
+
+  selection = valeur;
+
+  document.getElementById("ficheMembre").value = "";
+  document.getElementById("historiqueMembre").value = "";
+
   afficher();
 }
+
+/* MEMBRES */
 
 function ajouterMembre() {
   const g = actuel();
 
-if (!g) {
-  alert("Veuillez d'abord créer ou sélectionner un groupe.");
-  return;
-}
+  if (!g) {
+    alert("Veuillez d'abord créer un groupe.");
+    return;
+  }
 
-if (g.demarree) {
-  alert("Impossible d'ajouter un membre : la tontine a déjà démarré.");
-  return;
-}
+  if (g.demarree) {
+    alert(
+      "Impossible d'ajouter un membre : " +
+      "la tontine a déjà démarré."
+    );
+    return;
+  }
 
-  const nom = document.getElementById("membre")
-    .value.trim();
+  const champ = document.getElementById("membre");
+  const nom = champ.value.trim();
 
   if (!nom) {
     alert("Saisissez le nom du membre.");
@@ -554,60 +881,73 @@ if (g.demarree) {
   }
 
   if (g.membres.some(m =>
-    m.nom.toLowerCase() === nom.toLowerCase())) {
+    m.nom.toLowerCase() === nom.toLowerCase()
+  )) {
     alert("Ce membre est déjà inscrit.");
     return;
   }
 
-  g.membres.push({
-    id: Date.now() + "_" + g.membres.length,
-    nom,
+  const nouveauMembre = {
+    id: Date.now() + "_" +
+      Math.random().toString(36).slice(2, 9),
+    nom: nom,
     garantieVersee: false
-  });
+  };
+
+  g.membres.push(nouveauMembre);
 
   g.ordre = [];
   g.ordreValide = false;
 
-  document.getElementById("membre").value = "";
   sauvegarder();
+  champ.value = "";
   afficher();
 }
 
 function confirmerGarantie(id) {
   const g = actuel();
+
   if (!g || g.demarree) return;
 
-  const m = g.membres.find(m => m.id === id);
-  if (!m || m.garantieVersee) return;
+  const membre = membreParId(g, id);
+
+  if (!membre || membre.garantieVersee) return;
 
   if (!confirm(
     "Confirmer la réception simulée de " +
-    argent(g.garantie) + " pour " + m.nom + " ?"
-  )) return;
+    argent(g.garantie) +
+    " pour " + membre.nom + " ?"
+  )) {
+    return;
+  }
 
-  m.garantieVersee = true;
+  membre.garantieVersee = true;
 
-enregistrerOperation(
-  g,
-  "Dépôt de garantie",
-  m,
-  g.garantie,
-  0
-);
+  enregistrerOperation(
+    g,
+    "Dépôt de garantie",
+    membre,
+    g.garantie,
+    0
+  );
 
-sauvegarder();
-afficher();
-
+  sauvegarder();
+  afficher();
 }
+
+/* ORDRE DE PASSAGE */
 
 function changerMode() {
   const g = actuel();
+
   if (!g || g.demarree) return;
 
   g.mode = document.getElementById("mode").value;
+
   g.ordre = g.mode === "collectif"
     ? g.membres.map(m => m.id)
     : [];
+
   g.ordreValide = false;
 
   sauvegarder();
@@ -616,434 +956,260 @@ function changerMode() {
 
 function tirerAuSort() {
   const g = actuel();
-  if (!g || g.demarree ||
-      g.mode !== "tirage" || g.membres.length < 2) {
+
+  if (!g ||
+      g.demarree ||
+      g.mode !== "tirage" ||
+      g.membres.length < 2) {
     return;
   }
 
   const ids = g.membres.map(m => m.id);
 
-  // Mélange Fisher-Yates avec tirage aléatoire.
   for (let i = ids.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
+
     [ids[i], ids[j]] = [ids[j], ids[i]];
   }
 
   g.ordre = ids;
   g.ordreValide = false;
+
   sauvegarder();
   afficher();
 }
 
 function deplacer(index, direction) {
   const g = actuel();
-  if (!g || g.demarree ||
-      g.mode !== "collectif") return;
+
+  if (!g ||
+      g.demarree ||
+      g.mode !== "collectif") {
+    return;
+  }
 
   const cible = index + direction;
-  if (cible < 0 || cible >= g.ordre.length) return;
+
+  if (cible < 0 || cible >= g.ordre.length) {
+    return;
+  }
 
   [g.ordre[index], g.ordre[cible]] =
     [g.ordre[cible], g.ordre[index]];
 
   g.ordreValide = false;
+
   sauvegarder();
   afficher();
 }
 
+function ordreComplet(g) {
+  if (!g || g.membres.length < 2) {
+    return false;
+  }
+
+  if (g.ordre.length !== g.membres.length) {
+    return false;
+  }
+
+  const ids = g.ordre.map(id => String(id));
+
+  if (new Set(ids).size !== g.membres.length) {
+    return false;
+  }
+
+  return g.ordre.every(id =>
+    g.membres.some(m => memeId(m.id, id))
+  );
+}
+
 function validerOrdre() {
   const g = actuel();
+
   if (!g || g.demarree) return;
 
-  if (g.ordre.length !== g.membres.length ||
-      g.membres.length < 2 ||
-      new Set(g.ordre).size !== g.membres.length ||
-      !g.ordre.every(id =>
-        g.membres.some(m => m.id === id))) {
+  if (!ordreComplet(g)) {
     alert("L'ordre de passage est incomplet.");
     return;
   }
 
   if (!confirm(
-    "Valider définitivement cet ordre de passage " +
-    "pour le démarrage ?"
-  )) return;
+    "Valider cet ordre de passage pour la tontine ?"
+  )) {
+    return;
+  }
 
   g.ordreValide = true;
+
   sauvegarder();
   afficher();
 }
 
+/* DEMARRAGE */
+
 function garantiesCompletes(g) {
-  return g.membres.length >= 2 &&
+  return Boolean(g) &&
+    g.membres.length >= 2 &&
     g.membres.every(m => m.garantieVersee === true);
 }
 
 function peutDemarrer(g) {
   return garantiesCompletes(g) &&
     g.ordreValide === true &&
-    g.ordre.length === g.membres.length &&
-    new Set(g.ordre).size === g.membres.length &&
-    g.ordre.every(id =>
-      g.membres.some(m => m.id === id));
+    ordreComplet(g);
 }
 
 function demarrer() {
   const g = actuel();
+
   if (!g || g.demarree || !peutDemarrer(g)) {
-    alert("Garanties ou ordre de passage incomplets.");
+    alert(
+      "Les garanties ou l'ordre de passage " +
+      "sont incomplets."
+    );
     return;
   }
 
-  if (!confirm("Démarrer cette tontine ?")) return;
+  if (!confirm("Démarrer cette tontine ?")) {
+    return;
+  }
 
   g.demarree = true;
   g.tourActuel = 0;
+
   g.paiements = g.membres.map(m => ({
-    id: m.id, verse: false
+    id: m.id,
+    verse: false
   }));
 
   sauvegarder();
   afficher();
+  ouvrirRubrique(6);
 }
+
+/* COTISATIONS */
 
 function confirmerCotisation(id) {
   const g = actuel();
-  if (!g || !g.demarree ||
-      g.tourActuel >= g.ordre.length) return;
 
-  const p = g.paiements.find(p => p.id === id);
-  if (!p || p.verse) return;
-
-  const m = g.membres.find(m => m.id === id);
-
-  if (!confirm(
-    "Confirmer la cotisation simulée de " +
-    argent(g.cotisation) + " pour " + m.nom + " ?"
-  )) return;
-
- p.verse = true;
-
-enregistrerOperation(
-  g,
-  "Cotisation - Tour " + (g.tourActuel + 1),
-  m,
-  g.cotisation,
-  g.tourActuel + 1
-);
-
-sauvegarder();
-afficher();
-
-}
-
-function validerTour() {
-  const g = actuel();
-  if (!g || !g.demarree ||
-      g.tourActuel >= g.ordre.length) return;
-
-  if (!g.paiements.every(p => p.verse)) {
-    alert("Toutes les cotisations sont obligatoires.");
+  if (!g ||
+      !g.demarree ||
+      g.tourActuel >= g.ordre.length) {
     return;
   }
 
-  const beneficiaire = g.membres.find(
-    m => m.id === g.ordre[g.tourActuel]
+  const paiement = g.paiements.find(p =>
+    memeId(p.id, id)
   );
+
+  const membre = membreParId(g, id);
+
+  if (!paiement || paiement.verse || !membre) {
+    return;
+  }
+
+  if (!confirm(
+    "Confirmer la cotisation simulée de " +
+    argent(g.cotisation) +
+    " pour " + membre.nom + " ?"
+  )) {
+    return;
+  }
+
+  paiement.verse = true;
+
+  enregistrerOperation(
+    g,
+    "Cotisation - Tour " + (g.tourActuel + 1),
+    membre,
+    g.cotisation,
+    g.tourActuel + 1
+  );
+
+  sauvegarder();
+  afficher();
+}
+
+/* VALIDATION DU TOUR */
+
+function validerTour() {
+  const g = actuel();
+
+  if (!g ||
+      !g.demarree ||
+      g.tourActuel >= g.ordre.length) {
+    return;
+  }
+
+  if (!Array.isArray(g.paiements) ||
+      g.paiements.length !== g.membres.length ||
+      !g.paiements.every(p => p.verse === true)) {
+    alert(
+      "Toutes les cotisations doivent être confirmées."
+    );
+    return;
+  }
+
+  const beneficiaire = membreParId(
+    g,
+    g.ordre[g.tourActuel]
+  );
+
+  if (!beneficiaire) {
+    alert("Bénéficiaire introuvable.");
+    return;
+  }
+
+  const montant =
+    g.cotisation * g.membres.length;
+
+  if (!Number.isSafeInteger(montant) ||
+      montant <= 0) {
+    alert("Le montant de la cagnotte est invalide.");
+    return;
+  }
 
   if (!confirm(
     "Confirmer le versement simulé de " +
-    argent(g.cotisation * g.membres.length) +
+    argent(montant) +
     " à " + beneficiaire.nom + " ?"
-  )) return;
+  )) {
+    return;
+  }
 
-enregistrerOperation(
-  g,
-  "Cagnotte reçue - Tour " + (g.tourActuel + 1),
-  beneficiaire,
-  g.cotisation * g.membres.length,
-  g.tourActuel + 1
-);
+  enregistrerOperation(
+    g,
+    "Cagnotte reçue - Tour " + (g.tourActuel + 1),
+    beneficiaire,
+    montant,
+    g.tourActuel + 1
+  );
 
-g.tourActuel++;
+  g.tourActuel++;
 
   if (g.tourActuel < g.ordre.length) {
     g.paiements = g.membres.map(m => ({
-      id: m.id, verse: false
+      id: m.id,
+      verse: false
     }));
+  } else {
+    g.paiements = [];
   }
 
   sauvegarder();
   afficher();
 }
 
-function bouton(texte, action, parent, desactive) {
-  const b = document.createElement("button");
-  b.textContent = texte;
-  b.disabled = Boolean(desactive);
-  b.addEventListener("click", action);
-  parent.appendChild(b);
-  return b;
-}
+/* HISTORIQUE FINANCIER */
 
-function afficher() {
-  const select = document.getElementById("groupes");
-  select.replaceChildren();
-
-  groupes.forEach((g, i) => {
-    const opt = document.createElement("option");
-    opt.value = i;
-    opt.textContent = g.nom;
-    select.appendChild(opt);
-  });
-
-  if (!groupes[selection]) selection = 0;
-  if (groupes.length) select.value = selection;
-
-  const g = actuel(); 
-  
-  const ficheSelect = document.getElementById(
-    "ficheMembre"
-  );
-
-  if (ficheSelect) {
-    const ancienMembre = ficheSelect.value;
-    ficheSelect.replaceChildren();
-
-    const optionVide = document.createElement("option");
-    optionVide.value = "";
-    optionVide.textContent = "Sélectionner un membre";
-    ficheSelect.appendChild(optionVide);
-
-    if (g) {
-      g.membres.forEach(m => {
-        const option = document.createElement("option");
-        option.value = m.id;
-        option.textContent = m.nom;
-        ficheSelect.appendChild(option);
-      });
-    }
-
-    if (Array.from(ficheSelect.options).some(
-      o => o.value === ancienMembre
-    )) {
-      ficheSelect.value = ancienMembre;
-    }
-
-    afficherFicheFinanciere();
-  }
-
-  const historiqueSelect = document.getElementById(
-    "historiqueMembre"
-  );
-
-  if (historiqueSelect) {
-    const ancienChoix = historiqueSelect.value;
-    historiqueSelect.replaceChildren();
-
-    const optionTous = document.createElement("option");
-    optionTous.value = "";
-    optionTous.textContent = "Tous les membres";
-    historiqueSelect.appendChild(optionTous);
-
-    if (g) {
-      g.membres.forEach(m => {
-        const option = document.createElement("option");
-        option.value = m.id;
-        option.textContent = m.nom;
-        historiqueSelect.appendChild(option);
-      });
-    }
-
-    if (Array.from(historiqueSelect.options).some(
-      o => o.value === ancienChoix
-    )) {
-      historiqueSelect.value = ancienChoix;
-    }
-
-    afficherHistorique();
-  }
-
-  for (const id of ["membres", "ordre", "tours"]) {
-    document.getElementById(id).replaceChildren();
-  }
-
-  if (!g) {
-    document.getElementById("details").textContent =
-      "Créez votre premier groupe.";
-    document.getElementById("statut").textContent = "";
-    document.getElementById("conditions").textContent = "";
-    for (const id of ["ajoutBtn", "tirageBtn",
-                       "demarrerBtn", "mode"]) {
-      document.getElementById(id).disabled = true;
-    }
-    return;
-  }
-
-  document.getElementById("details").textContent =
-    "Cotisation : " + argent(g.cotisation) +
-    " | Garantie : " + argent(g.garantie) +
-    " | Période : " + g.periode;
-
-  document.getElementById("statut").textContent =
-    g.demarree
-      ? (g.tourActuel >= g.ordre.length
-          ? "Statut : CYCLE TERMINÉ"
-          : "Statut : EN COURS")
-      : "Statut : EN PRÉPARATION";
-
-  document.getElementById("ajoutBtn").disabled =
-    g.demarree;
-
-  const membres = document.getElementById("membres");
-
-  g.membres.forEach(m => {
-    const div = document.createElement("div");
-    div.className = "item";
-
-    const nom = document.createElement("strong");
-    nom.textContent = m.nom;
-    div.appendChild(nom);
-
-    const p = document.createElement("p");
-    p.className = m.garantieVersee ? "ok" : "no";
-    p.textContent = m.garantieVersee
-      ? "Garantie confirmée"
-      : "Garantie non versée";
-    div.appendChild(p);
-
-    if (!m.garantieVersee && !g.demarree) {
-      bouton("Confirmer la garantie",
-        () => confirmerGarantie(m.id), div);
-    }
-
-    membres.appendChild(div);
-  });
-
-  const mode = document.getElementById("mode");
-  mode.value = g.mode;
-  mode.disabled = g.demarree;
-
-  document.getElementById("tirageBtn").disabled =
-    g.demarree || g.mode !== "tirage" ||
-    g.membres.length < 2;
-
-  const ordre = document.getElementById("ordre");
-
-  g.ordre.forEach((id, i) => {
-    const m = g.membres.find(m => m.id === id);
-    if (!m) return;
-
-    const div = document.createElement("div");
-    div.className = "item";
-
-    const p = document.createElement("p");
-    p.textContent = "Tour " + (i + 1) +
-      " : " + m.nom;
-    div.appendChild(p);
-
-    if (g.mode === "collectif" && !g.demarree) {
-      const r = document.createElement("div");
-      r.className = "row";
-      bouton("Monter", () => deplacer(i, -1),
-        r, i === 0);
-      bouton("Descendre", () => deplacer(i, 1),
-        r, i === g.ordre.length - 1);
-      div.appendChild(r);
-    }
-
-    ordre.appendChild(div);
-  });
-
-  if (!g.demarree && g.ordre.length >= 2) {
-    bouton(
-      g.ordreValide
-        ? "Ordre validé"
-        : "Valider cet ordre",
-      validerOrdre,
-      ordre,
-      g.ordreValide
-    );
-  }
-
-  document.getElementById("conditions").textContent =
-    "Garanties : " +
-    g.membres.filter(m => m.garantieVersee).length +
-    "/" + g.membres.length +
-    " | Ordre : " +
-    (g.ordreValide ? "validé" : "non validé");
-
-  document.getElementById("demarrerBtn").disabled =
-    g.demarree || !peutDemarrer(g);
-
-  const tours = document.getElementById("tours");
-
-  if (!g.demarree) {
-    tours.textContent =
-      "La tontine n'a pas encore démarré.";
-    return;
-  }
-
-  if (g.tourActuel >= g.ordre.length) {
-    tours.textContent =
-      "Tous les tours sont terminés.";
-    return;
-  }
-
-  const beneficiaire = g.membres.find(
-    m => m.id === g.ordre[g.tourActuel]
-  );
-
-  const titre = document.createElement("h3");
-  titre.textContent =
-    "Tour " + (g.tourActuel + 1) +
-    " / " + g.ordre.length +
-    " — Bénéficiaire : " + beneficiaire.nom;
-  tours.appendChild(titre);
-
-  const cagnotte = document.createElement("p");
-  cagnotte.textContent =
-    "Cagnotte prévue : " +
-    argent(g.cotisation * g.membres.length);
-  tours.appendChild(cagnotte);
-
-  g.membres.forEach(m => {
-    const p = g.paiements.find(p => p.id === m.id);
-    const div = document.createElement("div");
-    div.className = "item";
-
-    const label = document.createElement("p");
-    label.textContent = m.nom + " : " +
-      (p && p.verse
-        ? "Cotisation confirmée"
-        : "Cotisation non versée");
-    div.appendChild(label);
-
-    if (p && !p.verse) {
-      bouton("Confirmer la cotisation",
-        () => confirmerCotisation(m.id), div);
-    }
-
-    tours.appendChild(div);
-  });
-
-  bouton(
-    "Valider le tour et passer au suivant",
-    validerTour,
-    tours,
-    !g.paiements.every(p => p.verse)
-  );
-}
 function afficherHistorique() {
   const g = actuel();
-  const zone = document.getElementById(
-    "historiqueFinancier"
-  );
-  const select = document.getElementById(
-    "historiqueMembre"
-  );
 
-  if (!zone || !select) return;
+  const zone =
+    document.getElementById("historiqueFinancier");
+
+  const select =
+    document.getElementById("historiqueMembre");
 
   zone.replaceChildren();
 
@@ -1054,32 +1220,35 @@ function afficherHistorique() {
 
   const membreChoisi = select.value;
 
-  const operations = Array.isArray(g.historique)
-    ? g.historique
-    : [];
+  const operations = historiqueGroupe(g);
 
   const filtre = operations.filter(op =>
-    !membreChoisi || op.membreId === membreChoisi
+    !membreChoisi ||
+    memeId(op.membreId, membreChoisi)
   );
 
-  if (filtre.length === 0) {
+  if (!filtre.length) {
     zone.textContent =
       "Aucune opération enregistrée pour ce choix.";
     return;
   }
 
-  filtre.forEach(op => {
-    const ligne = document.createElement("div");
-    ligne.className = "item";
+  filtre.slice().reverse().forEach(op => {
+    const ligne = creerElement("div", undefined, "item");
 
-    const titre = document.createElement("strong");
-    titre.textContent = op.type;
+    const titre = creerElement(
+      "strong",
+      op.type
+    );
 
-    const details = document.createElement("p");
-    details.textContent =
-      op.membreNom + " — " +
-      argent(op.montant) + " — " +
-      op.date;
+    const details = creerElement(
+      "p",
+      (op.membreNom || "Membre") +
+      " — " +
+      argent(op.montant) +
+      " — " +
+      (op.date || "Date indisponible")
+    );
 
     ligne.appendChild(titre);
     ligne.appendChild(details);
@@ -1087,12 +1256,468 @@ function afficherHistorique() {
   });
 }
 
-afficher();
+/* TABLEAU FINANCIER INDIVIDUEL */
 
-document.querySelectorAll("main > section.card")
-  .forEach(section => {
-    section.style.display = "none";
+function afficherFicheFinanciere() {
+  const g = actuel();
+
+  const select =
+    document.getElementById("ficheMembre");
+
+  const zone =
+    document.getElementById("ficheFinanciere");
+
+  zone.replaceChildren();
+
+  if (!g || !select.value) {
+    zone.textContent =
+      "Sélectionnez un membre pour voir sa situation.";
+    return;
+  }
+
+  const membre = membreParId(g, select.value);
+
+  if (!membre) {
+    zone.textContent = "Membre introuvable.";
+    return;
+  }
+
+  const operations = historiqueGroupe(g).filter(
+    op => memeId(op.membreId, membre.id)
+  );
+
+  const total = prefixe => operations
+    .filter(op => op.type.startsWith(prefixe))
+    .reduce(
+      (somme, op) => somme + Number(op.montant),
+      0
+    );
+
+  const garanties = total("Dépôt de garantie");
+  const cotisations = total("Cotisation - Tour");
+  const cagnottes = total("Cagnotte reçue - Tour");
+
+  zone.appendChild(
+    creerElement("h3", "Situation de " + membre.nom)
+  );
+
+  const resume = creerElement(
+    "div",
+    undefined,
+    "resume-financier"
+  );
+
+  [
+    ["Garanties enregistrées", garanties],
+    ["Cotisations enregistrées", cotisations],
+    ["Cagnottes reçues", cagnottes]
+  ].forEach(([libelle, montant]) => {
+    const caseFinanciere = creerElement(
+      "div",
+      undefined,
+      "resume-case"
+    );
+
+    caseFinanciere.appendChild(
+      creerElement("span", libelle)
+    );
+
+    caseFinanciere.appendChild(
+      creerElement("strong", argent(montant))
+    );
+
+    resume.appendChild(caseFinanciere);
   });
+
+  zone.appendChild(resume);
+
+  const difference = cagnottes - cotisations;
+
+  zone.appendChild(
+    creerElement(
+      "p",
+      "Différence entre cagnottes reçues et " +
+      "cotisations : " + argent(difference)
+    )
+  );
+
+  zone.appendChild(
+    creerElement(
+      "p",
+      "Cette différence est indicative. " +
+      "Elle ne constitue pas un solde bancaire " +
+      "et n'inclut pas la restitution éventuelle " +
+      "des garanties.",
+      "note"
+    )
+  );
+}
+
+/* AFFICHAGE GENERAL */
+
+function afficher() {
+  const select =
+    document.getElementById("groupes");
+
+  select.replaceChildren();
+
+  if (selection < 0 || selection >= groupes.length) {
+    selection = 0;
+  }
+
+  groupes.forEach((g, index) => {
+    const option = document.createElement("option");
+
+    option.value = String(index);
+    option.textContent = g.nom;
+
+    select.appendChild(option);
+  });
+
+  if (groupes.length) {
+    select.value = String(selection);
+  }
+
+  const g = actuel();
+
+  /* SELECTEURS DES MEMBRES */
+
+  const ficheSelect =
+    document.getElementById("ficheMembre");
+
+  const historiqueSelect =
+    document.getElementById("historiqueMembre");
+
+  const ancienFiche = ficheSelect.value;
+  const ancienHistorique = historiqueSelect.value;
+
+  ficheSelect.replaceChildren();
+  historiqueSelect.replaceChildren();
+
+  const vide = document.createElement("option");
+  vide.value = "";
+  vide.textContent = "Sélectionner un membre";
+  ficheSelect.appendChild(vide);
+
+  const tous = document.createElement("option");
+  tous.value = "";
+  tous.textContent = "Tous les membres";
+  historiqueSelect.appendChild(tous);
+
+  if (g && Array.isArray(g.membres)) {
+    g.membres.forEach(m => {
+      const optionFiche =
+        document.createElement("option");
+
+      optionFiche.value = String(m.id);
+      optionFiche.textContent = m.nom;
+      ficheSelect.appendChild(optionFiche);
+
+      const optionHistorique =
+        document.createElement("option");
+
+      optionHistorique.value = String(m.id);
+      optionHistorique.textContent = m.nom;
+      historiqueSelect.appendChild(optionHistorique);
+    });
+  }
+
+  if (Array.from(ficheSelect.options).some(
+    option => option.value === ancienFiche
+  )) {
+    ficheSelect.value = ancienFiche;
+  }
+
+  if (Array.from(historiqueSelect.options).some(
+    option => option.value === ancienHistorique
+  )) {
+    historiqueSelect.value = ancienHistorique;
+  }
+
+  afficherFicheFinanciere();
+  afficherHistorique();
+
+  for (const id of ["membres", "ordre", "tours"]) {
+    document.getElementById(id).replaceChildren();
+  }
+
+  const details =
+    document.getElementById("details");
+
+  const statut =
+    document.getElementById("statut");
+
+  const conditions =
+    document.getElementById("conditions");
+
+  const ajoutBtn =
+    document.getElementById("ajoutBtn");
+
+  const tirageBtn =
+    document.getElementById("tirageBtn");
+
+  const demarrerBtn =
+    document.getElementById("demarrerBtn");
+
+  const mode =
+    document.getElementById("mode");
+
+  if (!g) {
+    details.textContent =
+      "Créez votre premier groupe pour commencer.";
+
+    statut.textContent = "";
+    conditions.textContent = "";
+
+    ajoutBtn.disabled = true;
+    tirageBtn.disabled = true;
+    demarrerBtn.disabled = true;
+    mode.disabled = true;
+
+    document.getElementById("tours").textContent =
+      "Aucune tontine disponible.";
+
+    return;
+  }
+
+  /* DETAILS DU GROUPE */
+
+  details.textContent =
+    "Cotisation : " + argent(g.cotisation) +
+    " | Garantie initiale : " + argent(g.garantie) +
+    " | Période : " + g.periode;
+
+  statut.textContent = g.demarree
+    ? (
+      g.tourActuel >= g.ordre.length
+        ? "Statut : CYCLE TERMINÉ"
+        : "Statut : EN COURS"
+    )
+    : "Statut : EN PRÉPARATION";
+
+  ajoutBtn.disabled = Boolean(g.demarree);
+
+  /* LISTE DES MEMBRES */
+
+  const zoneMembres =
+    document.getElementById("membres");
+
+  g.membres.forEach(m => {
+    const div = creerElement(
+      "div",
+      undefined,
+      "item"
+    );
+
+    div.appendChild(
+      creerElement("strong", m.nom)
+    );
+
+    div.appendChild(
+      creerElement(
+        "p",
+        m.garantieVersee
+          ? "Garantie confirmée"
+          : "Garantie non versée",
+        m.garantieVersee ? "ok" : "no"
+      )
+    );
+
+    if (!m.garantieVersee && !g.demarree) {
+      bouton(
+        "Confirmer la garantie",
+        () => confirmerGarantie(m.id),
+        div
+      );
+    }
+
+    zoneMembres.appendChild(div);
+  });
+
+  /* ORDRE DE PASSAGE */
+
+  mode.value = g.mode || "tirage";
+  mode.disabled = Boolean(g.demarree);
+
+  tirageBtn.disabled =
+    Boolean(g.demarree) ||
+    g.mode !== "tirage" ||
+    g.membres.length < 2;
+
+  const zoneOrdre =
+    document.getElementById("ordre");
+
+  g.ordre.forEach((id, index) => {
+    const membre = membreParId(g, id);
+
+    if (!membre) return;
+
+    const div = creerElement(
+      "div",
+      undefined,
+      "item"
+    );
+
+    div.appendChild(
+      creerElement(
+        "p",
+        "Tour " + (index + 1) +
+        " : " + membre.nom
+      )
+    );
+
+    if (g.mode === "collectif" && !g.demarree) {
+      const ligne = creerElement(
+        "div",
+        undefined,
+        "row"
+      );
+
+      bouton(
+        "Monter",
+        () => deplacer(index, -1),
+        ligne,
+        index === 0
+      );
+
+      bouton(
+        "Descendre",
+        () => deplacer(index, 1),
+        ligne,
+        index === g.ordre.length - 1
+      );
+
+      div.appendChild(ligne);
+    }
+
+    zoneOrdre.appendChild(div);
+  });
+
+  if (!g.demarree && ordreComplet(g)) {
+    bouton(
+      g.ordreValide
+        ? "Ordre validé"
+        : "Valider cet ordre",
+      validerOrdre,
+      zoneOrdre,
+      g.ordreValide
+    );
+  }
+
+  /* CONDITIONS DE DEMARRAGE */
+
+  const garantiesValidees =
+    g.membres.filter(
+      m => m.garantieVersee === true
+    ).length;
+
+  conditions.textContent =
+    "Garanties confirmées : " +
+    garantiesValidees +
+    "/" + g.membres.length +
+    " | Ordre : " +
+    (g.ordreValide ? "validé" : "non validé");
+
+  demarrerBtn.disabled =
+    Boolean(g.demarree) || !peutDemarrer(g);
+
+  /* SUIVI DES TOURS */
+
+  const zoneTours =
+    document.getElementById("tours");
+
+  if (!g.demarree) {
+    zoneTours.textContent =
+      "La tontine n'a pas encore démarré.";
+    return;
+  }
+
+  if (g.tourActuel >= g.ordre.length) {
+    zoneTours.textContent =
+      "Tous les tours sont terminés.";
+    return;
+  }
+
+  const beneficiaire = membreParId(
+    g,
+    g.ordre[g.tourActuel]
+  );
+
+  if (!beneficiaire) {
+    zoneTours.textContent =
+      "Erreur : bénéficiaire introuvable.";
+    return;
+  }
+
+  zoneTours.appendChild(
+    creerElement(
+      "h3",
+      "Tour " + (g.tourActuel + 1) +
+      " / " + g.ordre.length +
+      " — Bénéficiaire : " + beneficiaire.nom
+    )
+  );
+
+  zoneTours.appendChild(
+    creerElement(
+      "p",
+      "Cagnotte prévue : " +
+      argent(g.cotisation * g.membres.length)
+    )
+  );
+
+  g.membres.forEach(m => {
+    const paiement = Array.isArray(g.paiements)
+      ? g.paiements.find(p => memeId(p.id, m.id))
+      : null;
+
+    const div = creerElement(
+      "div",
+      undefined,
+      "item"
+    );
+
+    div.appendChild(
+      creerElement(
+        "p",
+        m.nom + " : " +
+        (
+          paiement && paiement.verse
+            ? "Cotisation confirmée"
+            : "Cotisation non versée"
+        )
+      )
+    );
+
+    if (paiement && !paiement.verse) {
+      bouton(
+        "Confirmer la cotisation",
+        () => confirmerCotisation(m.id),
+        div
+      );
+    }
+
+    zoneTours.appendChild(div);
+  });
+
+  const paiementsComplets =
+    Array.isArray(g.paiements) &&
+    g.paiements.length === g.membres.length &&
+    g.paiements.every(p => p.verse === true);
+
+  bouton(
+    "Valider le tour et passer au suivant",
+    validerTour,
+    zoneTours,
+    !paiementsComplets
+  );
+}
+
+/* INITIALISATION */
+
+afficher();
+retourAccueil();
+
 </script>
 </body>
 </html>
