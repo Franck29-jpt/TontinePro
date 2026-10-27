@@ -233,6 +233,8 @@ function creerGroupe() {
 
   selection = groupes.length - 1;
   sauvegarder();
+  afficher();
+}
 
 function afficherFicheFinanciere() {
   const g = actuel();
@@ -284,8 +286,6 @@ function afficherFicheFinanciere() {
       libelle + " : " + argent(montant);
     zone.appendChild(ligne);
   });
-}
-
   afficher();
 }
 
@@ -529,17 +529,7 @@ enregistrerOperation(
   g.tourActuel + 1
 );
 
-enregistrerOperation(
-  g,
-  "Cagnotte reçue - Tour " + (g.tourActuel + 1),
-  beneficiaire,
-  g.cotisation * g.membres.length,
-  g.tourActuel + 1
-);
-
 g.tourActuel++;
-
-  g.tourActuel++;
 
   if (g.tourActuel < g.ordre.length) {
     g.paiements = g.membres.map(m => ({
