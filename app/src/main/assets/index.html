@@ -128,6 +128,25 @@ color: #123D78;
   font-size: 11px;
 }
 
+#pageAccueil button {
+  background: #ffffff;
+  color: #123D78;
+  border: none;
+  border-radius: 14px;
+  padding: 22px 10px;
+  min-height: 95px;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+#pageAccueil button:active {
+  background: #dce8f7;
+  transform: scale(0.97);
+}
+
 </style>
 </head>
 <body>
@@ -182,6 +201,29 @@ color: #123D78;
 <main>
 
 
+<div style="
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:25px;">
+
+  <button type="button" onclick="ouvrirRubrique(2)">
+    👥 Mes groupes
+  </button>
+
+  <button type="button" onclick="ouvrirRubrique(6)">
+    💰 Mes tontines
+  </button>
+
+  <button type="button" onclick="ouvrirRubrique(8)">
+    📊 Mes finances
+  </button>
+
+  <button type="button" onclick="ouvrirRubrique(7)">
+    📋 Historique financier
+  </button>
+
+</div>
 <div id="pageAccueil" class="card"
      style="text-align:center; padding:30px 18px;
             background:#123D78; color:white;">
