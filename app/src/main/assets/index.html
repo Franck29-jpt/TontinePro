@@ -261,9 +261,18 @@ try {
 function basculerMenu() {
   const menu = document.getElementById("menuLateral");
 
-  if (!menu) return;
+  if (!menu) {
+    alert("Erreur : menu latéral introuvable.");
+    return;
+  }
 
-  menu.classList.toggle("ouvert");
+  if (menu.classList.contains("ouvert")) {
+    menu.classList.remove("ouvert");
+    alert("Menu fermé");
+  } else {
+    menu.classList.add("ouvert");
+    alert("Menu ouvert");
+  }
 }
 
 function ouvrirRubrique(numero) {
