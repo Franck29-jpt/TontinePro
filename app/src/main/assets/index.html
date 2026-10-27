@@ -459,6 +459,16 @@ enregistrerOperation(
   g.tourActuel + 1
 );
 
+enregistrerOperation(
+  g,
+  "Cagnotte reçue - Tour " + (g.tourActuel + 1),
+  beneficiaire,
+  g.cotisation * g.membres.length,
+  g.tourActuel + 1
+);
+
+g.tourActuel++;
+
   g.tourActuel++;
 
   if (g.tourActuel < g.ordre.length) {
