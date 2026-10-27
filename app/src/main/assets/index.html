@@ -451,7 +451,37 @@ function afficher() {
   if (!groupes[selection]) selection = 0;
   if (groupes.length) select.value = selection;
 
-  const g = actuel();
+  const g = actuel(); 
+  const historiqueSelect = document.getElementById(
+    "historiqueMembre"
+  );
+
+  if (historiqueSelect) {
+    const ancienChoix = historiqueSelect.value;
+    historiqueSelect.replaceChildren();
+
+    const optionTous = document.createElement("option");
+    optionTous.value = "";
+    optionTous.textContent = "Tous les membres";
+    historiqueSelect.appendChild(optionTous);
+
+    if (g) {
+      g.membres.forEach(m => {
+        const option = document.createElement("option");
+        option.value = m.id;
+        option.textContent = m.nom;
+        historiqueSelect.appendChild(option);
+      });
+    }
+
+    if (Array.from(historiqueSelect.options).some(
+      o => o.value === ancienChoix
+    )) {
+      historiqueSelect.value = ancienChoix;
+    }
+
+    afficherHistorique();
+  }
 
   for (const id of ["membres", "ordre", "tours"]) {
     document.getElementById(id).replaceChildren();
@@ -623,7 +653,59 @@ function afficher() {
     !g.paiements.every(p => p.verse)
   );
 }
+(); 
+function afficherHistorique() {
+  const g = actuel();
+  const zone = document.getElementById(
+    "historiqueFinancier"
+  );
+  const select = document.getElementById(
+    "historiqueMembre"
+  );
 
+  if (!zone || !select) return;
+
+  zone.replaceChildren();
+
+  if (!g) {
+    zone.textContent = "Aucun groupe sélectionné.";
+    return;
+  }
+
+  const membreChoisi = select.value;
+
+  const operations = Array.isArray(g.historique)
+    ? g.historique
+    : [];
+
+  const filtre = operations.filter(op =>
+    !membreChoisi || op.membreId === membreChoisi
+  );
+
+  if (filtre.length === 0) {
+    zone.textContent =
+      "Aucune opération enregistrée pour ce choix.";
+    return;
+  }
+
+  filtre.forEach(op => {
+    const ligne = document.createElement("div");
+    ligne.className = "item";
+
+    const titre = document.createElement("strong");
+    titre.textContent = op.type;
+
+    const details = document.createElement("p");
+    details.textContent =
+      op.membreNom + " — " +
+      argent(op.montant) + " — " +
+      op.date;
+
+    ligne.appendChild(titre);
+    ligne.appendChild(details);
+    zone.appendChild(ligne);
+  });
+}
 afficher();
 </script>
 </body>
