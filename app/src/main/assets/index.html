@@ -252,14 +252,14 @@ function afficherFicheFinanciere() {
   }
 
   const membre = g.membres.find(
-    m => m.id === select.value
-  );
+  m => String(m.id) === String(select.value)
+);
 
   if (!membre) return;
 
   const operations = Array.isArray(g.historique)
     ? g.historique.filter(
-        op => op.membreId === membre.id
+        op => String(op.membreId) === String(membre.id)
       )
     : [];
 
