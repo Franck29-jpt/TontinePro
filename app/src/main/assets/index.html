@@ -258,6 +258,7 @@ try {
   alert("Impossible de lire les données enregistrées.");
 }
 
+f
 function basculerMenu() {
   const menu = document.getElementById("menuLateral");
 
@@ -265,6 +266,9 @@ function basculerMenu() {
     alert("Erreur : menu latéral introuvable.");
     return;
   }
+
+  menu.classList.toggle("ouvert");
+}
 
   if (menu.classList.contains("ouvert")) {
     menu.classList.remove("ouvert");
