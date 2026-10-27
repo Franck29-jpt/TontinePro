@@ -2,101 +2,541 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#123D78">
 <title>TontinePro Togo</title>
+
 <style>
-:root{--bleu:#123D78;--fond:#eef3f9;--vert:#176c46;--rouge:#b42335}
-*{box-sizing:border-box}
-[hidden]{display:none!important}
-body{margin:0;background:var(--fond);font:14px/1.5 Arial,sans-serif;color:#203047}
-button,input,select{font:inherit}
-button{background:var(--bleu);color:white;border:0;border-radius:8px;padding:11px;cursor:pointer;font-weight:bold;min-height:42px}
-button:disabled{opacity:.5;cursor:not-allowed}
-input,select{width:100%;padding:11px;margin:5px 0 12px;border:1px solid #b9c8da;border-radius:8px;background:white}
-label{display:block;font-weight:bold;margin-top:10px}
-h1{font-size:22px}h2{font-size:18px;color:var(--bleu)}
-main{max-width:850px;margin:auto;padding:12px}
-.card{background:white;border:1px solid #d8e1ec;border-radius:12px;padding:17px;margin:12px auto;max-width:650px}
-.item{border-bottom:1px solid #d8e1ec;padding:12px 0;overflow-wrap:anywhere}
-.item button{margin:4px}
-.note{font-size:12px;color:#596779}
-.ok{color:var(--vert);font-weight:bold}
-.no{color:var(--rouge);font-weight:bold}
-.row{display:flex;gap:8px;flex-wrap:wrap}
-.row button{flex:1}
-#ecranAcces{min-height:100vh;background:linear-gradient(145deg,#123D78,#2463aa);display:flex;align-items:center;justify-content:center;padding:15px}
-.auth{background:white;border-radius:15px;padding:22px;width:100%;max-width:400px}
-.auth h1{text-align:center;color:var(--bleu)}
-.auth button{width:100%;margin-top:8px}
-.secondaire{background:#eaf1fb;color:var(--bleu);border:1px solid #cadcf1}
-body:not(.connecte) main,body:not(.connecte) footer,body:not(.connecte) #menuBouton,body:not(.connecte) #menu,body:not(.connecte) #fondMenu{display:none!important}
-body.connecte #ecranAcces{display:none!important}
-#menuBouton{position:fixed;right:15px;bottom:80px;width:53px;height:53px;border-radius:50%;background:white;color:var(--bleu);border:2px solid var(--bleu);z-index:10;font-size:23px}
-#fondMenu{position:fixed;inset:0;background:#0008;z-index:11}
-#menu{display:none;position:fixed;left:0;top:0;height:100vh;width:min(85vw,320px);background:var(--bleu);padding:15px;overflow:auto;z-index:12}
-#menu.ouvert{display:block}
-#menu h2{color:white}
-#menu button{display:block;width:100%;text-align:left;background:white;color:var(--bleu);margin:8px 0}
-.entete{background:var(--bleu);color:white;border-radius:10px;text-align:center;padding:22px}
-.grille{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:16px 0}
-.grille button{background:#eaf1fb;color:var(--bleu);min-height:75px}
-.document{border:1px solid #d8e1ec;background:#f5f8fc;border-radius:10px;padding:12px;margin:12px 0}
-#apercu{max-width:100%;max-height:220px;display:block;margin:10px auto}
-.consentement{display:flex;gap:10px;align-items:flex-start;font-weight:normal}
-.consentement input{width:20px;flex-shrink:0;margin:3px 0}
-.resume{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:9px}
-.resume div{background:#eaf1fb;padding:12px;border-radius:8px}
-.resume strong{display:block;color:var(--bleu);font-size:17px}
-footer{text-align:center;background:var(--bleu);color:white;padding:14px;font-size:12px}
+:root {
+  --bleu: #123D78;
+  --bleu-clair: #eaf1fb;
+  --fond: #eef3f9;
+  --texte: #203047;
+  --bord: #d8e1ec;
+  --vert: #176c46;
+  --rouge: #b42335;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
+  background: var(--fond);
+  color: var(--texte);
+  font: 14px/1.5 Arial, sans-serif;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  min-width: 0;
+  max-width: 100%;
+}
+
+button {
+  background: var(--bleu);
+  color: white;
+  border: 0;
+  border-radius: 8px;
+  padding: 11px;
+  min-height: 42px;
+  cursor: pointer;
+  font-weight: bold;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+input,
+select,
+textarea {
+  display: block;
+  width: 100%;
+  padding: 11px;
+  margin: 5px 0 12px;
+  border: 1px solid #b9c8da;
+  border-radius: 8px;
+  background: white;
+  color: var(--texte);
+}
+
+input[type="file"] {
+  font-size: 12px;
+  overflow: hidden;
+}
+
+input[type="checkbox"] {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin: 3px 0;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-top: 10px;
+  overflow-wrap: anywhere;
+}
+
+h1 {
+  font-size: 21px;
+  line-height: 1.3;
+}
+
+h2 {
+  font-size: 18px;
+  line-height: 1.4;
+  color: var(--bleu);
+}
+
+h3 {
+  font-size: 15px;
+}
+
+p,
+span,
+strong {
+  overflow-wrap: anywhere;
+}
+
+main {
+  width: 100%;
+  max-width: 850px;
+  min-width: 0;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.card {
+  width: 100%;
+  max-width: 650px;
+  min-width: 0;
+  margin: 10px auto;
+  padding: 14px;
+  background: white;
+  border: 1px solid var(--bord);
+  border-radius: 12px;
+  overflow-wrap: anywhere;
+}
+
+.item {
+  width: 100%;
+  min-width: 0;
+  border-bottom: 1px solid var(--bord);
+  padding: 12px 0;
+  overflow-wrap: anywhere;
+}
+
+.item button {
+  margin: 4px 4px 4px 0;
+}
+
+.note {
+  font-size: 12px;
+  color: #596779;
+}
+
+.ok {
+  color: var(--vert);
+  font-weight: bold;
+}
+
+.no {
+  color: var(--rouge);
+  font-weight: bold;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+}
+
+.row button {
+  flex: 1 1 110px;
+}
+
+.secondaire {
+  background: var(--bleu-clair);
+  color: var(--bleu);
+  border: 1px solid #cadcf1;
+}
+
+/* CONNEXION */
+
+#ecranAcces {
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #123D78, #2463aa);
+}
+
+.auth {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  width: 100%;
+  max-width: 400px;
+  min-width: 0;
+}
+
+.auth h1 {
+  text-align: center;
+  color: var(--bleu);
+}
+
+.auth button {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+}
+
+body:not(.connecte) main,
+body:not(.connecte) footer,
+body:not(.connecte) #menuBouton,
+body:not(.connecte) #menu,
+body:not(.connecte) #fondMenu {
+  display: none !important;
+}
+
+body.connecte #ecranAcces {
+  display: none !important;
+}
+
+/* MENU RESPONSIVE */
+
+#menuBouton {
+  position: fixed;
+  right: 12px;
+  bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  padding: 0;
+  border-radius: 50%;
+  background: white;
+  color: var(--bleu);
+  border: 2px solid var(--bleu);
+  font-size: 23px;
+  z-index: 10;
+}
+
+#fondMenu {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  z-index: 11;
+}
+
+#menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 85vw;
+  max-width: 320px;
+  height: 100vh;
+  height: 100dvh;
+  padding: 12px;
+  padding-bottom: calc(25px + env(safe-area-inset-bottom, 0px));
+  background: var(--bleu);
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  z-index: 12;
+}
+
+#menu.ouvert {
+  display: block;
+}
+
+#menu h2 {
+  color: white;
+}
+
+#menu button {
+  display: block;
+  width: 100%;
+  padding: 11px 9px;
+  margin: 8px 0;
+  background: white;
+  color: var(--bleu);
+  text-align: left;
+  font-size: 13px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+/* ACCUEIL */
+
+.entete {
+  background: var(--bleu);
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  padding: 18px 12px;
+}
+
+.grille {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 8px;
+  width: 100%;
+  margin: 14px 0;
+}
+
+.grille button {
+  width: 100%;
+  min-width: 0;
+  min-height: 70px;
+  padding: 10px 6px;
+  background: var(--bleu-clair);
+  color: var(--bleu);
+  font-size: 13px;
+}
+
+/* DOCUMENTS */
+
+.document {
+  width: 100%;
+  max-width: 100%;
+  border: 1px solid var(--bord);
+  background: #f5f8fc;
+  border-radius: 10px;
+  padding: 12px;
+  margin: 12px 0;
+}
+
+#apercu {
+  display: block;
+  max-width: 100%;
+  max-height: 220px;
+  height: auto;
+  margin: 10px auto;
+}
+
+.consentement {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-weight: normal;
+}
+
+.consentement span {
+  flex: 1;
+  min-width: 0;
+}
+
+/* FINANCES */
+
+.resume {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%,140px),1fr));
+  gap: 9px;
+  width: 100%;
+}
+
+.resume div {
+  background: var(--bleu-clair);
+  border-radius: 8px;
+  padding: 12px;
+  min-width: 0;
+}
+
+.resume strong {
+  display: block;
+  color: var(--bleu);
+  font-size: 16px;
+}
+
+#details,
+#statut,
+#conditions,
+#membres,
+#ordre,
+#tours,
+#historiqueFinancier,
+#ficheFinanciere {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+footer {
+  text-align: center;
+  background: var(--bleu);
+  color: white;
+  padding: 14px 65px 14px 14px;
+  font-size: 12px;
+}
+
+/* PETITS TELEPHONES */
+
+@media (max-width: 360px) {
+  body {
+    font-size: 13px;
+  }
+
+  main {
+    padding: 7px;
+  }
+
+  .card {
+    padding: 11px;
+    margin: 7px auto;
+  }
+
+  h1 {
+    font-size: 19px;
+  }
+
+  h2 {
+    font-size: 16px;
+  }
+
+  .entete {
+    padding: 13px 9px;
+  }
+
+  .grille {
+    gap: 7px;
+  }
+
+  .grille button {
+    font-size: 12px;
+    padding: 8px 4px;
+    min-height: 62px;
+  }
+
+  #menu {
+    width: 90vw;
+    padding: 10px;
+  }
+
+  #menu button {
+    font-size: 12px;
+    padding: 10px 8px;
+  }
+
+  .auth {
+    padding: 14px;
+  }
+
+  .document {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 280px) {
+  .grille {
+    grid-template-columns: 1fr;
+  }
+
+  #menu {
+    width: 92vw;
+  }
+
+  .row button {
+    flex-basis: 100%;
+  }
+}
 </style>
 </head>
+
 <body>
 
-<!-- ACCES A L'APPLICATION -->
+<!-- CONNEXION -->
+
 <section id="ecranAcces">
 <div class="auth">
 <h1>TontinePro Togo</h1>
 <p style="text-align:center">Ensemble, finançons nos activités.</p>
 
 <div id="choixAcces">
-<button onclick="ouvrirConnexion()">Se connecter</button>
-<button class="secondaire" onclick="ouvrirCreation()">Créer un compte</button>
+<button type="button" onclick="ouvrirConnexion()">Se connecter</button>
+<button type="button" class="secondaire" onclick="ouvrirCreation()">Créer un compte</button>
 </div>
 
 <form id="formCreation" hidden>
 <h2>Créer mon compte</h2>
-<label>Identifiant</label>
+
+<label for="nouvelIdentifiant">Identifiant</label>
 <input id="nouvelIdentifiant" minlength="3" maxlength="40" autocomplete="username" required>
-<label>Mot de passe alphanumérique (4 caractères)</label>
+
+<label for="nouveauMot">Mot de passe alphanumérique (4 caractères)</label>
 <input id="nouveauMot" type="password" minlength="4" maxlength="4" pattern="[A-Za-z0-9]{4}" autocomplete="new-password" required>
-<label>Confirmer le mot de passe</label>
+
+<label for="confirmationMot">Confirmer le mot de passe</label>
 <input id="confirmationMot" type="password" minlength="4" maxlength="4" pattern="[A-Za-z0-9]{4}" autocomplete="new-password" required>
-<p class="note">Exemples : A7B2, T9G4. Quatre lettres ou chiffres exactement.</p>
+
+<p class="note">Exemples : A7B2, T9G4. Exactement quatre lettres ou chiffres.</p>
+
 <button type="submit">Créer mon compte</button>
 <button type="button" class="secondaire" onclick="retourAcces()">Retour</button>
 </form>
 
 <form id="formConnexion" hidden>
 <h2>Connexion</h2>
-<label>Identifiant</label>
+
+<label for="identifiantConnexion">Identifiant</label>
 <input id="identifiantConnexion" autocomplete="username" required>
-<label>Mot de passe</label>
+
+<label for="motConnexion">Mot de passe</label>
 <input id="motConnexion" type="password" minlength="4" maxlength="4" pattern="[A-Za-z0-9]{4}" autocomplete="current-password" required>
+
 <button type="submit">Valider la connexion</button>
 <button type="button" class="secondaire" onclick="retourAcces()">Retour</button>
 </form>
 
-<p id="messageAcces" class="no"></p>
-<p class="note">Version de démonstration : stockage local, sans synchronisation entre téléphones.</p>
+<p id="messageAcces" class="no" role="alert"></p>
+
+<p class="note">Prototype local. Les informations ne sont pas synchronisées entre téléphones.</p>
 </div>
 </section>
 
 <!-- MENU -->
-<button id="menuBouton" onclick="basculerMenu()">☰</button>
+
+<button id="menuBouton" type="button" onclick="basculerMenu()" aria-label="Ouvrir le menu">☰</button>
+
 <div id="fondMenu" onclick="fermerMenu()" hidden></div>
+
 <nav id="menu">
 <h2>TontinePro Togo</h2>
+
 <button onclick="accueil()">Accueil</button>
 <button onclick="rubrique(1)">1. Créer un groupe</button>
 <button onclick="rubrique(2)">2. Groupe sélectionné</button>
@@ -110,83 +550,117 @@ footer{text-align:center;background:var(--bleu);color:white;padding:14px;font-si
 </nav>
 
 <main>
+
+<!-- ACCUEIL -->
+
 <div id="pageAccueil" class="card">
 <div class="entete">
 <h1>Bienvenue sur TontinePro Togo</h1>
 <p>Ensemble, finançons nos activités.</p>
-<p>Gestion des tontines rotatives, garanties, cotisations et cagnottes.</p>
+<p>Gestion des tontines rotatives, des garanties, des cotisations et des cagnottes.</p>
 </div>
+
 <h2>Accès rapides</h2>
+
 <div class="grille">
 <button onclick="rubrique(2)">👥 Mes groupes</button>
 <button onclick="rubrique(6)">💰 Mes tontines</button>
 <button onclick="rubrique(8)">📊 Mes finances</button>
 <button onclick="rubrique(7)">📋 Historique financier</button>
 </div>
+
 <p class="note">Utilisez le bouton ☰ pour accéder aux huit rubriques.</p>
 </div>
 
+<!-- RUBRIQUE 1 -->
+
 <section class="card" hidden>
 <h2>1. Créer un groupe</h2>
-<label>Nom du groupe</label>
+
+<label for="nom">Nom du groupe</label>
 <input id="nom" placeholder="Nom du groupe">
-<label>Cotisation par membre (FCFA)</label>
+
+<label for="cotisation">Cotisation par membre (FCFA)</label>
 <input id="cotisation" type="number" min="1" step="1">
-<label>Garantie initiale (FCFA)</label>
+
+<label for="garantie">Garantie initiale (FCFA)</label>
 <input id="garantie" type="number" min="1" step="1">
-<label>Périodicité</label>
+
+<label for="periode">Périodicité</label>
 <select id="periode">
 <option>Journalière</option>
 <option>Hebdomadaire</option>
 <option>Mensuelle</option>
 </select>
+
 <button onclick="creerGroupe()">Créer le groupe</button>
 </section>
 
+<!-- RUBRIQUE 2 -->
+
 <section class="card" hidden>
 <h2>2. Groupe sélectionné</h2>
-<label>Choisir un groupe</label>
+
+<label for="groupes">Choisir un groupe</label>
 <select id="groupes" onchange="changerGroupe()"></select>
+
 <p id="details"></p>
 <p id="statut"></p>
 </section>
 
+<!-- RUBRIQUE 3 -->
+
 <section class="card" hidden>
 <h2>3. Inscrire les membres</h2>
-<label>Nom et prénom</label>
+
+<label for="membre">Nom et prénom</label>
 <input id="membre" placeholder="Nom complet">
+
 <div class="document">
 <h3>Pièce justificative</h3>
-<label>Type de document</label>
+
+<label for="typeDocument">Type de document</label>
 <select id="typeDocument">
 <option value="">Choisir un document</option>
 <option value="Carte nationale d'identité">Carte nationale d'identité</option>
 <option value="Acte de naissance">Acte de naissance</option>
 </select>
-<label>Joindre la pièce en photo ou PDF</label>
+
+<label for="fichierDocument">Joindre la pièce en photo ou PDF</label>
 <input id="fichierDocument" type="file" accept=".jpg,.jpeg,.png,.webp,.pdf,image/jpeg,image/png,image/webp,application/pdf">
+
 <p id="informationDocument" class="note">Aucun fichier sélectionné.</p>
+
 <img id="apercu" alt="Aperçu du document" hidden>
+
 <label class="consentement">
 <input id="consentementDocument" type="checkbox">
 <span>Je confirme avoir informé le membre et recueilli son accord pour l'utilisation de sa pièce justificative.</span>
 </label>
-<p class="note">Utilisez des documents fictifs pour les essais. Stockage local non chiffré.</p>
+
+<p class="note">Pour les essais, utilisez uniquement des documents fictifs. Les fichiers sont stockés localement sans chiffrement.</p>
 </div>
+
 <button id="ajoutBtn" onclick="ajouterMembre()">Enregistrer le membre</button>
 <div id="membres"></div>
 </section>
 
+<!-- RUBRIQUE 4 -->
+
 <section class="card" hidden>
 <h2>4. Ordre de passage</h2>
-<label>Mode de désignation</label>
+
+<label for="mode">Mode de désignation</label>
 <select id="mode" onchange="changerMode()">
 <option value="tirage">Tirage au sort</option>
 <option value="collectif">Choix collectif</option>
 </select>
+
 <button id="tirageBtn" onclick="tirerAuSort()">Effectuer le tirage</button>
 <div id="ordre"></div>
 </section>
+
+<!-- RUBRIQUE 5 -->
 
 <section class="card" hidden>
 <h2>5. Démarrer la tontine</h2>
@@ -194,541 +668,1334 @@ footer{text-align:center;background:var(--bleu);color:white;padding:14px;font-si
 <button id="demarrerBtn" onclick="demarrer()">Démarrer la tontine</button>
 </section>
 
+<!-- RUBRIQUE 6 -->
+
 <section class="card" hidden>
 <h2>6. Suivi des tours</h2>
 <div id="tours"></div>
 </section>
 
+<!-- RUBRIQUE 7 -->
+
 <section class="card" hidden>
 <h2>7. Historique financier</h2>
-<label>Sélectionner un membre</label>
+
+<label for="historiqueMembre">Sélectionner un membre</label>
 <select id="historiqueMembre" onchange="afficherHistorique()"></select>
+
 <div id="historiqueFinancier"></div>
 </section>
 
+<!-- RUBRIQUE 8 -->
+
 <section class="card" hidden>
 <h2>8. Tableau financier individuel</h2>
-<label>Choisir un membre</label>
+
+<label for="ficheMembre">Choisir un membre</label>
 <select id="ficheMembre" onchange="afficherFicheFinanciere()"></select>
+
 <div id="ficheFinanciere"></div>
 </section>
+
 </main>
 
-<footer>Une application issue des travaux de recherche doctorale<br>© 2026 — TontinePro Togo</footer>
+<footer>
+Une application issue des travaux de recherche doctorale
+<br>© 2026 — TontinePro Togo
+</footer>
 
 <script>
 "use strict";
-const CLE="tontinepro_rotation_v1";
-const CLE_COMPTE="tontinepro_compte_local_v2";
-const DB_NOM="TontineProDocuments";
-const DB_STORE="documents";
-let groupes=[],selection=0,compte=null,connecte=false;
-let fichierSelectionne=null,documentURL=null;
-const el=id=>document.getElementById(id);
-const argent=n=>Number(n).toLocaleString("fr-FR")+" FCFA";
-const memeId=(a,b)=>String(a)===String(b);
-const actuel=()=>groupes[selection]||null;
 
-function uid(){
- if(window.crypto&&crypto.randomUUID)return crypto.randomUUID();
- if(!window.crypto||!crypto.getRandomValues)throw Error("Identifiant sécurisé indisponible.");
- const b=new Uint8Array(16);crypto.getRandomValues(b);
- return Array.from(b).map(x=>x.toString(16).padStart(2,"0")).join("");
-}
-function ligne(parent,texte,classe=""){
- const p=document.createElement("p");p.textContent=texte;
- if(classe)p.className=classe;parent.appendChild(p);return p;
-}
-function bouton(texte,action,parent,disabled=false){
- const b=document.createElement("button");
- b.type="button";b.textContent=texte;b.disabled=disabled;
- b.addEventListener("click",action);parent.appendChild(b);return b;
-}
-function sauvegarder(){
- try{localStorage.setItem(CLE,JSON.stringify(groupes));return true}
- catch(e){alert("Impossible d'enregistrer les données locales.");return false}
-}
-function transaction(modification){
- const copie=JSON.stringify(groupes),ancienne=selection;
- try{
-  modification();
-  if(!sauvegarder())throw Error("Échec de sauvegarde");
-  afficher();return true;
- }catch(e){
-  groupes=JSON.parse(copie);selection=ancienne;afficher();
-  alert("Opération annulée : "+e.message);return false;
- }
-}
-try{
- const d=JSON.parse(localStorage.getItem(CLE));
- if(Array.isArray(d))groupes=d;
-}catch(e){}
-try{compte=JSON.parse(localStorage.getItem(CLE_COMPTE))}catch(e){}
+/* CONFIGURATION */
 
-/* MOT DE PASSE ALPHANUMERIQUE : 4 CARACTERES */
-function motValide(mot){
- return /^[A-Za-z0-9]{4}$/.test(mot);
-}
-function hex(b){
- return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,"0")).join("");
-}
-function octetsHex(s){
- if(!/^(?:[0-9a-f]{2})+$/i.test(s))throw Error("Format cryptographique invalide.");
- return new Uint8Array(s.match(/.{2}/g).map(x=>parseInt(x,16)));
-}
-function nouveauSel(){
- if(!window.crypto||!crypto.getRandomValues)throw Error("Cryptographie indisponible.");
- const b=new Uint8Array(16);crypto.getRandomValues(b);return hex(b);
-}
-async function deriveMot(mot,salt){
- if(!window.crypto||!crypto.subtle)throw Error("Connexion sécurisée HTTPS requise.");
- const k=await crypto.subtle.importKey("raw",new TextEncoder().encode(mot),"PBKDF2",false,["deriveBits"]);
- const bits=await crypto.subtle.deriveBits({
-  name:"PBKDF2",salt:octetsHex(salt),iterations:310000,hash:"SHA-256"
- },k,256);
- return hex(bits);
-}
-function retourAcces(){
- el("choixAcces").hidden=false;
- el("formCreation").hidden=true;
- el("formConnexion").hidden=true;
- el("messageAcces").textContent="";
-}
-function ouvrirConnexion(){
- if(!compte){
-  el("messageAcces").textContent="Aucun compte sur cet appareil. Créez d'abord un compte.";
-  return;
- }
- el("choixAcces").hidden=true;
- el("formCreation").hidden=true;
- el("formConnexion").hidden=false;
- el("messageAcces").textContent="";
-}
-function ouvrirCreation(){
- if(compte){
-  el("messageAcces").textContent="Un compte existe déjà. Utilisez Se connecter.";
-  return;
- }
- el("choixAcces").hidden=true;
- el("formCreation").hidden=false;
- el("formConnexion").hidden=true;
- el("messageAcces").textContent="";
-}
-el("formCreation").addEventListener("submit",async e=>{
- e.preventDefault();
- const identifiant=el("nouvelIdentifiant").value.trim().toLowerCase();
- const mot=el("nouveauMot").value,confirmation=el("confirmationMot").value;
- if(!/^[a-z0-9._-]{3,40}$/.test(identifiant)){
-  el("messageAcces").textContent="Identifiant invalide.";return;
- }
- if(!motValide(mot)||mot!==confirmation){
-  el("messageAcces").textContent="Le mot de passe doit contenir exactement 4 lettres ou chiffres et la confirmation doit être identique.";return;
- }
- const b=e.submitter;if(b)b.disabled=true;
- try{
-  const salt=nouveauSel(),empreinte=await deriveMot(mot,salt);
-  const nouveau={identifiant,salt,empreinte,version:2};
-  localStorage.setItem(CLE_COMPTE,JSON.stringify(nouveau));
-  compte=nouveau;
-  el("nouveauMot").value="";el("confirmationMot").value="";
-  connecter();
- }catch(err){el("messageAcces").textContent=err.message}
- finally{if(b)b.disabled=false}
-});
-el("formConnexion").addEventListener("submit",async e=>{
- e.preventDefault();
- if(!compte)return;
- const identifiant=el("identifiantConnexion").value.trim().toLowerCase();
- const mot=el("motConnexion").value;
- if(!motValide(mot)){
-  el("messageAcces").textContent="Saisissez exactement 4 caractères alphanumériques.";return;
- }
- const b=e.submitter;if(b)b.disabled=true;
- try{
-  const empreinte=await deriveMot(mot,compte.salt);
-  if(identifiant!==compte.identifiant||empreinte!==compte.empreinte){
-   el("messageAcces").textContent="Identifiant ou mot de passe incorrect.";return;
+const CLE = "tontinepro_rotation_v1";
+const CLE_COMPTE = "tontinepro_compte_local_v2";
+const DB_NOM = "TontineProDocuments";
+const DB_STORE = "documents";
+
+let groupes = [];
+let selection = 0;
+let compte = null;
+let connecte = false;
+let fichierSelectionne = null;
+let documentURL = null;
+
+const el = id => document.getElementById(id);
+const argent = n => Number(n).toLocaleString("fr-FR") + " FCFA";
+const memeId = (a,b) => String(a) === String(b);
+const actuel = () => groupes[selection] || null;
+
+/* OUTILS */
+
+function uid() {
+  if (window.crypto && crypto.randomUUID) {
+    return crypto.randomUUID();
   }
-  el("motConnexion").value="";connecter();
- }catch(err){el("messageAcces").textContent=err.message}
- finally{if(b)b.disabled=false}
-});
-function connecter(){
- connecte=true;document.body.classList.add("connecte");afficher();accueil();
+
+  if (!window.crypto || !crypto.getRandomValues) {
+    throw Error("Identifiant sécurisé indisponible.");
+  }
+
+  const b = new Uint8Array(16);
+  crypto.getRandomValues(b);
+
+  return Array.from(b)
+    .map(x => x.toString(16).padStart(2,"0"))
+    .join("");
 }
-function deconnexion(){
- if(!confirm("Voulez-vous vous déconnecter ?"))return;
- connecte=false;document.body.classList.remove("connecte");
- el("motConnexion").value="";nettoyerDocument();fermerMenu();retourAcces();
+
+function ligne(parent, texte, classe="") {
+  const p = document.createElement("p");
+  p.textContent = texte;
+
+  if (classe) p.className = classe;
+
+  parent.appendChild(p);
+  return p;
+}
+
+function bouton(texte, action, parent, disabled=false) {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.textContent = texte;
+  b.disabled = disabled;
+  b.addEventListener("click", action);
+  parent.appendChild(b);
+  return b;
+}
+
+function sauvegarder() {
+  try {
+    localStorage.setItem(CLE, JSON.stringify(groupes));
+    return true;
+  } catch(e) {
+    alert("Impossible d'enregistrer les données locales.");
+    return false;
+  }
+}
+
+function transaction(modification) {
+  const copie = JSON.stringify(groupes);
+  const ancienne = selection;
+
+  try {
+    modification();
+
+    if (!sauvegarder()) {
+      throw Error("Échec de sauvegarde");
+    }
+
+    afficher();
+    return true;
+
+  } catch(e) {
+    groupes = JSON.parse(copie);
+    selection = ancienne;
+    afficher();
+    alert("Opération annulée : " + e.message);
+    return false;
+  }
+}
+
+/* CHARGEMENT */
+
+try {
+  const d = JSON.parse(localStorage.getItem(CLE));
+  if (Array.isArray(d)) groupes = d;
+} catch(e) {}
+
+try {
+  compte = JSON.parse(localStorage.getItem(CLE_COMPTE));
+} catch(e) {}
+
+/* MOT DE PASSE A 4 CARACTERES */
+
+function motValide(mot) {
+  return /^[A-Za-z0-9]{4}$/.test(mot);
+}
+
+function hex(b) {
+  return Array.from(new Uint8Array(b))
+    .map(x => x.toString(16).padStart(2,"0"))
+    .join("");
+}
+
+function octetsHex(s) {
+  if (!/^(?:[0-9a-f]{2})+$/i.test(s)) {
+    throw Error("Format cryptographique invalide.");
+  }
+
+  return new Uint8Array(
+    s.match(/.{2}/g).map(x => parseInt(x,16))
+  );
+}
+
+function nouveauSel() {
+  if (!window.crypto || !crypto.getRandomValues) {
+    throw Error("Cryptographie indisponible.");
+  }
+
+  const b = new Uint8Array(16);
+  crypto.getRandomValues(b);
+  return hex(b);
+}
+
+async function deriveMot(mot, salt) {
+  if (!window.crypto || !crypto.subtle) {
+    throw Error("Contexte HTTPS sécurisé requis.");
+  }
+
+  const k = await crypto.subtle.importKey(
+    "raw",
+    new TextEncoder().encode(mot),
+    "PBKDF2",
+    false,
+    ["deriveBits"]
+  );
+
+  const bits = await crypto.subtle.deriveBits({
+    name: "PBKDF2",
+    salt: octetsHex(salt),
+    iterations: 310000,
+    hash: "SHA-256"
+  }, k, 256);
+
+  return hex(bits);
+}
+
+/* ECRAN DE CONNEXION */
+
+function retourAcces() {
+  el("choixAcces").hidden = false;
+  el("formCreation").hidden = true;
+  el("formConnexion").hidden = true;
+  el("messageAcces").textContent = "";
+}
+
+function ouvrirConnexion() {
+  if (!compte) {
+    el("messageAcces").textContent =
+      "Aucun compte sur cet appareil. Créez d'abord un compte.";
+    return;
+  }
+
+  el("choixAcces").hidden = true;
+  el("formCreation").hidden = true;
+  el("formConnexion").hidden = false;
+  el("messageAcces").textContent = "";
+}
+
+function ouvrirCreation() {
+  if (compte) {
+    el("messageAcces").textContent =
+      "Un compte existe déjà. Utilisez Se connecter.";
+    return;
+  }
+
+  el("choixAcces").hidden = true;
+  el("formCreation").hidden = false;
+  el("formConnexion").hidden = true;
+  el("messageAcces").textContent = "";
+}
+
+/* CREATION DU COMPTE */
+
+el("formCreation").addEventListener("submit", async e => {
+  e.preventDefault();
+
+  const identifiant =
+    el("nouvelIdentifiant").value.trim().toLowerCase();
+
+  const mot = el("nouveauMot").value;
+  const confirmation = el("confirmationMot").value;
+
+  if (!/^[a-z0-9._-]{3,40}$/.test(identifiant)) {
+    el("messageAcces").textContent = "Identifiant invalide.";
+    return;
+  }
+
+  if (!motValide(mot) || mot !== confirmation) {
+    el("messageAcces").textContent =
+      "Le mot de passe doit contenir exactement 4 lettres ou chiffres et la confirmation doit être identique.";
+    return;
+  }
+
+  const b = e.submitter;
+  if (b) b.disabled = true;
+
+  try {
+    const salt = nouveauSel();
+    const empreinte = await deriveMot(mot, salt);
+
+    const nouveau = {
+      identifiant,
+      salt,
+      empreinte,
+      version: 2
+    };
+
+    localStorage.setItem(
+      CLE_COMPTE,
+      JSON.stringify(nouveau)
+    );
+
+    compte = nouveau;
+
+    el("nouveauMot").value = "";
+    el("confirmationMot").value = "";
+
+    connecter();
+
+  } catch(err) {
+    el("messageAcces").textContent = err.message;
+
+  } finally {
+    if (b) b.disabled = false;
+  }
+});
+
+/* CONNEXION */
+
+el("formConnexion").addEventListener("submit", async e => {
+  e.preventDefault();
+
+  if (!compte) return;
+
+  const identifiant =
+    el("identifiantConnexion").value.trim().toLowerCase();
+
+  const mot = el("motConnexion").value;
+
+  if (!motValide(mot)) {
+    el("messageAcces").textContent =
+      "Saisissez exactement 4 caractères alphanumériques.";
+    return;
+  }
+
+  const b = e.submitter;
+  if (b) b.disabled = true;
+
+  try {
+    const empreinte = await deriveMot(mot, compte.salt);
+
+    if (
+      identifiant !== compte.identifiant ||
+      empreinte !== compte.empreinte
+    ) {
+      el("messageAcces").textContent =
+        "Identifiant ou mot de passe incorrect.";
+      return;
+    }
+
+    el("motConnexion").value = "";
+    connecter();
+
+  } catch(err) {
+    el("messageAcces").textContent = err.message;
+
+  } finally {
+    if (b) b.disabled = false;
+  }
+});
+
+function connecter() {
+  connecte = true;
+  document.body.classList.add("connecte");
+  afficher();
+  accueil();
+}
+
+function deconnexion() {
+  if (!confirm("Voulez-vous vous déconnecter ?")) return;
+
+  connecte = false;
+  document.body.classList.remove("connecte");
+
+  el("motConnexion").value = "";
+  nettoyerDocument();
+  fermerMenu();
+  retourAcces();
 }
 
 /* NAVIGATION */
-function fermerMenu(){
- el("menu").classList.remove("ouvert");el("fondMenu").hidden=true;
-}
-function basculerMenu(){
- if(!connecte)return;
- el("fondMenu").hidden=el("menu").classList.toggle("ouvert")?false:true;
-}
-function accueil(){
- if(!connecte)return;
- el("pageAccueil").hidden=false;
- document.querySelectorAll("main>section.card").forEach(s=>s.hidden=true);
- fermerMenu();window.scrollTo(0,0);
-}
-function rubrique(n){
- if(!connecte)return;
- const s=document.querySelectorAll("main>section.card");
- if(n<1||n>s.length)return;
- el("pageAccueil").hidden=true;
- s.forEach((x,i)=>x.hidden=i!==n-1);
- fermerMenu();window.scrollTo(0,0);
+
+function fermerMenu() {
+  el("menu").classList.remove("ouvert");
+  el("fondMenu").hidden = true;
 }
 
-/* STOCKAGE LOCAL DES DOCUMENTS */
-function ouvrirDB(){
- return new Promise((resolve,reject)=>{
-  if(!window.indexedDB)return reject(Error("IndexedDB indisponible."));
-  const r=indexedDB.open(DB_NOM,1);
-  r.onupgradeneeded=()=>{
-   if(!r.result.objectStoreNames.contains(DB_STORE))
-    r.result.createObjectStore(DB_STORE,{keyPath:"id"});
-  };
-  r.onsuccess=()=>resolve(r.result);
-  r.onerror=()=>reject(r.error);
- });
+function basculerMenu() {
+  if (!connecte) return;
+
+  const ouvert = el("menu").classList.toggle("ouvert");
+  el("fondMenu").hidden = !ouvert;
 }
-async function enregistrerDocument(id,fichier){
- const db=await ouvrirDB();
- try{
-  await new Promise((resolve,reject)=>{
-   const tx=db.transaction(DB_STORE,"readwrite");
-   tx.objectStore(DB_STORE).put({id,nom:fichier.name,type:fichier.type,fichier});
-   tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error);
+
+function accueil() {
+  if (!connecte) return;
+
+  el("pageAccueil").hidden = false;
+
+  document.querySelectorAll("main > section.card")
+    .forEach(s => s.hidden = true);
+
+  fermerMenu();
+  window.scrollTo(0,0);
+}
+
+function rubrique(n) {
+  if (!connecte) return;
+
+  const sections =
+    document.querySelectorAll("main > section.card");
+
+  if (n < 1 || n > sections.length) return;
+
+  el("pageAccueil").hidden = true;
+
+  sections.forEach((s,i) => {
+    s.hidden = i !== n-1;
   });
- }finally{db.close()}
+
+  fermerMenu();
+  window.scrollTo(0,0);
 }
-async function lireDocument(id){
- const db=await ouvrirDB();
- try{
-  return await new Promise((resolve,reject)=>{
-   const tx=db.transaction(DB_STORE,"readonly");
-   const r=tx.objectStore(DB_STORE).get(id);
-   r.onsuccess=()=>resolve(r.result||null);r.onerror=()=>reject(r.error);
+
+/* BASE LOCALE DES DOCUMENTS */
+
+function ouvrirDB() {
+  return new Promise((resolve,reject) => {
+    if (!window.indexedDB) {
+      reject(Error("IndexedDB indisponible."));
+      return;
+    }
+
+    const r = indexedDB.open(DB_NOM,1);
+
+    r.onupgradeneeded = () => {
+      if (!r.result.objectStoreNames.contains(DB_STORE)) {
+        r.result.createObjectStore(DB_STORE, {keyPath:"id"});
+      }
+    };
+
+    r.onsuccess = () => resolve(r.result);
+    r.onerror = () => reject(r.error);
   });
- }finally{db.close()}
 }
-async function supprimerDocument(id){
- const db=await ouvrirDB();
- try{
-  await new Promise((resolve,reject)=>{
-   const tx=db.transaction(DB_STORE,"readwrite");
-   tx.objectStore(DB_STORE).delete(id);
-   tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);
-  });
- }finally{db.close()}
+
+async function enregistrerDocument(id, fichier) {
+  const db = await ouvrirDB();
+
+  try {
+    await new Promise((resolve,reject) => {
+      const tx = db.transaction(DB_STORE,"readwrite");
+
+      tx.objectStore(DB_STORE).put({
+        id,
+        nom: fichier.name,
+        type: fichier.type,
+        fichier
+      });
+
+      tx.oncomplete = resolve;
+      tx.onerror = () => reject(tx.error);
+      tx.onabort = () => reject(tx.error);
+    });
+
+  } finally {
+    db.close();
+  }
 }
-async function consulterDocument(id){
- try{
-  const d=await lireDocument(id);
-  if(!d||!d.fichier){alert("Document introuvable.");return}
-  const url=URL.createObjectURL(d.fichier);
-  const a=document.createElement("a");a.href=url;a.download=d.nom||"document";
-  document.body.appendChild(a);a.click();a.remove();
-  setTimeout(()=>URL.revokeObjectURL(url),60000);
- }catch(e){alert("Erreur : "+e.message)}
+
+async function lireDocument(id) {
+  const db = await ouvrirDB();
+
+  try {
+    return await new Promise((resolve,reject) => {
+      const tx = db.transaction(DB_STORE,"readonly");
+      const r = tx.objectStore(DB_STORE).get(id);
+
+      r.onsuccess = () => resolve(r.result || null);
+      r.onerror = () => reject(r.error);
+    });
+
+  } finally {
+    db.close();
+  }
 }
-function nettoyerDocument(){
- if(documentURL)URL.revokeObjectURL(documentURL);
- documentURL=null;fichierSelectionne=null;
- el("fichierDocument").value="";el("typeDocument").value="";
- el("consentementDocument").checked=false;
- el("apercu").hidden=true;el("apercu").removeAttribute("src");
- el("informationDocument").textContent="Aucun fichier sélectionné.";
+
+async function supprimerDocument(id) {
+  const db = await ouvrirDB();
+
+  try {
+    await new Promise((resolve,reject) => {
+      const tx = db.transaction(DB_STORE,"readwrite");
+      tx.objectStore(DB_STORE).delete(id);
+
+      tx.oncomplete = resolve;
+      tx.onerror = () => reject(tx.error);
+      tx.onabort = () => reject(tx.error);
+    });
+
+  } finally {
+    db.close();
+  }
 }
-el("fichierDocument").addEventListener("change",e=>{
- if(documentURL)URL.revokeObjectURL(documentURL);
- documentURL=null;fichierSelectionne=null;el("apercu").hidden=true;
- const f=e.target.files[0];if(!f)return;
- const types=["image/jpeg","image/png","image/webp","application/pdf"];
- const ext=f.name.split(".").pop().toLowerCase();
- if(!types.includes(f.type)||!["jpg","jpeg","png","webp","pdf"].includes(ext)){
-  alert("Formats autorisés : JPG, PNG, WebP, PDF.");e.target.value="";return;
- }
- if(f.size>8*1024*1024||f.size===0){
-  alert("Le document doit être non vide et ne pas dépasser 8 Mo.");e.target.value="";return;
- }
- fichierSelectionne=f;
- el("informationDocument").textContent="Fichier : "+f.name;
- if(f.type.startsWith("image/")){
-  documentURL=URL.createObjectURL(f);el("apercu").src=documentURL;el("apercu").hidden=false;
- }
+
+async function consulterDocument(id) {
+  try {
+    const d = await lireDocument(id);
+
+    if (!d || !d.fichier) {
+      alert("Document introuvable.");
+      return;
+    }
+
+    const url = URL.createObjectURL(d.fichier);
+    const a = document.createElement("a");
+
+    a.href = url;
+    a.download = d.nom || "document";
+
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    setTimeout(() => URL.revokeObjectURL(url),60000);
+
+  } catch(e) {
+    alert("Erreur : " + e.message);
+  }
+}
+
+function nettoyerDocument() {
+  if (documentURL) URL.revokeObjectURL(documentURL);
+
+  documentURL = null;
+  fichierSelectionne = null;
+
+  el("fichierDocument").value = "";
+  el("typeDocument").value = "";
+  el("consentementDocument").checked = false;
+
+  el("apercu").hidden = true;
+  el("apercu").removeAttribute("src");
+
+  el("informationDocument").textContent =
+    "Aucun fichier sélectionné.";
+}
+
+el("fichierDocument").addEventListener("change", e => {
+  if (documentURL) URL.revokeObjectURL(documentURL);
+
+  documentURL = null;
+  fichierSelectionne = null;
+  el("apercu").hidden = true;
+
+  const f = e.target.files[0];
+
+  if (!f) {
+    el("informationDocument").textContent =
+      "Aucun fichier sélectionné.";
+    return;
+  }
+
+  const types = [
+    "image/jpeg",
+    "image/png",
+    "image/webp",
+    "application/pdf"
+  ];
+
+  const ext = f.name.split(".").pop().toLowerCase();
+
+  if (
+    !types.includes(f.type) ||
+    !["jpg","jpeg","png","webp","pdf"].includes(ext)
+  ) {
+    alert("Formats autorisés : JPG, PNG, WebP, PDF.");
+    e.target.value = "";
+    return;
+  }
+
+  if (f.size > 8*1024*1024 || f.size === 0) {
+    alert("Le document doit être non vide et ne pas dépasser 8 Mo.");
+    e.target.value = "";
+    return;
+  }
+
+  fichierSelectionne = f;
+
+  el("informationDocument").textContent =
+    "Fichier : " + f.name;
+
+  if (f.type.startsWith("image/")) {
+    documentURL = URL.createObjectURL(f);
+    el("apercu").src = documentURL;
+    el("apercu").hidden = false;
+  }
 });
 
-/* GROUPES */
-function creerGroupe(){
- if(!connecte)return;
- const nom=el("nom").value.trim();
- const cotisation=Number(el("cotisation").value);
- const garantie=Number(el("garantie").value);
- if(!nom||!Number.isSafeInteger(cotisation)||!Number.isSafeInteger(garantie)||cotisation<=0||garantie<=0){
-  alert("Renseignez correctement le groupe.");return;
- }
- if(!transaction(()=>{
-  groupes.push({id:uid(),nom,cotisation,garantie,periode:el("periode").value,
-   membres:[],mode:"tirage",ordre:[],ordreValide:false,demarree:false,
-   tourActuel:0,paiements:[],historique:[]});
-  selection=groupes.length-1;
- }))return;
- el("nom").value="";el("cotisation").value="";el("garantie").value="";
- rubrique(3);
-}
-function changerGroupe(){
- const i=Number(el("groupes").value);
- if(groupes[i]){selection=i;afficher()}
-}
+/* CREATION DES GROUPES */
 
-/* MEMBRES */
-async function ajouterMembre(){
- const g=actuel();
- if(!g||g.demarree){alert("Choisissez un groupe en préparation.");return}
- const nom=el("membre").value.trim(),type=el("typeDocument").value;
- if(!nom){alert("Saisissez le nom.");return}
- if(g.membres.some(m=>m.nom.toLowerCase()===nom.toLowerCase())){
-  alert("Ce membre est déjà inscrit.");return;
- }
- if(!type||!fichierSelectionne||!el("consentementDocument").checked){
-  alert("Joignez la pièce et confirmez l'accord du membre.");return;
- }
- const id=uid(),f=fichierSelectionne;
- const membre={id,nom,garantieVersee:false,
-  verificationIdentite:{type,fichierNom:f.name,date:new Date().toISOString()}};
- el("ajoutBtn").disabled=true;
- try{
-  await enregistrerDocument(id,f);
-  if(!transaction(()=>{
-   g.membres.push(membre);g.ordre=[];g.ordreValide=false;
-  })){
-   await supprimerDocument(id);return;
+function creerGroupe() {
+  if (!connecte) return;
+
+  const nom = el("nom").value.trim();
+  const cotisation = Number(el("cotisation").value);
+  const garantie = Number(el("garantie").value);
+
+  if (
+    !nom ||
+    !Number.isSafeInteger(cotisation) ||
+    !Number.isSafeInteger(garantie) ||
+    cotisation <= 0 ||
+    garantie <= 0
+  ) {
+    alert("Renseignez correctement le groupe.");
+    return;
   }
-  el("membre").value="";nettoyerDocument();
-  alert("Membre enregistré.");
- }catch(e){alert("Erreur d'enregistrement : "+e.message)}
- finally{el("ajoutBtn").disabled=false}
+
+  if (!transaction(() => {
+    groupes.push({
+      id: uid(),
+      nom,
+      cotisation,
+      garantie,
+      periode: el("periode").value,
+      membres: [],
+      mode: "tirage",
+      ordre: [],
+      ordreValide: false,
+      demarree: false,
+      tourActuel: 0,
+      paiements: [],
+      historique: []
+    });
+
+    selection = groupes.length - 1;
+  })) return;
+
+  el("nom").value = "";
+  el("cotisation").value = "";
+  el("garantie").value = "";
+
+  rubrique(3);
 }
 
-/* FINANCES */
-function operation(g,type,m,montant,tour){
- if(!Array.isArray(g.historique))g.historique=[];
- g.historique.push({id:uid(),type,membreId:m.id,membreNom:m.nom,montant,tour,date:new Date().toLocaleString("fr-FR")});
-}
-function operations(g){return Array.isArray(g.historique)?g.historique:[]}
-function membreParId(g,id){return g.membres.find(m=>memeId(m.id,id))}
-function confirmerGarantie(id){
- const g=actuel();if(!g||g.demarree)return;
- const m=membreParId(g,id);if(!m||m.garantieVersee)return;
- if(!confirm("Confirmer le dépôt simulé de "+argent(g.garantie)+" pour "+m.nom+" ?"))return;
- transaction(()=>{m.garantieVersee=true;operation(g,"Dépôt de garantie",m,g.garantie,0)});
-}
-function changerMode(){
- const g=actuel();if(!g||g.demarree)return;
- transaction(()=>{
-  g.mode=el("mode").value;
-  g.ordre=g.mode==="collectif"?g.membres.map(m=>m.id):[];
-  g.ordreValide=false;
- });
-}
-function tirerAuSort(){
- const g=actuel();if(!g||g.demarree||g.mode!=="tirage"||g.membres.length<2)return;
- const ids=g.membres.map(m=>m.id);
- for(let i=ids.length-1;i>0;i--){
-  const j=Math.floor(Math.random()*(i+1));
-  [ids[i],ids[j]]=[ids[j],ids[i]];
- }
- transaction(()=>{g.ordre=ids;g.ordreValide=false});
-}
-function deplacer(i,d){
- const g=actuel();if(!g||g.demarree||g.mode!=="collectif")return;
- const j=i+d;if(j<0||j>=g.ordre.length)return;
- transaction(()=>{
-  [g.ordre[i],g.ordre[j]]=[g.ordre[j],g.ordre[i]];
-  g.ordreValide=false;
- });
-}
-function ordreComplet(g){
- return !!g&&g.membres.length>=2&&g.ordre.length===g.membres.length&&
-  new Set(g.ordre.map(String)).size===g.membres.length&&
-  g.ordre.every(id=>g.membres.some(m=>memeId(m.id,id)));
-}
-function validerOrdre(){
- const g=actuel();if(!g||g.demarree||!ordreComplet(g))return;
- if(confirm("Valider l'ordre de passage ?"))transaction(()=>{g.ordreValide=true});
-}
-function peutDemarrer(g){
- return !!g&&g.membres.length>=2&&g.membres.every(m=>m.garantieVersee)&&g.ordreValide&&ordreComplet(g);
-}
-function demarrer(){
- const g=actuel();if(!g||g.demarree||!peutDemarrer(g)){
-  alert("Garanties ou ordre incomplets.");return;
- }
- if(!confirm("Démarrer la tontine ?"))return;
- if(transaction(()=>{
-  g.demarree=true;g.tourActuel=0;
-  g.paiements=g.membres.map(m=>({id:m.id,verse:false}));
- }))rubrique(6);
-}
-function confirmerCotisation(id){
- const g=actuel();
- if(!g||!g.demarree||g.tourActuel>=g.ordre.length)return;
- const p=g.paiements.find(x=>memeId(x.id,id)),m=membreParId(g,id);
- if(!p||p.verse||!m)return;
- if(!confirm("Confirmer "+argent(g.cotisation)+" pour "+m.nom+" ?"))return;
- transaction(()=>{
-  p.verse=true;
-  operation(g,"Cotisation - Tour "+(g.tourActuel+1),m,g.cotisation,g.tourActuel+1);
- });
-}
-function tourComplet(g){
- return Array.isArray(g.paiements)&&g.paiements.length===g.membres.length&&
-  g.paiements.every(p=>p.verse===true);
-}
-function validerTour(){
- const g=actuel();
- if(!g||!g.demarree||g.tourActuel>=g.ordre.length)return;
- if(!tourComplet(g)){alert("Cotisations incomplètes.");return}
- const m=membreParId(g,g.ordre[g.tourActuel]);
- const montant=g.cotisation*g.membres.length;
- if(!m||!Number.isSafeInteger(montant)){alert("Cagnotte invalide.");return}
- if(!confirm("Confirmer la cagnotte simulée de "+argent(montant)+" pour "+m.nom+" ?"))return;
- transaction(()=>{
-  operation(g,"Cagnotte reçue - Tour "+(g.tourActuel+1),m,montant,g.tourActuel+1);
-  g.tourActuel++;
-  g.paiements=g.tourActuel<g.ordre.length?g.membres.map(m=>({id:m.id,verse:false})):[];
- });
-}
+function changerGroupe() {
+  const i = Number(el("groupes").value);
 
-/* HISTORIQUE */
-function remplirSelect(id,membres,texte){
- const s=el(id),ancien=s.value;s.replaceChildren();
- const vide=document.createElement("option");vide.value="";vide.textContent=texte;s.appendChild(vide);
- membres.forEach(m=>{
-  const o=document.createElement("option");o.value=String(m.id);o.textContent=m.nom;s.appendChild(o);
- });
- if(Array.from(s.options).some(o=>o.value===ancien))s.value=ancien;
-}
-function afficherHistorique(){
- const z=el("historiqueFinancier");z.replaceChildren();
- const g=actuel();if(!g){z.textContent="Aucun groupe.";return}
- const id=el("historiqueMembre").value;
- const ops=operations(g).filter(o=>!id||memeId(o.membreId,id));
- if(!ops.length){z.textContent="Aucune opération.";return}
- ops.slice().reverse().forEach(o=>{
-  const d=document.createElement("div");d.className="item";
-  ligne(d,o.type+" — "+o.membreNom);
-  ligne(d,argent(o.montant)+" — "+o.date,"note");z.appendChild(d);
- });
-}
-function afficherFicheFinanciere(){
- const z=el("ficheFinanciere");z.replaceChildren();
- const g=actuel(),id=el("ficheMembre").value;
- if(!g||!id){z.textContent="Sélectionnez un membre.";return}
- const m=membreParId(g,id);if(!m)return;
- const ops=operations(g).filter(o=>memeId(o.membreId,id));
- const total=p=>ops.filter(o=>o.type.startsWith(p)).reduce((s,o)=>s+Number(o.montant||0),0);
- const valeurs=[
-  ["Garanties",total("Dépôt de garantie")],
-  ["Cotisations",total("Cotisation - Tour")],
-  ["Cagnottes reçues",total("Cagnotte reçue - Tour")]
- ];
- ligne(z,"Situation de "+m.nom);
- const r=document.createElement("div");r.className="resume";
- valeurs.forEach(([nom,montant])=>{
-  const d=document.createElement("div");
-  const l=document.createElement("span");l.textContent=nom;
-  const v=document.createElement("strong");v.textContent=argent(montant);
-  d.append(l,v);r.appendChild(d);
- });
- z.appendChild(r);ligne(z,"Montants simulés enregistrés localement.","note");
-}
-
-/* AFFICHAGE DES HUIT RUBRIQUES */
-function afficher(){
- const s=el("groupes");s.replaceChildren();
- if(!groupes[selection])selection=0;
- groupes.forEach((g,i)=>{
-  const o=document.createElement("option");o.value=i;o.textContent=g.nom;s.appendChild(o);
- });
- if(groupes.length)s.value=String(selection);
- const g=actuel();
- remplirSelect("historiqueMembre",g?g.membres:[],"Tous les membres");
- remplirSelect("ficheMembre",g?g.membres:[],"Sélectionner un membre");
- afficherHistorique();afficherFicheFinanciere();
- ["membres","ordre","tours"].forEach(id=>el(id).replaceChildren());
- if(!g){
-  el("details").textContent="Créez votre premier groupe.";
-  el("statut").textContent="";el("conditions").textContent="";
-  ["ajoutBtn","tirageBtn","demarrerBtn","mode"].forEach(id=>el(id).disabled=true);
-  el("tours").textContent="Aucune tontine.";return;
- }
- el("details").textContent="Cotisation : "+argent(g.cotisation)+
-  " | Garantie : "+argent(g.garantie)+" | Période : "+g.periode;
- el("statut").textContent=g.demarree?
-  (g.tourActuel>=g.ordre.length?"Statut : CYCLE TERMINÉ":"Statut : EN COURS"):
-  "Statut : EN PRÉPARATION";
- el("ajoutBtn").disabled=!!g.demarree;
- g.membres.forEach(m=>{
-  const d=document.createElement("div");d.className="item";
-  const titre=document.createElement("strong");titre.textContent=m.nom;d.appendChild(titre);
-  if(m.verificationIdentite){
-   ligne(d,"Pièce : "+m.verificationIdentite.type,"note");
-   ligne(d,"Fichier : "+(m.verificationIdentite.fichierNom||"Non disponible"),"note");
-   if(m.verificationIdentite.fichierNom)
-    bouton("Consulter / exporter la pièce",()=>consulterDocument(m.id),d);
-  }else ligne(d,"Pièce justificative non renseignée.","note");
-  ligne(d,m.garantieVersee?"Garantie confirmée":"Garantie non versée",m.garantieVersee?"ok":"no");
-  if(!m.garantieVersee&&!g.demarree)
-   bouton("Confirmer la garantie",()=>confirmerGarantie(m.id),d);
-  el("membres").appendChild(d);
- });
- el("mode").value=g.mode||"tirage";el("mode").disabled=!!g.demarree;
- el("tirageBtn").disabled=!!g.demarree||g.mode!=="tirage"||g.membres.length<2;
- g.ordre.forEach((id,i)=>{
-  const m=membreParId(g,id);if(!m)return;
-  const d=document.createElement("div");d.className="item";
-  ligne(d,"Tour "+(i+1)+" : "+m.nom);
-  if(g.mode==="collectif"&&!g.demarree){
-   const r=document.createElement("div");r.className="row";
-   bouton("Monter",()=>deplacer(i,-1),r,i===0);
-   bouton("Descendre",()=>deplacer(i,1),r,i===g.ordre.length-1);
-   d.appendChild(r);
+  if (groupes[i]) {
+    selection = i;
+    afficher();
   }
-  el("ordre").appendChild(d);
- });
- if(!g.demarree&&ordreComplet(g))
-  bouton(g.ordreValide?"Ordre validé":"Valider cet ordre",validerOrdre,el("ordre"),g.ordreValide);
- el("conditions").textContent="Garanties : "+
-  g.membres.filter(m=>m.garantieVersee).length+"/"+g.membres.length+
-  " | Ordre : "+(g.ordreValide?"validé":"non validé");
- el("demarrerBtn").disabled=!!g.demarree||!peutDemarrer(g);
- const z=el("tours");
- if(!g.demarree){z.textContent="La tontine n'a pas démarré.";return}
- if(g.tourActuel>=g.ordre.length){z.textContent="Tous les tours sont terminés.";return}
- const beneficiaire=membreParId(g,g.ordre[g.tourActuel]);
- if(!beneficiaire){z.textContent="Bénéficiaire introuvable.";return}
- ligne(z,"Tour "+(g.tourActuel+1)+" / "+g.ordre.length+" — Bénéficiaire : "+beneficiaire.nom);
- ligne(z,"Cagnotte prévue : "+argent(g.cotisation*g.membres.length));
- g.membres.forEach(m=>{
-  const p=Array.isArray(g.paiements)?g.paiements.find(x=>memeId(x.id,m.id)):null;
-  const d=document.createElement("div");d.className="item";
-  ligne(d,m.nom+" : "+(p&&p.verse?"Cotisation confirmée":"Cotisation non versée"));
-  if(p&&!p.verse)bouton("Confirmer la cotisation",()=>confirmerCotisation(m.id),d);
-  z.appendChild(d);
- });
- bouton("Valider le tour et passer au suivant",validerTour,z,!tourComplet(g));
+}
+
+/* INSCRIPTION DES MEMBRES */
+
+async function ajouterMembre() {
+  const g = actuel();
+
+  if (!g || g.demarree) {
+    alert("Choisissez un groupe en préparation.");
+    return;
+  }
+
+  const nom = el("membre").value.trim();
+  const type = el("typeDocument").value;
+
+  if (!nom) {
+    alert("Saisissez le nom.");
+    return;
+  }
+
+  if (
+    g.membres.some(m =>
+      m.nom.toLowerCase() === nom.toLowerCase()
+    )
+  ) {
+    alert("Ce membre est déjà inscrit.");
+    return;
+  }
+
+  if (
+    !type ||
+    !fichierSelectionne ||
+    !el("consentementDocument").checked
+  ) {
+    alert("Joignez la pièce et confirmez l'accord du membre.");
+    return;
+  }
+
+  const id = uid();
+  const f = fichierSelectionne;
+
+  const membre = {
+    id,
+    nom,
+    garantieVersee: false,
+    verificationIdentite: {
+      type,
+      fichierNom: f.name,
+      date: new Date().toISOString()
+    }
+  };
+
+  el("ajoutBtn").disabled = true;
+
+  try {
+    await enregistrerDocument(id,f);
+
+    if (!transaction(() => {
+      g.membres.push(membre);
+      g.ordre = [];
+      g.ordreValide = false;
+    })) {
+      await supprimerDocument(id);
+      return;
+    }
+
+    el("membre").value = "";
+    nettoyerDocument();
+
+    alert("Membre enregistré.");
+
+  } catch(e) {
+    alert("Erreur d'enregistrement : " + e.message);
+
+  } finally {
+    el("ajoutBtn").disabled = false;
+  }
+}
+
+/* OPERATIONS FINANCIERES */
+
+function operation(g,type,m,montant,tour) {
+  if (!Array.isArray(g.historique)) {
+    g.historique = [];
+  }
+
+  g.historique.push({
+    id: uid(),
+    type,
+    membreId: m.id,
+    membreNom: m.nom,
+    montant,
+    tour,
+    date: new Date().toLocaleString("fr-FR")
+  });
+}
+
+function operations(g) {
+  return Array.isArray(g.historique) ? g.historique : [];
+}
+
+function membreParId(g,id) {
+  return g.membres.find(m => memeId(m.id,id));
+}
+
+/* GARANTIES */
+
+function confirmerGarantie(id) {
+  const g = actuel();
+
+  if (!g || g.demarree) return;
+
+  const m = membreParId(g,id);
+
+  if (!m || m.garantieVersee) return;
+
+  if (!confirm(
+    "Confirmer le dépôt simulé de " +
+    argent(g.garantie) +
+    " pour " + m.nom + " ?"
+  )) return;
+
+  transaction(() => {
+    m.garantieVersee = true;
+
+    operation(
+      g,
+      "Dépôt de garantie",
+      m,
+      g.garantie,
+      0
+    );
+  });
+}
+
+/* ORDRE DE PASSAGE */
+
+function changerMode() {
+  const g = actuel();
+
+  if (!g || g.demarree) return;
+
+  transaction(() => {
+    g.mode = el("mode").value;
+
+    g.ordre = g.mode === "collectif"
+      ? g.membres.map(m => m.id)
+      : [];
+
+    g.ordreValide = false;
+  });
+}
+
+function tirerAuSort() {
+  const g = actuel();
+
+  if (
+    !g ||
+    g.demarree ||
+    g.mode !== "tirage" ||
+    g.membres.length < 2
+  ) return;
+
+  const ids = g.membres.map(m => m.id);
+
+  for (let i=ids.length-1; i>0; i--) {
+    const j = Math.floor(Math.random()*(i+1));
+    [ids[i],ids[j]] = [ids[j],ids[i]];
+  }
+
+  transaction(() => {
+    g.ordre = ids;
+    g.ordreValide = false;
+  });
+}
+
+function deplacer(i,d) {
+  const g = actuel();
+
+  if (!g || g.demarree || g.mode !== "collectif") return;
+
+  const j = i+d;
+
+  if (j<0 || j>=g.ordre.length) return;
+
+  transaction(() => {
+    [g.ordre[i],g.ordre[j]] =
+      [g.ordre[j],g.ordre[i]];
+
+    g.ordreValide = false;
+  });
+}
+
+function ordreComplet(g) {
+  return !!g &&
+    g.membres.length >= 2 &&
+    g.ordre.length === g.membres.length &&
+    new Set(g.ordre.map(String)).size === g.membres.length &&
+    g.ordre.every(id =>
+      g.membres.some(m => memeId(m.id,id))
+    );
+}
+
+function validerOrdre() {
+  const g = actuel();
+
+  if (!g || g.demarree || !ordreComplet(g)) return;
+
+  if (confirm("Valider l'ordre de passage ?")) {
+    transaction(() => {
+      g.ordreValide = true;
+    });
+  }
 }
 
 /* DEMARRAGE */
+
+function peutDemarrer(g) {
+  return !!g &&
+    g.membres.length >= 2 &&
+    g.membres.every(m => m.garantieVersee) &&
+    g.ordreValide &&
+    ordreComplet(g);
+}
+
+function demarrer() {
+  const g = actuel();
+
+  if (!g || g.demarree || !peutDemarrer(g)) {
+    alert("Garanties ou ordre incomplets.");
+    return;
+  }
+
+  if (!confirm("Démarrer la tontine ?")) return;
+
+  if (transaction(() => {
+    g.demarree = true;
+    g.tourActuel = 0;
+    g.paiements = g.membres.map(m => ({
+      id: m.id,
+      verse: false
+    }));
+  })) {
+    rubrique(6);
+  }
+}
+
+/* COTISATIONS */
+
+function confirmerCotisation(id) {
+  const g = actuel();
+
+  if (
+    !g ||
+    !g.demarree ||
+    g.tourActuel >= g.ordre.length
+  ) return;
+
+  const p = g.paiements.find(x => memeId(x.id,id));
+  const m = membreParId(g,id);
+
+  if (!p || p.verse || !m) return;
+
+  if (!confirm(
+    "Confirmer " + argent(g.cotisation) +
+    " pour " + m.nom + " ?"
+  )) return;
+
+  transaction(() => {
+    p.verse = true;
+
+    operation(
+      g,
+      "Cotisation - Tour " + (g.tourActuel+1),
+      m,
+      g.cotisation,
+      g.tourActuel+1
+    );
+  });
+}
+
+function tourComplet(g) {
+  return Array.isArray(g.paiements) &&
+    g.paiements.length === g.membres.length &&
+    g.paiements.every(p => p.verse === true);
+}
+
+function validerTour() {
+  const g = actuel();
+
+  if (
+    !g ||
+    !g.demarree ||
+    g.tourActuel >= g.ordre.length
+  ) return;
+
+  if (!tourComplet(g)) {
+    alert("Cotisations incomplètes.");
+    return;
+  }
+
+  const m = membreParId(g,g.ordre[g.tourActuel]);
+  const montant = g.cotisation*g.membres.length;
+
+  if (!m || !Number.isSafeInteger(montant)) {
+    alert("Cagnotte invalide.");
+    return;
+  }
+
+  if (!confirm(
+    "Confirmer la cagnotte simulée de " +
+    argent(montant) + " pour " + m.nom + " ?"
+  )) return;
+
+  transaction(() => {
+    operation(
+      g,
+      "Cagnotte reçue - Tour " + (g.tourActuel+1),
+      m,
+      montant,
+      g.tourActuel+1
+    );
+
+    g.tourActuel++;
+
+    g.paiements = g.tourActuel < g.ordre.length
+      ? g.membres.map(m => ({
+          id: m.id,
+          verse: false
+        }))
+      : [];
+  });
+}
+
+/* LISTES */
+
+function remplirSelect(id,membres,texte) {
+  const s = el(id);
+  const ancien = s.value;
+
+  s.replaceChildren();
+
+  const vide = document.createElement("option");
+  vide.value = "";
+  vide.textContent = texte;
+  s.appendChild(vide);
+
+  membres.forEach(m => {
+    const o = document.createElement("option");
+    o.value = String(m.id);
+    o.textContent = m.nom;
+    s.appendChild(o);
+  });
+
+  if (
+    Array.from(s.options).some(o => o.value === ancien)
+  ) {
+    s.value = ancien;
+  }
+}
+
+/* HISTORIQUE FINANCIER */
+
+function afficherHistorique() {
+  const z = el("historiqueFinancier");
+  z.replaceChildren();
+
+  const g = actuel();
+
+  if (!g) {
+    z.textContent = "Aucun groupe.";
+    return;
+  }
+
+  const id = el("historiqueMembre").value;
+
+  const ops = operations(g).filter(o =>
+    !id || memeId(o.membreId,id)
+  );
+
+  if (!ops.length) {
+    z.textContent = "Aucune opération.";
+    return;
+  }
+
+  ops.slice().reverse().forEach(o => {
+    const d = document.createElement("div");
+    d.className = "item";
+
+    ligne(d,o.type + " — " + o.membreNom);
+    ligne(d,argent(o.montant) + " — " + o.date,"note");
+
+    z.appendChild(d);
+  });
+}
+
+/* TABLEAU FINANCIER INDIVIDUEL */
+
+function afficherFicheFinanciere() {
+  const z = el("ficheFinanciere");
+  z.replaceChildren();
+
+  const g = actuel();
+  const id = el("ficheMembre").value;
+
+  if (!g || !id) {
+    z.textContent = "Sélectionnez un membre.";
+    return;
+  }
+
+  const m = membreParId(g,id);
+  if (!m) return;
+
+  const ops = operations(g).filter(o =>
+    memeId(o.membreId,id)
+  );
+
+  const total = p => ops
+    .filter(o => o.type.startsWith(p))
+    .reduce((s,o) => s + Number(o.montant||0),0);
+
+  const valeurs = [
+    ["Garanties",total("Dépôt de garantie")],
+    ["Cotisations",total("Cotisation - Tour")],
+    ["Cagnottes reçues",total("Cagnotte reçue - Tour")]
+  ];
+
+  ligne(z,"Situation de " + m.nom);
+
+  const r = document.createElement("div");
+  r.className = "resume";
+
+  valeurs.forEach(([nom,montant]) => {
+    const d = document.createElement("div");
+
+    const l = document.createElement("span");
+    l.textContent = nom;
+
+    const v = document.createElement("strong");
+    v.textContent = argent(montant);
+
+    d.append(l,v);
+    r.appendChild(d);
+  });
+
+  z.appendChild(r);
+
+  ligne(
+    z,
+    "Montants simulés enregistrés localement.",
+    "note"
+  );
+}
+
+/* AFFICHAGE GENERAL */
+
+function afficher() {
+  const s = el("groupes");
+  s.replaceChildren();
+
+  if (!groupes[selection]) selection = 0;
+
+  groupes.forEach((g,i) => {
+    const o = document.createElement("option");
+    o.value = i;
+    o.textContent = g.nom;
+    s.appendChild(o);
+  });
+
+  if (groupes.length) s.value = String(selection);
+
+  const g = actuel();
+
+  remplirSelect(
+    "historiqueMembre",
+    g ? g.membres : [],
+    "Tous les membres"
+  );
+
+  remplirSelect(
+    "ficheMembre",
+    g ? g.membres : [],
+    "Sélectionner un membre"
+  );
+
+  afficherHistorique();
+  afficherFicheFinanciere();
+
+  ["membres","ordre","tours"].forEach(id => {
+    el(id).replaceChildren();
+  });
+
+  if (!g) {
+    el("details").textContent = "Créez votre premier groupe.";
+    el("statut").textContent = "";
+    el("conditions").textContent = "";
+
+    ["ajoutBtn","tirageBtn","demarrerBtn","mode"]
+      .forEach(id => el(id).disabled = true);
+
+    el("tours").textContent = "Aucune tontine.";
+    return;
+  }
+
+  el("details").textContent =
+    "Cotisation : " + argent(g.cotisation) +
+    " | Garantie : " + argent(g.garantie) +
+    " | Période : " + g.periode;
+
+  el("statut").textContent = g.demarree
+    ? (
+        g.tourActuel >= g.ordre.length
+          ? "Statut : CYCLE TERMINÉ"
+          : "Statut : EN COURS"
+      )
+    : "Statut : EN PRÉPARATION";
+
+  el("ajoutBtn").disabled = !!g.demarree;
+
+  /* MEMBRES */
+
+  g.membres.forEach(m => {
+    const d = document.createElement("div");
+    d.className = "item";
+
+    const titre = document.createElement("strong");
+    titre.textContent = m.nom;
+    d.appendChild(titre);
+
+    if (m.verificationIdentite) {
+      ligne(
+        d,
+        "Pièce : " + m.verificationIdentite.type,
+        "note"
+      );
+
+      ligne(
+        d,
+        "Fichier : " +
+        (m.verificationIdentite.fichierNom || "Non disponible"),
+        "note"
+      );
+
+      if (m.verificationIdentite.fichierNom) {
+        bouton(
+          "Consulter / exporter la pièce",
+          () => consulterDocument(m.id),
+          d
+        );
+      }
+    } else {
+      ligne(d,"Pièce justificative non renseignée.","note");
+    }
+
+    ligne(
+      d,
+      m.garantieVersee
+        ? "Garantie confirmée"
+        : "Garantie non versée",
+      m.garantieVersee ? "ok" : "no"
+    );
+
+    if (!m.garantieVersee && !g.demarree) {
+      bouton(
+        "Confirmer la garantie",
+        () => confirmerGarantie(m.id),
+        d
+      );
+    }
+
+    el("membres").appendChild(d);
+  });
+
+  /* ORDRE */
+
+  el("mode").value = g.mode || "tirage";
+  el("mode").disabled = !!g.demarree;
+
+  el("tirageBtn").disabled =
+    !!g.demarree ||
+    g.mode !== "tirage" ||
+    g.membres.length < 2;
+
+  g.ordre.forEach((id,i) => {
+    const m = membreParId(g,id);
+    if (!m) return;
+
+    const d = document.createElement("div");
+    d.className = "item";
+
+    ligne(d,"Tour " + (i+1) + " : " + m.nom);
+
+    if (g.mode === "collectif" && !g.demarree) {
+      const r = document.createElement("div");
+      r.className = "row";
+
+      bouton("Monter",() => deplacer(i,-1),r,i===0);
+      bouton(
+        "Descendre",
+        () => deplacer(i,1),
+        r,
+        i===g.ordre.length-1
+      );
+
+      d.appendChild(r);
+    }
+
+    el("ordre").appendChild(d);
+  });
+
+  if (!g.demarree && ordreComplet(g)) {
+    bouton(
+      g.ordreValide ? "Ordre validé" : "Valider cet ordre",
+      validerOrdre,
+      el("ordre"),
+      g.ordreValide
+    );
+  }
+
+  /* CONDITIONS */
+
+  el("conditions").textContent =
+    "Garanties : " +
+    g.membres.filter(m => m.garantieVersee).length +
+    "/" + g.membres.length +
+    " | Ordre : " +
+    (g.ordreValide ? "validé" : "non validé");
+
+  el("demarrerBtn").disabled =
+    !!g.demarree || !peutDemarrer(g);
+
+  /* TOURS */
+
+  const z = el("tours");
+
+  if (!g.demarree) {
+    z.textContent = "La tontine n'a pas démarré.";
+    return;
+  }
+
+  if (g.tourActuel >= g.ordre.length) {
+    z.textContent = "Tous les tours sont terminés.";
+    return;
+  }
+
+  const beneficiaire =
+    membreParId(g,g.ordre[g.tourActuel]);
+
+  if (!beneficiaire) {
+    z.textContent = "Bénéficiaire introuvable.";
+    return;
+  }
+
+  ligne(
+    z,
+    "Tour " + (g.tourActuel+1) +
+    " / " + g.ordre.length +
+    " — Bénéficiaire : " + beneficiaire.nom
+  );
+
+  ligne(
+    z,
+    "Cagnotte prévue : " +
+    argent(g.cotisation*g.membres.length)
+  );
+
+  g.membres.forEach(m => {
+    const p = Array.isArray(g.paiements)
+      ? g.paiements.find(x => memeId(x.id,m.id))
+      : null;
+
+    const d = document.createElement("div");
+    d.className = "item";
+
+    ligne(
+      d,
+      m.nom + " : " +
+      (p && p.verse
+        ? "Cotisation confirmée"
+        : "Cotisation non versée")
+    );
+
+    if (p && !p.verse) {
+      bouton(
+        "Confirmer la cotisation",
+        () => confirmerCotisation(m.id),
+        d
+      );
+    }
+
+    z.appendChild(d);
+  });
+
+  bouton(
+    "Valider le tour et passer au suivant",
+    validerTour,
+    z,
+    !tourComplet(g)
+  );
+}
+
+/* INITIALISATION */
+
 retourAcces();
+
 </script>
 </body>
 </html>
