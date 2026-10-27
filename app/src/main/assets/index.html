@@ -55,12 +55,23 @@ button:disabled { background: #999; }
   
 /* Menu latéral rétractable */
 
+
 #menuBouton {
-  width: auto;
-  background: #ffffff;
-  color: #087b5b;
+  position: fixed;
+  right: 16px;
+  bottom: 85px;
+  width: 58px;
+  height: 58px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #087b5b;
+  color: white;
+  font-size: 27px;
   font-weight: bold;
-  margin-bottom: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  z-index: 1100;
+  cursor: pointer;
 }
 
 #menuLateral {
@@ -75,7 +86,7 @@ button:disabled { background: #999; }
   background: #087b5b;
   padding: 20px 12px;
   box-sizing: border-box;
-  z-index: 1000;
+  z-index: 1200;
   box-shadow: 3px 0 12px rgba(0,0,0,0.25);
 }
 
@@ -99,11 +110,12 @@ button:disabled { background: #999; }
 <body>
 
 <header>
-  <button id="menuBouton"
+  
+<button id="menuBouton"
         type="button"
         onclick="basculerMenu()"
         aria-label="Ouvrir ou fermer le menu">
-  ☰ Menu
+  ☰
 </button>
 <h1>TontinePro Togo</h1>
 <p>Tontines rotatives et garanties</p>
