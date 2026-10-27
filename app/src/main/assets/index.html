@@ -52,15 +52,97 @@ button:disabled { background: #999; }
   align-items: center;
 }
 .row button { width: auto; flex: 1; }
+  
+/* Menu latéral rétractable */
+
+#menuBouton {
+  width: auto;
+  background: #ffffff;
+  color: #087b5b;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#menuLateral {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 75%;
+  max-width: 280px;
+  height: 100vh;
+  overflow-y: auto;
+  background: #087b5b;
+  padding: 20px 12px;
+  box-sizing: border-box;
+  z-index: 1000;
+  box-shadow: 3px 0 12px rgba(0,0,0,0.25);
+}
+
+#menuLateral.ouvert {
+  display: block;
+}
+
+#menuLateral button {
+  display: block;
+  width: 100%;
+  margin: 8px 0;
+  padding: 12px;
+  text-align: left;
+  background: #ffffff;
+  color: #087b5b;
+  border-radius: 8px;
+}
+
 </style>
 </head>
 <body>
 
 <header>
+  <button id="menuBouton"
+        type="button"
+        onclick="basculerMenu()"
+        aria-label="Ouvrir ou fermer le menu">
+  ☰ Menu
+</button>
 <h1>TontinePro Togo</h1>
 <p>Tontines rotatives et garanties</p>
 <small>Version de démonstration locale</small>
 </header>
+
+<nav id="menuLateral" aria-label="Navigation principale">
+  <button type="button" onclick="ouvrirRubrique(1)">
+    1. Créer un groupe
+  </button>
+
+  <button type="button" onclick="ouvrirRubrique(2)">
+    2. Groupe sélectionné
+  </button>
+
+  <button type="button" onclick="ouvrirRubrique(3)">
+    3. Inscrire les membres
+  </button>
+
+  <button type="button" onclick="ouvrirRubrique(4)">
+    4. Ordre de passage
+  </button>
+
+  <button type="button" onclick="ouvrirRubrique(5)">
+    5. Démarrer la tontine
+  </button>
+
+  <button type="button" onclick="ouvrirRubrique(6)">
+    6. Suivi des tours
+  </button>
+
+  <button type="button" onclick="ouvrirRubrique(7)">
+    7. Historique financier
+  </button>
+
+  <button type="button" onclick="ouvrirRubrique(8)">
+    8. Tableau financier individuel
+  </button>
+</nav>
 
 <main>
 
@@ -174,6 +256,31 @@ try {
   if (Array.isArray(valeur)) groupes = valeur;
 } catch (e) {
   alert("Impossible de lire les données enregistrées.");
+}
+
+function basculerMenu() {
+  const menu = document.getElementById("menuLateral");
+
+  if (!menu) return;
+
+  menu.classList.toggle("ouvert");
+}
+
+function ouvrirRubrique(numero) {
+  const sections = document.querySelectorAll("main > section.card");
+
+  sections.forEach((section, index) => {
+    section.style.display =
+      index === numero - 1 ? "block" : "none";
+  });
+
+  const menu = document.getElementById("menuLateral");
+
+  if (menu) {
+    menu.classList.remove("ouvert");
+  }
+
+  window.scrollTo(0, 0);
 }
 
 function sauvegarder() {
@@ -850,7 +957,7 @@ function afficherHistorique() {
     zone.appendChild(ligne);
   });
 }
-afficher();
-</script>
+afficher(); ouvrirRubrique(1);
+ </script>
 </body>
 </html>
