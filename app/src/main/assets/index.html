@@ -2,12 +2,12 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#123D78">
 <title>TontinePro Togo</title>
 
 <style>
-:root {
+:root{
   --bleu:#123D78;
   --fond:#eef3f9;
   --texte:#203047;
@@ -15,228 +15,238 @@
   --vert:#176c46;
   --rouge:#b42335;
 }
-* { box-sizing:border-box; }
-[hidden] { display:none !important; }
-
-body {
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{
+  width:100%;
+  overflow-x:hidden;
+  -webkit-text-size-adjust:100%;
+}
+body{
   margin:0;
+  width:100%;
+  overflow-x:hidden;
   background:var(--fond);
   color:var(--texte);
-  font-family:Arial,system-ui,sans-serif;
-  line-height:1.5;
+  font:13px/1.45 Arial,system-ui,sans-serif;
 }
-main {
+main{
+  width:100%;
   max-width:850px;
   margin:auto;
-  padding:16px 14px 35px;
+  padding:10px 8px 25px;
 }
-.card {
-  background:white;
+.card{
+  width:100%;
+  min-width:0;
+  padding:13px;
+  margin-bottom:11px;
+  background:#fff;
   border:1px solid var(--bord);
-  border-radius:17px;
-  padding:20px;
-  margin-bottom:16px;
-  box-shadow:0 4px 15px rgba(18,61,120,.07);
+  border-radius:12px;
+  box-shadow:0 3px 12px #123d7810;
 }
-h1,h2,h3 { line-height:1.3; }
-h2 { color:var(--bleu); font-size:21px; }
-h3 { font-size:17px; }
-
-label {
+h1{font-size:20px}
+h2{
+  color:var(--bleu);
+  font-size:17px;
+  margin:8px 0 10px;
+}
+h3{font-size:15px}
+p{overflow-wrap:anywhere}
+label{
   display:block;
-  margin-top:12px;
+  margin-top:8px;
+  font-size:12px;
   font-weight:600;
 }
-input,select,button {
+input,select,button{
+  display:block;
   width:100%;
-  min-height:46px;
-  padding:11px;
-  margin:6px 0 12px;
-  font:inherit;
-  border-radius:9px;
+  max-width:100%;
+  min-width:0;
+  min-height:39px;
+  margin:5px 0 9px;
+  padding:8px 9px;
+  border-radius:7px;
+  font:13px Arial,system-ui,sans-serif;
 }
-input,select {
-  border:1px solid #aab8c9;
+input,select{
   background:white;
   color:var(--texte);
+  border:1px solid #aab8c9;
 }
-button {
+button{
   background:var(--bleu);
   color:white;
   border:0;
   font-weight:600;
+  line-height:1.35;
+  white-space:normal;
+  overflow-wrap:anywhere;
   cursor:pointer;
 }
-button:disabled {
-  background:#9199a4;
+button:disabled{
+  background:#929ba8;
   cursor:not-allowed;
 }
 button:focus-visible,
 input:focus-visible,
-select:focus-visible {
-  outline:3px solid #77b0ff;
+select:focus-visible{
+  outline:3px solid #79b0ff;
   outline-offset:2px;
 }
-.note { font-size:13px; color:#586679; }
-.ok { color:var(--vert); font-weight:bold; }
-.no { color:var(--rouge); font-weight:bold; }
-.item {
+.note{font-size:11px;color:#586679}
+.ok{color:var(--vert);font-weight:bold}
+.no{color:var(--rouge);font-weight:bold}
+.item{
+  padding:9px 0;
   border-bottom:1px solid var(--bord);
-  padding:12px 0;
+  overflow-wrap:anywhere;
 }
-.row { display:flex; gap:8px; }
-.row button { flex:1; }
-.message {
-  padding:12px;
-  border-radius:9px;
-  background:#eaf1fb;
-}
+.row{display:flex;flex-wrap:wrap;gap:6px}
+.row button{flex:1 1 90px;min-width:0}
 
 /* CONNEXION */
-
-#ecranAcces {
-  min-height:100vh;
+#ecranAcces{
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:20px 14px;
+  min-height:100vh;
+  min-height:100dvh;
+  padding:12px;
   background:linear-gradient(145deg,#123D78,#2463aa);
 }
-.auth-carte {
+.auth-carte{
   width:100%;
-  max-width:430px;
+  max-width:390px;
+  min-width:0;
+  padding:16px;
   background:white;
-  padding:25px;
-  border-radius:18px;
-  box-shadow:0 12px 35px rgba(0,0,0,.2);
+  border-radius:12px;
+  box-shadow:0 10px 30px #0003;
 }
-.auth-carte h1 {
+.auth-carte h1{
   color:var(--bleu);
   text-align:center;
-  margin:0;
 }
-.auth-erreur {
+.auth-erreur{
   color:var(--rouge);
-  min-height:22px;
+  min-height:20px;
 }
 body:not(.connecte) main,
 body:not(.connecte) footer,
 body:not(.connecte) #menuBouton,
 body:not(.connecte) #menuLateral,
-body:not(.connecte) #menuFond {
-  display:none !important;
+body:not(.connecte) #menuFond{
+  display:none!important;
 }
-body.connecte #ecranAcces {
-  display:none !important;
+body.connecte #ecranAcces{
+  display:none!important;
 }
 
 /* ACCUEIL */
-
-#pageAccueil {
-  padding:0;
-  overflow:hidden;
-}
-.accueil-entete {
+#pageAccueil{padding:0;overflow:hidden}
+.accueil-entete{
+  padding:20px 12px;
   background:var(--bleu);
   color:white;
-  padding:32px 20px;
   text-align:center;
 }
-.accueil-entete h1 {
-  font-size:25px;
-}
-.accueil-contenu {
-  padding:20px;
-}
-.accueil-grille {
+.accueil-entete h1{font-size:20px}
+.accueil-entete p{font-size:12px}
+.accueil-contenu{padding:12px}
+.accueil-grille{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px;
+  gap:8px;
 }
-.accueil-grille button {
+.accueil-grille button{
+  min-height:70px;
+  margin:0;
+  padding:8px 5px;
   background:#eaf1fb;
   color:var(--bleu);
-  min-height:95px;
-  margin:0;
-  padding:12px 7px;
   border:1px solid #cadcf1;
+  font-size:12px;
 }
 
 /* MENU */
-
-#menuBouton {
+#menuBouton{
   position:fixed;
-  right:16px;
-  bottom:80px;
-  width:58px;
-  height:58px;
-  min-height:58px;
-  padding:0;
+  right:12px;
+  bottom:70px;
+  width:48px;
+  height:48px;
+  min-height:48px;
   margin:0;
+  padding:0;
+  border:2px solid var(--bleu);
   border-radius:50%;
   background:white;
   color:var(--bleu);
-  border:2px solid var(--bleu);
-  font-size:27px;
+  font-size:22px;
   z-index:1100;
   box-shadow:0 4px 15px #0003;
 }
-#menuFond {
+#menuFond{
   position:fixed;
   inset:0;
   background:#0008;
   z-index:1190;
 }
-#menuLateral {
+#menuLateral{
   display:none;
   position:fixed;
   top:0;
   left:0;
-  width:82%;
-  max-width:310px;
+  width:min(82vw,290px);
   height:100vh;
   height:100dvh;
   overflow-y:auto;
+  padding:14px 10px;
   background:var(--bleu);
-  padding:20px 13px;
   z-index:1200;
 }
-#menuLateral.ouvert { display:block; }
-#menuLateral h2 { color:white; }
-#menuLateral button {
+#menuLateral.ouvert{display:block}
+#menuLateral h2{color:white}
+#menuLateral button{
+  min-height:39px;
+  margin:5px 0;
+  padding:9px;
   background:white;
   color:var(--bleu);
   text-align:left;
-  margin:5px 0;
+  font-size:12px;
 }
-#menuLateral .deconnexion {
+#menuLateral .deconnexion{
   background:#ffe4e6;
   color:#921d2c;
 }
 
 /* IDENTIFICATION */
-
-.document-zone {
+.document-zone{
+  margin:10px 0;
+  padding:10px;
   border:1px solid var(--bord);
+  border-radius:10px;
   background:#f5f8fc;
-  padding:14px;
-  border-radius:12px;
-  margin:15px 0;
 }
-#apercuDocument {
+#apercuDocument{
   display:block;
   max-width:100%;
-  max-height:250px;
+  max-height:180px;
   object-fit:contain;
-  margin:12px auto;
+  margin:10px auto;
 }
-.case-consentement {
+.case-consentement{
   display:flex;
   align-items:flex-start;
   gap:10px;
+  font-size:11px;
   font-weight:normal;
 }
-.case-consentement input {
+.case-consentement input{
   width:20px;
   min-width:20px;
   height:20px;
@@ -245,54 +255,72 @@ body.connecte #ecranAcces {
 }
 
 /* FINANCES */
-
-.resume-financier {
+.resume-financier{
   display:grid;
-  grid-template-columns:1fr;
-  gap:10px;
+  grid-template-columns:minmax(0,1fr);
+  gap:8px;
 }
-.resume-case {
-  padding:14px;
+.resume-case{
+  min-width:0;
+  padding:10px;
+  border-radius:10px;
   background:#eaf1fb;
-  border-radius:11px;
 }
-.resume-case span {
+.resume-case span{
   display:block;
-  font-size:13px;
+  font-size:11px;
 }
-.resume-case strong {
+.resume-case strong{
   display:block;
-  font-size:19px;
   color:var(--bleu);
+  font-size:15px;
+  overflow-wrap:anywhere;
 }
 
-/* SIGNATURE */
-
-#signatureDoctorale {
+/* PIED DE PAGE */
+#signatureApplication{
+  width:calc(100% - 16px);
   max-width:850px;
-  margin:15px auto 85px;
-  padding:20px;
+  margin:10px auto 75px;
+  padding:12px;
   background:var(--bleu);
   color:white;
   text-align:center;
-  border-radius:12px;
+  border-radius:10px;
 }
-#signatureDoctorale strong { font-style:italic; }
-#signatureDoctorale p { font-size:12px; }
-#signatureDoctorale small { font-size:11px; }
+#signatureApplication p{font-size:11px}
+#signatureApplication small{font-size:10px}
 
-@media(min-width:600px) {
-  .resume-financier {
-    grid-template-columns:repeat(3,1fr);
+@media(min-width:600px){
+  .resume-financier{
+    grid-template-columns:repeat(3,minmax(0,1fr));
   }
+}
+@media(max-width:360px){
+  body{font-size:12px}
+  main{padding:8px 6px 20px}
+  .card{padding:10px}
+  h1{font-size:18px}
+  h2{font-size:16px}
+  input,select,button{font-size:12px}
+  .accueil-grille{gap:6px}
+  .accueil-grille button{
+    font-size:11px;
+    padding:7px 4px;
+  }
+}
+@media(max-width:300px){
+  .accueil-grille{
+    grid-template-columns:minmax(0,1fr);
+  }
+  .row{flex-direction:column}
 }
 </style>
 </head>
 
 <body>
 
-<!-- CREATION DU COMPTE ET CONNEXION -->
-
+<!-- CONNEXION -->
 <section id="ecranAcces">
 <div class="auth-carte">
 
@@ -306,18 +334,20 @@ body.connecte #ecranAcces {
 
 <label for="nouvelIdentifiant">Identifiant</label>
 <input id="nouvelIdentifiant"
-  type="text" minlength="3" maxlength="40"
-  autocomplete="username" required>
+ type="text" minlength="3" maxlength="40"
+ autocomplete="username" required>
 
 <label for="nouveauMot">Mot de passe</label>
 <input id="nouveauMot"
-  type="password" minlength="12"
-  autocomplete="new-password" required>
+ type="password" minlength="12"
+ autocomplete="new-password" required>
 
-<label for="confirmationMot">Confirmer le mot de passe</label>
+<label for="confirmationMot">
+ Confirmer le mot de passe
+</label>
 <input id="confirmationMot"
-  type="password" minlength="12"
-  autocomplete="new-password" required>
+ type="password" minlength="12"
+ autocomplete="new-password" required>
 
 <button type="submit">Créer mon compte</button>
 </form>
@@ -327,59 +357,36 @@ body.connecte #ecranAcces {
 
 <label for="identifiantConnexion">Identifiant</label>
 <input id="identifiantConnexion"
-  type="text" autocomplete="username" required>
+ type="text" autocomplete="username" required>
 
 <label for="motConnexion">Mot de passe</label>
 <input id="motConnexion"
-  type="password" autocomplete="current-password" required>
+ type="password" autocomplete="current-password" required>
 
 <button type="submit">Se connecter</button>
 </form>
 
-<form id="formMigration" hidden>
-<h2>Ajouter un identifiant</h2>
-<p class="note">
-  Un mot de passe existe déjà sur cet appareil.
-  Indiquez un identifiant et confirmez votre
-  ancien mot de passe.
-</p>
-
-<label for="identifiantMigration">Nouvel identifiant</label>
-<input id="identifiantMigration"
-  type="text" minlength="3" maxlength="40" required>
-
-<label for="motMigration">Ancien mot de passe</label>
-<input id="motMigration"
-  type="password" required>
-
-<button type="submit">Enregistrer mon identifiant</button>
-</form>
-
 <p id="messageAcces" class="auth-erreur"
-  role="alert" aria-live="polite"></p>
+ role="alert" aria-live="polite"></p>
 
 <p class="note">
-  Prototype local. Les données financières ne sont
-  pas chiffrées et le compte n'est pas synchronisé
-  avec un serveur.
+ Prototype local : les données financières
+ ne sont pas chiffrées ni synchronisées.
 </p>
-
 </div>
 </section>
 
 <!-- MENU -->
-
 <button id="menuBouton" type="button"
-  onclick="basculerMenu()"
-  aria-label="Ouvrir le menu"
-  aria-controls="menuLateral"
-  aria-expanded="false">☰</button>
+ onclick="basculerMenu()"
+ aria-label="Ouvrir le menu"
+ aria-controls="menuLateral"
+ aria-expanded="false">☰</button>
 
 <div id="menuFond" onclick="fermerMenu()" hidden></div>
 
 <nav id="menuLateral" aria-label="Navigation principale">
 <h2>TontinePro Togo</h2>
-
 <button onclick="retourAccueil()">Accueil</button>
 <button onclick="ouvrirRubrique(1)">1. Créer un groupe</button>
 <button onclick="ouvrirRubrique(2)">2. Groupe sélectionné</button>
@@ -389,48 +396,41 @@ body.connecte #ecranAcces {
 <button onclick="ouvrirRubrique(6)">6. Suivi des tours</button>
 <button onclick="ouvrirRubrique(7)">7. Historique financier</button>
 <button onclick="ouvrirRubrique(8)">8. Tableau financier individuel</button>
-
 <button class="deconnexion"
-  onclick="seDeconnecter()">Se déconnecter</button>
+ onclick="seDeconnecter()">Se déconnecter</button>
 </nav>
 
 <main>
 
 <!-- ACCUEIL -->
-
 <div id="pageAccueil" class="card">
 <div class="accueil-entete">
 <h1>Bienvenue sur TontinePro Togo</h1>
 <p><strong>Ensemble, finançons nos activités.</strong></p>
 <p>
-  Gestion des tontines rotatives,
-  des garanties, des cotisations
-  et des cagnottes.
+ Gestion des tontines rotatives,
+ des garanties, des cotisations
+ et des cagnottes.
 </p>
 </div>
-
 <div class="accueil-contenu">
 <h2>Accès rapides</h2>
-
 <div class="accueil-grille">
 <button onclick="ouvrirRubrique(2)">👥 Mes groupes</button>
 <button onclick="ouvrirRubrique(6)">💰 Mes tontines</button>
 <button onclick="ouvrirRubrique(8)">📊 Mes finances</button>
 <button onclick="ouvrirRubrique(7)">📋 Historique financier</button>
 </div>
-
 <p class="note">
-  Utilisez le bouton ☰ pour accéder
-  à toutes les fonctionnalités.
+ Utilisez le bouton ☰ pour accéder
+ à toutes les fonctionnalités.
 </p>
 </div>
 </div>
 
 <!-- 1 CREER GROUPE -->
-
 <section class="card" hidden>
 <h2>1. Créer un groupe</h2>
-
 <label for="nom">Nom du groupe</label>
 <input id="nom" placeholder="Nom du groupe">
 
@@ -451,149 +451,131 @@ body.connecte #ecranAcces {
 </section>
 
 <!-- 2 GROUPES -->
-
 <section class="card" hidden>
 <h2>2. Groupe sélectionné</h2>
-
 <label for="groupes">Choisir un groupe</label>
 <select id="groupes" onchange="changerGroupe()"></select>
-
 <p id="details"></p>
 <p id="statut"></p>
 </section>
 
-<!-- 3 MEMBRES ET DOCUMENTS -->
-
+<!-- 3 MEMBRES -->
 <section class="card" hidden>
 <h2>3. Inscrire les membres</h2>
-
 <label for="membre">Nom et prénom du membre</label>
 <input id="membre" placeholder="Nom complet">
 
 <div class="document-zone">
-
 <h3>Identification du membre</h3>
 
 <label for="typeDocument">Type de pièce présentée</label>
 <select id="typeDocument">
 <option value="">Choisir un document</option>
 <option value="Carte nationale d'identité">
-  Carte nationale d'identité
+ Carte nationale d'identité
 </option>
 <option value="Acte de naissance">
-  Acte de naissance
+ Acte de naissance
 </option>
 </select>
 
 <label for="fichierDocument">
-  Photographier ou sélectionner la pièce
+ Photographier ou sélectionner la pièce
 </label>
 <input id="fichierDocument"
-  type="file"
-  accept="image/jpeg,image/png,image/webp"
-  capture="environment">
+ type="file"
+ accept="image/jpeg,image/png,image/webp"
+ capture="environment">
 
 <img id="apercuDocument"
-  alt="Aperçu du document présenté" hidden>
+ alt="Aperçu du document présenté" hidden>
 
 <p id="informationDocument" class="note">
-  Aucune image sélectionnée.
+ Aucune image sélectionnée.
 </p>
 
 <label class="case-consentement">
 <input id="consentementDocument" type="checkbox">
 <span>
-  Je confirme avoir informé le membre de
-  l'utilisation de son document pour
-  une vérification visuelle et avoir
-  recueilli son accord.
+ Je confirme avoir informé le membre
+ de l'utilisation de son document pour
+ une vérification visuelle et avoir
+ recueilli son accord.
 </span>
 </label>
 
 <p class="note">
-  L'image est utilisée uniquement pour
-  l'aperçu temporaire. Elle n'est pas
-  enregistrée dans les données locales.
+ L'image est utilisée uniquement pour
+ l'aperçu temporaire. Elle n'est pas
+ enregistrée dans les données locales.
 </p>
-
 </div>
 
 <button id="ajoutBtn" onclick="ajouterMembre()">
-  Enregistrer le membre
+ Enregistrer le membre
 </button>
-
 <div id="membres"></div>
 </section>
 
 <!-- 4 ORDRE -->
-
 <section class="card" hidden>
 <h2>4. Ordre de passage</h2>
-
 <label for="mode">Mode de désignation</label>
 <select id="mode" onchange="changerMode()">
 <option value="tirage">Tirage au sort</option>
 <option value="collectif">Choix collectif</option>
 </select>
-
 <button id="tirageBtn" onclick="tirerAuSort()">
-  Effectuer le tirage
+ Effectuer le tirage
 </button>
-
 <div id="ordre"></div>
 <p class="note">
-  L'ordre doit être validé avant le démarrage.
+ L'ordre doit être validé avant le démarrage.
 </p>
 </section>
 
 <!-- 5 DEMARRAGE -->
-
 <section class="card" hidden>
 <h2>5. Démarrer la tontine</h2>
 <p id="conditions"></p>
 <button id="demarrerBtn" onclick="demarrer()">
-  Démarrer la tontine
+ Démarrer la tontine
 </button>
 </section>
 
 <!-- 6 TOURS -->
-
 <section class="card" hidden>
 <h2>6. Suivi des tours</h2>
 <div id="tours"></div>
 </section>
 
 <!-- 7 HISTORIQUE -->
-
 <section class="card" hidden>
 <h2>7. Historique financier</h2>
-
-<label for="historiqueMembre">Sélectionner un membre</label>
+<label for="historiqueMembre">
+ Sélectionner un membre
+</label>
 <select id="historiqueMembre"
-  onchange="afficherHistorique()"></select>
-
+ onchange="afficherHistorique()"></select>
 <div id="historiqueFinancier"></div>
 </section>
 
 <!-- 8 FINANCES -->
-
 <section class="card" hidden>
 <h2>8. Tableau financier individuel</h2>
-
 <label for="ficheMembre">Choisir un membre</label>
 <select id="ficheMembre"
-  onchange="afficherFicheFinanciere()"></select>
-
+ onchange="afficherFicheFinanciere()"></select>
 <div id="ficheFinanciere"></div>
 </section>
 
 </main>
 
-<footer id="signatureDoctorale">
-<strong><em>Dr SOSSO Essossimna</em></strong>
+<!-- PIED DE PAGE -->
+<footer id="signatureApplication">
 <p>
-  Une application issue des travaux
-  de recherche doctorale
+ Une application issue des travaux
+ de recherche doctorale
 </p>
 <small>© 2026 — TontinePro Togo</small>
 </footer>
@@ -601,1156 +583,981 @@ body.connecte #ecranAcces {
 <script>
 "use strict";
 
-/* STOCKAGE */
+/* DONNEES LOCALES */
+const CLE="tontinepro_rotation_v1";
+const CLE_COMPTE="tontinepro_compte_local_v2";
 
-const CLE = "tontinepro_rotation_v1";
-const CLE_COMPTE = "tontinepro_compte_local_v2";
+let groupes=[];
+let selection=0;
+let compte=null;
+let connecte=false;
+let documentURL=null;
+let documentSelectionne=false;
+let groupeAffiche=null;
 
-let groupes = [];
-let selection = 0;
-let compte = null;
-let connecte = false;
-let documentURL = null;
-let documentSelectionne = false;
-let groupeAffiche = null;
-
-try {
-  const donnees = JSON.parse(localStorage.getItem(CLE));
-  if (Array.isArray(donnees)) groupes = donnees;
-} catch(e) {
-  alert("Erreur de lecture des données existantes.");
+try{
+ const d=JSON.parse(localStorage.getItem(CLE));
+ if(Array.isArray(d)) groupes=d;
+}catch(e){
+ alert("Erreur de lecture des données existantes.");
+}
+try{
+ compte=JSON.parse(localStorage.getItem(CLE_COMPTE));
+}catch(e){
+ compte=null;
 }
 
-try {
-  compte = JSON.parse(localStorage.getItem(CLE_COMPTE));
-} catch(e) {
-  compte = null;
+function el(id){
+ return document.getElementById(id);
+}
+function argent(n){
+ return Number(n).toLocaleString("fr-FR")+" FCFA";
+}
+function memeId(a,b){
+ return String(a)===String(b);
+}
+function actuel(){
+ return groupes[selection]||null;
+}
+function sauvegarder(){
+ try{
+  localStorage.setItem(CLE,JSON.stringify(groupes));
+  return true;
+ }catch(e){
+  alert("Échec de l'enregistrement local.");
+  return false;
+ }
+}
+function bouton(texte,action,parent,desactive=false){
+ const b=document.createElement("button");
+ b.type="button";
+ b.textContent=texte;
+ b.disabled=desactive;
+ b.addEventListener("click",action);
+ parent.appendChild(b);
+ return b;
+}
+function ligne(parent,texte,classe=""){
+ const p=document.createElement("p");
+ p.textContent=texte;
+ if(classe) p.className=classe;
+ parent.appendChild(p);
+ return p;
 }
 
-function el(id) {
-  return document.getElementById(id);
+/* IDENTIFIANT ET MOT DE PASSE */
+function normaliserIdentifiant(s){
+ return s.trim().toLowerCase();
 }
-
-function argent(n) {
-  return Number(n).toLocaleString("fr-FR") + " FCFA";
+function messageAcces(t){
+ el("messageAcces").textContent=t;
 }
-
-function memeId(a,b) {
-  return String(a) === String(b);
+function hex(buffer){
+ return Array.from(new Uint8Array(buffer))
+  .map(x=>x.toString(16).padStart(2,"0"))
+  .join("");
 }
-
-function actuel() {
-  return groupes[selection] || null;
+function octetsHex(s){
+ if(!/^(?:[0-9a-f]{2})+$/i.test(s)){
+  throw new Error("Format cryptographique invalide.");
+ }
+ return new Uint8Array(
+  s.match(/.{2}/g).map(x=>parseInt(x,16))
+ );
 }
-
-function sauvegarder() {
-  try {
-    localStorage.setItem(CLE,JSON.stringify(groupes));
-    return true;
-  } catch(e) {
-    alert("Échec de l'enregistrement local.");
-    return false;
-  }
-}
-
-function bouton(texte,action,parent,desactive=false) {
-  const b=document.createElement("button");
-  b.type="button";
-  b.textContent=texte;
-  b.disabled=desactive;
-  b.addEventListener("click",action);
-  parent.appendChild(b);
-  return b;
-}
-
-function ligne(parent,texte,classe="") {
-  const p=document.createElement("p");
-  p.textContent=texte;
-  if(classe) p.className=classe;
-  parent.appendChild(p);
-  return p;
-}
-
-/* AUTHENTIFICATION LOCALE */
-
-function normaliserIdentifiant(s) {
-  return s.trim().toLowerCase();
-}
-
-function messageAcces(texte) {
-  el("messageAcces").textContent=texte;
-}
-
-function hex(buffer) {
-  return Array.from(new Uint8Array(buffer))
-    .map(x=>x.toString(16).padStart(2,"0"))
-    .join("");
-}
-
-function octetsHex(s) {
-  if (!/^(?:[0-9a-f]{2})+$/i.test(s)) {
-    throw new Error("Format cryptographique invalide");
-  }
-  return new Uint8Array(
-    s.match(/.{2}/g).map(x=>parseInt(x,16))
+async function deriveMot(mot,salt){
+ if(!window.crypto||!crypto.subtle){
+  throw new Error(
+   "La cryptographie n'est pas disponible "+
+   "dans cette WebView Android."
   );
+ }
+ const enc=new TextEncoder();
+ const cle=await crypto.subtle.importKey(
+  "raw",enc.encode(mot),"PBKDF2",false,["deriveBits"]
+ );
+ const bits=await crypto.subtle.deriveBits(
+  {
+   name:"PBKDF2",
+   salt:octetsHex(salt),
+   iterations:310000,
+   hash:"SHA-256"
+  },
+  cle,256
+ );
+ return hex(bits);
 }
-
-async function deriveMot(mot,salt) {
-  if (!window.crypto || !crypto.subtle) {
-    throw new Error(
-      "La cryptographie n'est pas disponible dans " +
-      "cette WebView Android."
-    );
-  }
-
-  const encodeur=new TextEncoder();
-
-  const cle=await crypto.subtle.importKey(
-    "raw",
-    encodeur.encode(mot),
-    "PBKDF2",
-    false,
-    ["deriveBits"]
-  );
-
-  const bits=await crypto.subtle.deriveBits(
-    {
-      name:"PBKDF2",
-      salt:octetsHex(salt),
-      iterations:310000,
-      hash:"SHA-256"
-    },
-    cle,
-    256
-  );
-
-  return hex(bits);
+function nouveauSel(){
+ const octets=new Uint8Array(16);
+ crypto.getRandomValues(octets);
+ return hex(octets);
 }
-
-function nouveauSel() {
-  const octets=new Uint8Array(16);
-  crypto.getRandomValues(octets);
-  return hex(octets);
+function comparaison(a,b){
+ if(typeof a!=="string"||typeof b!=="string"){
+  return false;
+ }
+ let diff=a.length^b.length;
+ const taille=Math.max(a.length,b.length);
+ for(let i=0;i<taille;i++){
+  diff|=(a.charCodeAt(i)||0)^(b.charCodeAt(i)||0);
+ }
+ return diff===0;
 }
-
-function comparaison(a,b) {
-  if(typeof a!=="string" || typeof b!=="string") {
-    return false;
-  }
-  let diff=a.length^b.length;
-  const taille=Math.max(a.length,b.length);
-  for(let i=0;i<taille;i++) {
-    diff|=(a.charCodeAt(i)||0)^(b.charCodeAt(i)||0);
-  }
-  return diff===0;
-}
-
-function afficherAcces() {
-  el("formCreation").hidden=Boolean(compte);
-  el("formConnexion").hidden=!compte;
-  el("formMigration").hidden=true;
-  messageAcces("");
+function afficherAcces(){
+ el("formCreation").hidden=Boolean(compte);
+ el("formConnexion").hidden=!compte;
+ messageAcces("");
 }
 
 el("formCreation").addEventListener("submit",async e=>{
-  e.preventDefault();
+ e.preventDefault();
+ const identifiant=normaliserIdentifiant(
+  el("nouvelIdentifiant").value
+ );
+ const mot=el("nouveauMot").value;
+ const confirmation=el("confirmationMot").value;
 
-  const identifiant=normaliserIdentifiant(
-    el("nouvelIdentifiant").value
+ if(!/^[a-z0-9._-]{3,40}$/.test(identifiant)){
+  messageAcces(
+   "Identifiant : 3 à 40 caractères, "+
+   "lettres, chiffres, point, tiret ou soulignement."
   );
-  const mot=el("nouveauMot").value;
-  const confirmation=el("confirmationMot").value;
-
-  if(!/^[a-z0-9._-]{3,40}$/.test(identifiant)) {
-    messageAcces(
-      "Identifiant : 3 à 40 caractères, lettres, " +
-      "chiffres, point, tiret ou soulignement."
-    );
-    return;
-  }
-
-  if(mot.length<12 || mot!==confirmation) {
-    messageAcces(
-      "Le mot de passe doit contenir au moins " +
-      "12 caractères et les deux saisies " +
-      "doivent être identiques."
-    );
-    return;
-  }
-
-  const b=e.submitter;
-  if(b) b.disabled=true;
-
-  try {
-    const salt=nouveauSel();
-    const empreinte=await deriveMot(mot,salt);
-
-    const nouveau={
-      identifiant,
-      salt,
-      empreinte,
-      version:2
-    };
-
-    localStorage.setItem(
-      CLE_COMPTE,JSON.stringify(nouveau)
-    );
-
-    compte=nouveau;
-    connecter();
-  } catch(err) {
-    messageAcces(err.message);
-  } finally {
-    if(b) b.disabled=false;
-  }
+  return;
+ }
+ if(mot.length<12||mot!==confirmation){
+  messageAcces(
+   "Le mot de passe doit contenir au moins "+
+   "12 caractères et les deux saisies "+
+   "doivent être identiques."
+  );
+  return;
+ }
+ const b=e.submitter;
+ if(b) b.disabled=true;
+ try{
+  const salt=nouveauSel();
+  const empreinte=await deriveMot(mot,salt);
+  const nouveau={
+   identifiant,salt,empreinte,version:2
+  };
+  localStorage.setItem(
+   CLE_COMPTE,JSON.stringify(nouveau)
+  );
+  compte=nouveau;
+  connecter();
+ }catch(err){
+  messageAcces(err.message);
+ }finally{
+  if(b) b.disabled=false;
+ }
 });
 
 el("formConnexion").addEventListener("submit",async e=>{
-  e.preventDefault();
-
-  if(!compte) return;
-
-  const identifiant=normaliserIdentifiant(
-    el("identifiantConnexion").value
-  );
-  const mot=el("motConnexion").value;
-
-  const b=e.submitter;
-  if(b) b.disabled=true;
-
-  try {
-    const empreinte=await deriveMot(mot,compte.salt);
-
-    if(
-      identifiant!==compte.identifiant ||
-      !comparaison(empreinte,compte.empreinte)
-    ) {
-      messageAcces("Identifiant ou mot de passe incorrect.");
-      return;
-    }
-
-    el("motConnexion").value="";
-    connecter();
-  } catch(err) {
-    messageAcces(err.message);
-  } finally {
-    if(b) b.disabled=false;
-  }
-});
-
-function connecter() {
-  connecte=true;
-  document.body.classList.add("connecte");
-  afficher();
-  retourAccueil();
-}
-
-function seDeconnecter() {
-  if(!confirm("Voulez-vous vous déconnecter ?")) {
-    return;
-  }
-
-  connecte=false;
-  document.body.classList.remove("connecte");
-  fermerMenu();
-
-  el("motConnexion").value="";
-  el("nouveauMot").value="";
-  el("confirmationMot").value="";
-  nettoyerDocument();
-
-  afficherAcces();
-}
-
-function exigerConnexion() {
-  return connecte===true;
-}
-
-/* NAVIGATION */
-
-function fermerMenu() {
-  el("menuLateral").classList.remove("ouvert");
-  el("menuFond").hidden=true;
-  el("menuBouton").setAttribute("aria-expanded","false");
-}
-
-function basculerMenu() {
-  if(!exigerConnexion()) return;
-
-  const ouvert=el("menuLateral")
-    .classList.toggle("ouvert");
-
-  el("menuFond").hidden=!ouvert;
-  el("menuBouton").setAttribute(
-    "aria-expanded",String(ouvert)
-  );
-}
-
-function retourAccueil() {
-  if(!exigerConnexion()) return;
-
-  el("pageAccueil").hidden=false;
-
-  document.querySelectorAll("main > section.card")
-    .forEach(s=>s.hidden=true);
-
-  fermerMenu();
-  window.scrollTo(0,0);
-}
-
-function ouvrirRubrique(numero) {
-  if(!exigerConnexion()) return;
-
-  const sections=
-    document.querySelectorAll("main > section.card");
-
-  if(numero<1 || numero>sections.length) return;
-
-  el("pageAccueil").hidden=true;
-
-  sections.forEach((s,i)=>{
-    s.hidden=i!==numero-1;
-  });
-
-  fermerMenu();
-  window.scrollTo(0,0);
-}
-
-document.addEventListener("keydown",e=>{
-  if(e.key==="Escape") fermerMenu();
-});
-
-/* DOCUMENT D'IDENTITE */
-
-function nettoyerDocument() {
-  if(documentURL) {
-    URL.revokeObjectURL(documentURL);
-    documentURL=null;
-  }
-
-  documentSelectionne=false;
-  el("fichierDocument").value="";
-  el("typeDocument").value="";
-  el("consentementDocument").checked=false;
-  el("apercuDocument").hidden=true;
-  el("apercuDocument").removeAttribute("src");
-  el("informationDocument").textContent=
-    "Aucune image sélectionnée.";
-}
-
-el("fichierDocument").addEventListener("change",e=>{
-  if(documentURL) {
-    URL.revokeObjectURL(documentURL);
-    documentURL=null;
-  }
-
-  documentSelectionne=false;
-  el("apercuDocument").hidden=true;
-
-  const fichier=e.target.files[0];
-  if(!fichier) return;
-
-  const formats=[
-    "image/jpeg","image/png","image/webp"
-  ];
-
-  if(!formats.includes(fichier.type)) {
-    alert("Format non accepté. Utilisez JPEG, PNG ou WebP.");
-    e.target.value="";
-    return;
-  }
-
-  if(fichier.size>8*1024*1024) {
-    alert("L'image dépasse 8 Mo.");
-    e.target.value="";
-    return;
-  }
-
-  documentURL=URL.createObjectURL(fichier);
-  el("apercuDocument").src=documentURL;
-  el("apercuDocument").hidden=false;
-  documentSelectionne=true;
-
-  el("informationDocument").textContent=
-    "Image chargée pour vérification visuelle.";
-});
-
-/* GROUPES */
-
-function creerGroupe() {
-  if(!exigerConnexion()) return;
-
-  const nom=el("nom").value.trim();
-  const cotisation=Number(el("cotisation").value);
-  const garantie=Number(el("garantie").value);
-  const periode=el("periode").value;
-
+ e.preventDefault();
+ if(!compte) return;
+ const identifiant=normaliserIdentifiant(
+  el("identifiantConnexion").value
+ );
+ const mot=el("motConnexion").value;
+ const b=e.submitter;
+ if(b) b.disabled=true;
+ try{
+  const empreinte=await deriveMot(mot,compte.salt);
   if(
-    !nom ||
-    !Number.isSafeInteger(cotisation) ||
-    !Number.isSafeInteger(garantie) ||
-    cotisation<=0 || garantie<=0
-  ) {
-    alert("Informations du groupe invalides.");
-    return;
+   identifiant!==compte.identifiant||
+   !comparaison(empreinte,compte.empreinte)
+  ){
+   messageAcces(
+    "Identifiant ou mot de passe incorrect."
+   );
+   return;
   }
+  el("motConnexion").value="";
+  connecter();
+ }catch(err){
+  messageAcces(err.message);
+ }finally{
+  if(b) b.disabled=false;
+ }
+});
 
-  groupes.push({
-    nom,cotisation,garantie,periode,
-    membres:[],
-    mode:"tirage",
-    ordre:[],
-    ordreValide:false,
-    demarree:false,
-    tourActuel:0,
-    paiements:[],
-    historique:[]
-  });
-
-  selection=groupes.length-1;
-
-  if(!sauvegarder()) {
-    groupes.pop();
-    selection=Math.max(0,groupes.length-1);
-    return;
-  }
-
-  el("nom").value="";
-  el("cotisation").value="";
-  el("garantie").value="";
-
-  afficher();
-  ouvrirRubrique(3);
+function connecter(){
+ connecte=true;
+ document.body.classList.add("connecte");
+ afficher();
+ retourAccueil();
+}
+function seDeconnecter(){
+ if(!confirm("Voulez-vous vous déconnecter ?")){
+  return;
+ }
+ connecte=false;
+ document.body.classList.remove("connecte");
+ fermerMenu();
+ el("motConnexion").value="";
+ el("nouveauMot").value="";
+ el("confirmationMot").value="";
+ nettoyerDocument();
+ afficherAcces();
+}
+function exigerConnexion(){
+ return connecte===true;
 }
 
-function changerGroupe() {
-  if(!exigerConnexion()) return;
+/* MENU ET NAVIGATION */
+function fermerMenu(){
+ el("menuLateral").classList.remove("ouvert");
+ el("menuFond").hidden=true;
+ el("menuBouton").setAttribute(
+  "aria-expanded","false"
+ );
+}
+function basculerMenu(){
+ if(!exigerConnexion()) return;
+ const ouvert=el("menuLateral")
+  .classList.toggle("ouvert");
+ el("menuFond").hidden=!ouvert;
+ el("menuBouton").setAttribute(
+  "aria-expanded",String(ouvert)
+ );
+}
+function retourAccueil(){
+ if(!exigerConnexion()) return;
+ el("pageAccueil").hidden=false;
+ document.querySelectorAll("main > section.card")
+  .forEach(s=>s.hidden=true);
+ fermerMenu();
+ window.scrollTo(0,0);
+}
+function ouvrirRubrique(numero){
+ if(!exigerConnexion()) return;
+ const sections=document.querySelectorAll(
+  "main > section.card"
+ );
+ if(numero<1||numero>sections.length) return;
+ el("pageAccueil").hidden=true;
+ sections.forEach((s,i)=>{
+  s.hidden=i!==numero-1;
+ });
+ fermerMenu();
+ window.scrollTo(0,0);
+}
+document.addEventListener("keydown",e=>{
+ if(e.key==="Escape") fermerMenu();
+});
 
-  const index=Number(el("groupes").value);
-  if(!groupes[index]) return;
+/* DOCUMENTS D'IDENTITE */
+function nettoyerDocument(){
+ if(documentURL){
+  URL.revokeObjectURL(documentURL);
+  documentURL=null;
+ }
+ documentSelectionne=false;
+ el("fichierDocument").value="";
+ el("typeDocument").value="";
+ el("consentementDocument").checked=false;
+ el("apercuDocument").hidden=true;
+ el("apercuDocument").removeAttribute("src");
+ el("informationDocument").textContent=
+  "Aucune image sélectionnée.";
+}
+el("fichierDocument").addEventListener("change",e=>{
+ if(documentURL){
+  URL.revokeObjectURL(documentURL);
+  documentURL=null;
+ }
+ documentSelectionne=false;
+ el("apercuDocument").hidden=true;
+ const fichier=e.target.files[0];
+ if(!fichier) return;
 
-  selection=index;
-  groupeAffiche=null;
-  afficher();
+ const formats=[
+  "image/jpeg","image/png","image/webp"
+ ];
+ if(!formats.includes(fichier.type)){
+  alert("Format non accepté : JPEG, PNG ou WebP.");
+  e.target.value="";
+  return;
+ }
+ if(fichier.size>8*1024*1024){
+  alert("L'image dépasse 8 Mo.");
+  e.target.value="";
+  return;
+ }
+ documentURL=URL.createObjectURL(fichier);
+ el("apercuDocument").src=documentURL;
+ el("apercuDocument").hidden=false;
+ documentSelectionne=true;
+ el("informationDocument").textContent=
+  "Image chargée pour vérification visuelle.";
+});
+
+/* CREATION DES GROUPES */
+function creerGroupe(){
+ if(!exigerConnexion()) return;
+ const nom=el("nom").value.trim();
+ const cotisation=Number(el("cotisation").value);
+ const garantie=Number(el("garantie").value);
+ const periode=el("periode").value;
+
+ if(
+  !nom||
+  !Number.isSafeInteger(cotisation)||
+  !Number.isSafeInteger(garantie)||
+  cotisation<=0||garantie<=0
+ ){
+  alert("Informations du groupe invalides.");
+  return;
+ }
+ groupes.push({
+  nom,cotisation,garantie,periode,
+  membres:[],
+  mode:"tirage",
+  ordre:[],
+  ordreValide:false,
+  demarree:false,
+  tourActuel:0,
+  paiements:[],
+  historique:[]
+ });
+ selection=groupes.length-1;
+ if(!sauvegarder()){
+  groupes.pop();
+  selection=Math.max(0,groupes.length-1);
+  return;
+ }
+ el("nom").value="";
+ el("cotisation").value="";
+ el("garantie").value="";
+ afficher();
+ ouvrirRubrique(3);
+}
+function changerGroupe(){
+ if(!exigerConnexion()) return;
+ const index=Number(el("groupes").value);
+ if(!groupes[index]) return;
+ selection=index;
+ groupeAffiche=null;
+ afficher();
 }
 
-/* INSCRIPTION */
+/* MEMBRES */
+function ajouterMembre(){
+ if(!exigerConnexion()) return;
+ const g=actuel();
+ if(!g){
+  alert("Créez d'abord un groupe.");
+  return;
+ }
+ if(g.demarree){
+  alert("La tontine a déjà démarré.");
+  return;
+ }
+ const nom=el("membre").value.trim();
+ const type=el("typeDocument").value;
+ const consentement=el("consentementDocument").checked;
 
-function ajouterMembre() {
-  if(!exigerConnexion()) return;
-
-  const g=actuel();
-
-  if(!g) {
-    alert("Créez d'abord un groupe.");
-    return;
+ if(!nom){
+  alert("Saisissez le nom du membre.");
+  return;
+ }
+ if(g.membres.some(m=>
+  m.nom.toLowerCase()===nom.toLowerCase()
+ )){
+  alert("Ce membre est déjà inscrit.");
+  return;
+ }
+ if(!type||!documentSelectionne||!consentement){
+  alert(
+   "Sélectionnez la pièce, photographiez-la "+
+   "et confirmez l'information du membre."
+  );
+  return;
+ }
+ const membre={
+  id:Date.now()+"_"+
+   Math.random().toString(36).slice(2,9),
+  nom,
+  garantieVersee:false,
+  verificationIdentite:{
+   type,
+   date:new Date().toISOString(),
+   methode:"Vérification visuelle déclarée"
   }
-
-  if(g.demarree) {
-    alert("La tontine a déjà démarré.");
-    return;
-  }
-
-  const nom=el("membre").value.trim();
-  const type=el("typeDocument").value;
-  const consentement=el("consentementDocument").checked;
-
-  if(!nom) {
-    alert("Saisissez le nom du membre.");
-    return;
-  }
-
-  if(g.membres.some(m=>
-    m.nom.toLowerCase()===nom.toLowerCase()
-  )) {
-    alert("Ce membre est déjà inscrit.");
-    return;
-  }
-
-  if(!type || !documentSelectionne || !consentement) {
-    alert(
-      "Sélectionnez la pièce, photographiez-la " +
-      "et confirmez l'information du membre."
-    );
-    return;
-  }
-
-  const membre={
-    id:Date.now()+"_"+
-      Math.random().toString(36).slice(2,9),
-    nom,
-    garantieVersee:false,
-    verificationIdentite:{
-      type,
-      date:new Date().toISOString(),
-      methode:"Vérification visuelle déclarée"
-    }
-  };
-
-  g.membres.push(membre);
-  g.ordre=[];
-  g.ordreValide=false;
-
-  if(!sauvegarder()) {
-    g.membres.pop();
-    return;
-  }
-
-  el("membre").value="";
-  nettoyerDocument();
-  afficher();
+ };
+ g.membres.push(membre);
+ g.ordre=[];
+ g.ordreValide=false;
+ if(!sauvegarder()){
+  g.membres.pop();
+  return;
+ }
+ el("membre").value="";
+ nettoyerDocument();
+ afficher();
 }
 
-/* HISTORIQUE */
-
-function enregistrerOperation(g,type,m,montant,tour) {
-  if(!Array.isArray(g.historique)) {
-    g.historique=[];
-  }
-
-  g.historique.push({
-    type,
-    membreId:m.id,
-    membreNom:m.nom,
-    montant,
-    tour,
-    date:new Date().toLocaleString("fr-FR")
-  });
+/* OPERATIONS FINANCIERES */
+function enregistrerOperation(g,type,m,montant,tour){
+ if(!Array.isArray(g.historique)){
+  g.historique=[];
+ }
+ g.historique.push({
+  type,
+  membreId:m.id,
+  membreNom:m.nom,
+  montant,
+  tour,
+  date:new Date().toLocaleString("fr-FR")
+ });
 }
-
-function operations(g) {
-  return Array.isArray(g.historique)
-    ? g.historique
-    : [];
+function operations(g){
+ return Array.isArray(g.historique)
+  ?g.historique:[];
 }
-
-function trouverMembre(g,id) {
-  return g.membres.find(m=>memeId(m.id,id));
+function trouverMembre(g,id){
+ return g.membres.find(m=>memeId(m.id,id));
 }
 
 /* GARANTIES */
+function confirmerGarantie(id){
+ if(!exigerConnexion()) return;
+ const g=actuel();
+ if(!g||g.demarree) return;
+ const m=trouverMembre(g,id);
+ if(!m||m.garantieVersee) return;
+ if(!confirm(
+  "Confirmer la garantie simulée de "+
+  argent(g.garantie)+" pour "+m.nom+" ?"
+ )) return;
 
-function confirmerGarantie(id) {
-  if(!exigerConnexion()) return;
-
-  const g=actuel();
-  if(!g || g.demarree) return;
-
-  const m=trouverMembre(g,id);
-  if(!m || m.garantieVersee) return;
-
-  if(!confirm(
-    "Confirmer la garantie simulée de "+
-    argent(g.garantie)+" pour "+m.nom+" ?"
-  )) return;
-
-  m.garantieVersee=true;
-
-  enregistrerOperation(
-    g,"Dépôt de garantie",m,g.garantie,0
-  );
-
-  sauvegarder();
-  afficher();
+ m.garantieVersee=true;
+ enregistrerOperation(
+  g,"Dépôt de garantie",m,g.garantie,0
+ );
+ sauvegarder();
+ afficher();
 }
 
 /* ORDRE DE PASSAGE */
-
-function changerMode() {
-  if(!exigerConnexion()) return;
-
-  const g=actuel();
-  if(!g || g.demarree) return;
-
-  g.mode=el("mode").value;
-  g.ordre=g.mode==="collectif"
-    ?g.membres.map(m=>m.id)
-    :[];
-
-  g.ordreValide=false;
-  sauvegarder();
-  afficher();
+function changerMode(){
+ if(!exigerConnexion()) return;
+ const g=actuel();
+ if(!g||g.demarree) return;
+ g.mode=el("mode").value;
+ g.ordre=g.mode==="collectif"
+  ?g.membres.map(m=>m.id):[];
+ g.ordreValide=false;
+ sauvegarder();
+ afficher();
 }
+function tirerAuSort(){
+ if(!exigerConnexion()) return;
+ const g=actuel();
+ if(
+  !g||g.demarree||
+  g.mode!=="tirage"||
+  g.membres.length<2
+ ) return;
 
-function tirerAuSort() {
-  if(!exigerConnexion()) return;
-
-  const g=actuel();
-
-  if(!g || g.demarree ||
-     g.mode!=="tirage" ||
-     g.membres.length<2) return;
-
-  const ids=g.membres.map(m=>m.id);
-
-  for(let i=ids.length-1;i>0;i--) {
-    const j=Math.floor(Math.random()*(i+1));
-    [ids[i],ids[j]]=[ids[j],ids[i]];
-  }
-
-  g.ordre=ids;
-  g.ordreValide=false;
-
-  sauvegarder();
-  afficher();
+ const ids=g.membres.map(m=>m.id);
+ for(let i=ids.length-1;i>0;i--){
+  const j=Math.floor(Math.random()*(i+1));
+  [ids[i],ids[j]]=[ids[j],ids[i]];
+ }
+ g.ordre=ids;
+ g.ordreValide=false;
+ sauvegarder();
+ afficher();
 }
-
-function deplacer(index,direction) {
-  if(!exigerConnexion()) return;
-
-  const g=actuel();
-  if(!g || g.demarree || g.mode!=="collectif") {
-    return;
-  }
-
-  const cible=index+direction;
-
-  if(cible<0 || cible>=g.ordre.length) return;
-
-  [g.ordre[index],g.ordre[cible]]=
-    [g.ordre[cible],g.ordre[index]];
-
-  g.ordreValide=false;
-  sauvegarder();
-  afficher();
+function deplacer(index,direction){
+ if(!exigerConnexion()) return;
+ const g=actuel();
+ if(!g||g.demarree||g.mode!=="collectif"){
+  return;
+ }
+ const cible=index+direction;
+ if(cible<0||cible>=g.ordre.length) return;
+ [g.ordre[index],g.ordre[cible]]=
+  [g.ordre[cible],g.ordre[index]];
+ g.ordreValide=false;
+ sauvegarder();
+ afficher();
 }
-
-function ordreComplet(g) {
-  if(!g || g.membres.length<2) return false;
-  if(g.ordre.length!==g.membres.length) return false;
-
-  const ids=g.ordre.map(String);
-
-  return new Set(ids).size===g.membres.length &&
-    g.ordre.every(id=>
-      g.membres.some(m=>memeId(m.id,id))
-    );
+function ordreComplet(g){
+ if(!g||g.membres.length<2) return false;
+ if(g.ordre.length!==g.membres.length){
+  return false;
+ }
+ const ids=g.ordre.map(String);
+ return new Set(ids).size===g.membres.length&&
+  g.ordre.every(id=>
+   g.membres.some(m=>memeId(m.id,id))
+  );
 }
-
-function validerOrdre() {
-  if(!exigerConnexion()) return;
-
-  const g=actuel();
-  if(!g || g.demarree) return;
-
-  if(!ordreComplet(g)) {
-    alert("Ordre de passage incomplet.");
-    return;
-  }
-
-  if(!confirm("Valider définitivement cet ordre ?")) {
-    return;
-  }
-
-  g.ordreValide=true;
-  sauvegarder();
-  afficher();
+function validerOrdre(){
+ if(!exigerConnexion()) return;
+ const g=actuel();
+ if(!g||g.demarree) return;
+ if(!ordreComplet(g)){
+  alert("Ordre de passage incomplet.");
+  return;
+ }
+ if(!confirm("Valider définitivement cet ordre ?")){
+  return;
+ }
+ g.ordreValide=true;
+ sauvegarder();
+ afficher();
 }
 
 /* DEMARRAGE */
-
-function peutDemarrer(g) {
-  return Boolean(g) &&
-    g.membres.length>=2 &&
-    g.membres.every(m=>m.garantieVersee===true) &&
-    g.ordreValide===true &&
-    ordreComplet(g);
+function peutDemarrer(g){
+ return Boolean(g)&&
+  g.membres.length>=2&&
+  g.membres.every(m=>m.garantieVersee===true)&&
+  g.ordreValide===true&&
+  ordreComplet(g);
 }
-
-function demarrer() {
-  if(!exigerConnexion()) return;
-
-  const g=actuel();
-
-  if(!g || g.demarree || !peutDemarrer(g)) {
-    alert("Garanties ou ordre incomplets.");
-    return;
-  }
-
-  if(!confirm("Démarrer la tontine ?")) return;
-
-  g.demarree=true;
-  g.tourActuel=0;
-  g.paiements=g.membres.map(m=>({
-    id:m.id,verse:false
-  }));
-
-  sauvegarder();
-  afficher();
-  ouvrirRubrique(6);
+function demarrer(){
+ if(!exigerConnexion()) return;
+ const g=actuel();
+ if(!g||g.demarree||!peutDemarrer(g)){
+  alert("Garanties ou ordre incomplets.");
+  return;
+ }
+ if(!confirm("Démarrer la tontine ?")) return;
+ g.demarree=true;
+ g.tourActuel=0;
+ g.paiements=g.membres.map(m=>({
+  id:m.id,verse:false
+ }));
+ sauvegarder();
+ afficher();
+ ouvrirRubrique(6);
 }
 
 /* COTISATIONS */
+function confirmerCotisation(id){
+ if(!exigerConnexion()) return;
+ const g=actuel();
+ if(
+  !g||!g.demarree||
+  g.tourActuel>=g.ordre.length
+ ) return;
+ const p=g.paiements.find(p=>memeId(p.id,id));
+ const m=trouverMembre(g,id);
+ if(!p||p.verse||!m) return;
+ if(!confirm(
+  "Confirmer la cotisation simulée de "+
+  argent(g.cotisation)+" pour "+m.nom+" ?"
+ )) return;
 
-function confirmerCotisation(id) {
-  if(!exigerConnexion()) return;
-
-  const g=actuel();
-
-  if(!g || !g.demarree ||
-     g.tourActuel>=g.ordre.length) return;
-
-  const p=g.paiements.find(p=>memeId(p.id,id));
-  const m=trouverMembre(g,id);
-
-  if(!p || p.verse || !m) return;
-
-  if(!confirm(
-    "Confirmer la cotisation simulée de "+
-    argent(g.cotisation)+" pour "+m.nom+" ?"
-  )) return;
-
-  p.verse=true;
-
-  enregistrerOperation(
-    g,
-    "Cotisation - Tour "+(g.tourActuel+1),
-    m,
-    g.cotisation,
-    g.tourActuel+1
-  );
-
-  sauvegarder();
-  afficher();
+ p.verse=true;
+ enregistrerOperation(
+  g,
+  "Cotisation - Tour "+(g.tourActuel+1),
+  m,g.cotisation,g.tourActuel+1
+ );
+ sauvegarder();
+ afficher();
 }
 
-/* VALIDATION DU TOUR */
+/* VALIDATION DES TOURS */
+function validerTour(){
+ if(!exigerConnexion()) return;
+ const g=actuel();
+ if(
+  !g||!g.demarree||
+  g.tourActuel>=g.ordre.length
+ ) return;
 
-function validerTour() {
-  if(!exigerConnexion()) return;
+ if(
+  !Array.isArray(g.paiements)||
+  g.paiements.length!==g.membres.length||
+  !g.paiements.every(p=>p.verse===true)
+ ){
+  alert("Toutes les cotisations sont obligatoires.");
+  return;
+ }
+ const m=trouverMembre(
+  g,g.ordre[g.tourActuel]
+ );
+ if(!m) return;
 
-  const g=actuel();
+ const montant=g.cotisation*g.membres.length;
+ if(!Number.isSafeInteger(montant)||montant<=0){
+  alert("Montant de cagnotte invalide.");
+  return;
+ }
+ if(!confirm(
+  "Confirmer la cagnotte simulée de "+
+  argent(montant)+" pour "+m.nom+" ?"
+ )) return;
 
-  if(!g || !g.demarree ||
-     g.tourActuel>=g.ordre.length) return;
-
-  if(!Array.isArray(g.paiements) ||
-     g.paiements.length!==g.membres.length ||
-     !g.paiements.every(p=>p.verse===true)) {
-    alert("Toutes les cotisations sont obligatoires.");
-    return;
-  }
-
-  const m=trouverMembre(g,g.ordre[g.tourActuel]);
-  if(!m) return;
-
-  const montant=g.cotisation*g.membres.length;
-
-  if(!Number.isSafeInteger(montant) || montant<=0) {
-    alert("Montant de cagnotte invalide.");
-    return;
-  }
-
-  if(!confirm(
-    "Confirmer la cagnotte simulée de "+
-    argent(montant)+" pour "+m.nom+" ?"
-  )) return;
-
-  enregistrerOperation(
-    g,
-    "Cagnotte reçue - Tour "+(g.tourActuel+1),
-    m,montant,g.tourActuel+1
-  );
-
-  g.tourActuel++;
-
-  g.paiements=g.tourActuel<g.ordre.length
-    ?g.membres.map(m=>({id:m.id,verse:false}))
-    :[];
-
-  sauvegarder();
-  afficher();
+ enregistrerOperation(
+  g,
+  "Cagnotte reçue - Tour "+(g.tourActuel+1),
+  m,montant,g.tourActuel+1
+ );
+ g.tourActuel++;
+ g.paiements=g.tourActuel<g.ordre.length
+  ?g.membres.map(m=>({id:m.id,verse:false}))
+  :[];
+ sauvegarder();
+ afficher();
 }
 
-/* HISTORIQUE FINANCIER */
-
-function afficherHistorique() {
-  const zone=el("historiqueFinancier");
-  zone.replaceChildren();
-
-  const g=actuel();
-  if(!g) {
-    zone.textContent="Aucun groupe sélectionné.";
-    return;
-  }
-
-  const id=el("historiqueMembre").value;
-
-  const liste=operations(g).filter(op=>
-    !id || memeId(op.membreId,id)
-  );
-
-  if(!liste.length) {
-    zone.textContent="Aucune opération enregistrée.";
-    return;
-  }
-
-  liste.slice().reverse().forEach(op=>{
-    const div=document.createElement("div");
-    div.className="item";
-
-    const titre=document.createElement("strong");
-    titre.textContent=op.type;
-
-    div.appendChild(titre);
-
-    ligne(
-      div,
-      op.membreNom+" — "+
-      argent(op.montant)+" — "+
-      (op.date||"Date inconnue")
-    );
-
-    zone.appendChild(div);
-  });
-}
-
-/* FICHE INDIVIDUELLE */
-
-function afficherFicheFinanciere() {
-  const zone=el("ficheFinanciere");
-  zone.replaceChildren();
-
-  const g=actuel();
-  const id=el("ficheMembre").value;
-
-  if(!g || !id) {
-    zone.textContent="Sélectionnez un membre.";
-    return;
-  }
-
-  const m=trouverMembre(g,id);
-  if(!m) return;
-
-  const liste=operations(g).filter(op=>
-    memeId(op.membreId,m.id)
-  );
-
-  function total(prefixe) {
-    return liste
-      .filter(op=>op.type.startsWith(prefixe))
-      .reduce((s,op)=>s+Number(op.montant||0),0);
-  }
-
-  const valeurs=[
-    ["Garanties",total("Dépôt de garantie")],
-    ["Cotisations",total("Cotisation - Tour")],
-    ["Cagnottes reçues",total("Cagnotte reçue - Tour")]
-  ];
-
-  const titre=document.createElement("h3");
-  titre.textContent="Situation de "+m.nom;
-  zone.appendChild(titre);
-
-  const resume=document.createElement("div");
-  resume.className="resume-financier";
-
-  valeurs.forEach(([nom,montant])=>{
-    const div=document.createElement("div");
-    div.className="resume-case";
-
-    const label=document.createElement("span");
-    label.textContent=nom;
-
-    const valeur=document.createElement("strong");
-    valeur.textContent=argent(montant);
-
-    div.appendChild(label);
-    div.appendChild(valeur);
-    resume.appendChild(div);
-  });
-
-  zone.appendChild(resume);
-
+/* HISTORIQUE */
+function afficherHistorique(){
+ const zone=el("historiqueFinancier");
+ zone.replaceChildren();
+ const g=actuel();
+ if(!g){
+  zone.textContent="Aucun groupe sélectionné.";
+  return;
+ }
+ const id=el("historiqueMembre").value;
+ const liste=operations(g).filter(op=>
+  !id||memeId(op.membreId,id)
+ );
+ if(!liste.length){
+  zone.textContent="Aucune opération enregistrée.";
+  return;
+ }
+ liste.slice().reverse().forEach(op=>{
+  const div=document.createElement("div");
+  div.className="item";
+  const titre=document.createElement("strong");
+  titre.textContent=op.type;
+  div.appendChild(titre);
   ligne(
-    zone,
-    "Ces montants correspondent aux opérations "+
-    "enregistrées dans ce prototype.",
-    "note"
+   div,
+   op.membreNom+" — "+
+   argent(op.montant)+" — "+
+   (op.date||"Date inconnue")
   );
+  zone.appendChild(div);
+ });
 }
 
-/* AFFICHAGE GENERAL */
+/* FICHE FINANCIERE */
+function afficherFicheFinanciere(){
+ const zone=el("ficheFinanciere");
+ zone.replaceChildren();
+ const g=actuel();
+ const id=el("ficheMembre").value;
+ if(!g||!id){
+  zone.textContent="Sélectionnez un membre.";
+  return;
+ }
+ const m=trouverMembre(g,id);
+ if(!m) return;
+ const liste=operations(g).filter(op=>
+  memeId(op.membreId,m.id)
+ );
+ function total(prefixe){
+  return liste
+   .filter(op=>op.type.startsWith(prefixe))
+   .reduce((s,op)=>s+Number(op.montant||0),0);
+ }
+ const valeurs=[
+  ["Garanties",total("Dépôt de garantie")],
+  ["Cotisations",total("Cotisation - Tour")],
+  ["Cagnottes reçues",total("Cagnotte reçue - Tour")]
+ ];
+ const titre=document.createElement("h3");
+ titre.textContent="Situation de "+m.nom;
+ zone.appendChild(titre);
 
-function remplirSelect(select,membres,texteVide) {
-  const ancienne=select.value;
-  select.replaceChildren();
+ const resume=document.createElement("div");
+ resume.className="resume-financier";
 
-  const vide=document.createElement("option");
-  vide.value="";
-  vide.textContent=texteVide;
-  select.appendChild(vide);
-
-  membres.forEach(m=>{
-    const opt=document.createElement("option");
-    opt.value=String(m.id);
-    opt.textContent=m.nom;
-    select.appendChild(opt);
-  });
-
-  if(Array.from(select.options).some(o=>
-    o.value===ancienne
-  )) {
-    select.value=ancienne;
-  }
+ valeurs.forEach(([nom,montant])=>{
+  const div=document.createElement("div");
+  div.className="resume-case";
+  const label=document.createElement("span");
+  label.textContent=nom;
+  const valeur=document.createElement("strong");
+  valeur.textContent=argent(montant);
+  div.appendChild(label);
+  div.appendChild(valeur);
+  resume.appendChild(div);
+ });
+ zone.appendChild(resume);
+ ligne(
+  zone,
+  "Ces montants correspondent aux opérations "+
+  "enregistrées dans ce prototype.",
+  "note"
+ );
 }
 
-function afficher() {
-  const select=el("groupes");
-  select.replaceChildren();
+/* SELECTEURS */
+function remplirSelect(select,membres,texteVide){
+ const ancienne=select.value;
+ select.replaceChildren();
+ const vide=document.createElement("option");
+ vide.value="";
+ vide.textContent=texteVide;
+ select.appendChild(vide);
 
-  if(!groupes[selection]) selection=0;
+ membres.forEach(m=>{
+  const opt=document.createElement("option");
+  opt.value=String(m.id);
+  opt.textContent=m.nom;
+  select.appendChild(opt);
+ });
+ if(Array.from(select.options).some(o=>
+  o.value===ancienne
+ )){
+  select.value=ancienne;
+ }
+}
 
-  groupes.forEach((g,i)=>{
-    const opt=document.createElement("option");
-    opt.value=String(i);
-    opt.textContent=g.nom;
-    select.appendChild(opt);
-  });
+/* AFFICHAGE DE L'APPLICATION */
+function afficher(){
+ const select=el("groupes");
+ select.replaceChildren();
 
-  if(groupes.length) select.value=String(selection);
+ if(!groupes[selection]) selection=0;
 
-  const g=actuel();
+ groupes.forEach((g,i)=>{
+  const opt=document.createElement("option");
+  opt.value=String(i);
+  opt.textContent=g.nom;
+  select.appendChild(opt);
+ });
+ if(groupes.length){
+  select.value=String(selection);
+ }
+ const g=actuel();
 
-  if(groupeAffiche!==g) {
-    el("ficheMembre").value="";
-    el("historiqueMembre").value="";
-    groupeAffiche=g;
-  }
+ if(groupeAffiche!==g){
+  el("ficheMembre").value="";
+  el("historiqueMembre").value="";
+  groupeAffiche=g;
+ }
 
-  remplirSelect(
-    el("ficheMembre"),
-    g?g.membres:[],
-    "Sélectionner un membre"
-  );
+ remplirSelect(
+  el("ficheMembre"),
+  g?g.membres:[],
+  "Sélectionner un membre"
+ );
+ remplirSelect(
+  el("historiqueMembre"),
+  g?g.membres:[],
+  "Tous les membres"
+ );
 
-  remplirSelect(
-    el("historiqueMembre"),
-    g?g.membres:[],
-    "Tous les membres"
-  );
+ afficherFicheFinanciere();
+ afficherHistorique();
 
-  afficherFicheFinanciere();
-  afficherHistorique();
+ ["membres","ordre","tours"].forEach(id=>{
+  el(id).replaceChildren();
+ });
 
-  ["membres","ordre","tours"].forEach(id=>{
-    el(id).replaceChildren();
-  });
-
-  if(!g) {
-    el("details").textContent="Créez votre premier groupe.";
-    el("statut").textContent="";
-    el("conditions").textContent="";
-
-    ["ajoutBtn","tirageBtn","demarrerBtn","mode"]
-      .forEach(id=>el(id).disabled=true);
-
-    el("tours").textContent="Aucune tontine.";
-    return;
-  }
-
+ if(!g){
   el("details").textContent=
-    "Cotisation : "+argent(g.cotisation)+
-    " | Garantie : "+argent(g.garantie)+
-    " | Période : "+g.periode;
+   "Créez votre premier groupe.";
+  el("statut").textContent="";
+  el("conditions").textContent="";
+  ["ajoutBtn","tirageBtn","demarrerBtn","mode"]
+   .forEach(id=>el(id).disabled=true);
+  el("tours").textContent="Aucune tontine.";
+  return;
+ }
 
-  el("statut").textContent=g.demarree
-    ?(g.tourActuel>=g.ordre.length
-      ?"Statut : CYCLE TERMINÉ"
-      :"Statut : EN COURS")
-    :"Statut : EN PRÉPARATION";
+ el("details").textContent=
+  "Cotisation : "+argent(g.cotisation)+
+  " | Garantie : "+argent(g.garantie)+
+  " | Période : "+g.periode;
 
-  el("ajoutBtn").disabled=Boolean(g.demarree);
+ el("statut").textContent=g.demarree
+  ?(g.tourActuel>=g.ordre.length
+    ?"Statut : CYCLE TERMINÉ"
+    :"Statut : EN COURS")
+  :"Statut : EN PRÉPARATION";
 
-  /* MEMBRES */
+ el("ajoutBtn").disabled=Boolean(g.demarree);
 
-  g.membres.forEach(m=>{
-    const div=document.createElement("div");
-    div.className="item";
+ /* LISTE DES MEMBRES */
+ g.membres.forEach(m=>{
+  const div=document.createElement("div");
+  div.className="item";
 
-    const nom=document.createElement("strong");
-    nom.textContent=m.nom;
-    div.appendChild(nom);
+  const nom=document.createElement("strong");
+  nom.textContent=m.nom;
+  div.appendChild(nom);
 
-    if(m.verificationIdentite) {
-      const v=m.verificationIdentite;
-
-      ligne(
-        div,
-        "Pièce : "+v.type+
-        " — Vérification visuelle déclarée",
-        "note"
-      );
-    } else {
-      ligne(
-        div,
-        "Pièce d'identité non renseignée",
-        "note"
-      );
-    }
-
-    ligne(
-      div,
-      m.garantieVersee
-        ?"Garantie confirmée"
-        :"Garantie non versée",
-      m.garantieVersee?"ok":"no"
-    );
-
-    if(!m.garantieVersee && !g.demarree) {
-      bouton(
-        "Confirmer la garantie",
-        ()=>confirmerGarantie(m.id),
-        div
-      );
-    }
-
-    el("membres").appendChild(div);
-  });
-
-  /* ORDRE */
-
-  el("mode").value=g.mode||"tirage";
-  el("mode").disabled=Boolean(g.demarree);
-
-  el("tirageBtn").disabled=
-    Boolean(g.demarree) ||
-    g.mode!=="tirage" ||
-    g.membres.length<2;
-
-  g.ordre.forEach((id,i)=>{
-    const m=trouverMembre(g,id);
-    if(!m) return;
-
-    const div=document.createElement("div");
-    div.className="item";
-
-    ligne(div,"Tour "+(i+1)+" : "+m.nom);
-
-    if(g.mode==="collectif" && !g.demarree) {
-      const row=document.createElement("div");
-      row.className="row";
-
-      bouton("Monter",()=>deplacer(i,-1),row,i===0);
-      bouton(
-        "Descendre",
-        ()=>deplacer(i,1),
-        row,
-        i===g.ordre.length-1
-      );
-
-      div.appendChild(row);
-    }
-
-    el("ordre").appendChild(div);
-  });
-
-  if(!g.demarree && ordreComplet(g)) {
-    bouton(
-      g.ordreValide?"Ordre validé":"Valider cet ordre",
-      validerOrdre,
-      el("ordre"),
-      g.ordreValide
-    );
+  if(m.verificationIdentite){
+   ligne(
+    div,
+    "Pièce : "+m.verificationIdentite.type+
+    " — Vérification visuelle déclarée",
+    "note"
+   );
+  }else{
+   ligne(
+    div,
+    "Pièce d'identité non renseignée",
+    "note"
+   );
   }
-
-  /* DEMARRAGE */
-
-  el("conditions").textContent=
-    "Garanties : "+
-    g.membres.filter(m=>m.garantieVersee).length+
-    "/"+g.membres.length+
-    " | Ordre : "+
-    (g.ordreValide?"validé":"non validé");
-
-  el("demarrerBtn").disabled=
-    Boolean(g.demarree) || !peutDemarrer(g);
-
-  /* TOURS */
-
-  const tours=el("tours");
-
-  if(!g.demarree) {
-    tours.textContent="La tontine n'a pas démarré.";
-    return;
-  }
-
-  if(g.tourActuel>=g.ordre.length) {
-    tours.textContent="Tous les tours sont terminés.";
-    return;
-  }
-
-  const beneficiaire=trouverMembre(
-    g,g.ordre[g.tourActuel]
-  );
-
-  if(!beneficiaire) {
-    tours.textContent="Bénéficiaire introuvable.";
-    return;
-  }
-
-  const titre=document.createElement("h3");
-  titre.textContent=
-    "Tour "+(g.tourActuel+1)+
-    " / "+g.ordre.length+
-    " — Bénéficiaire : "+beneficiaire.nom;
-
-  tours.appendChild(titre);
 
   ligne(
-    tours,
-    "Cagnotte prévue : "+
-    argent(g.cotisation*g.membres.length)
+   div,
+   m.garantieVersee
+    ?"Garantie confirmée"
+    :"Garantie non versée",
+   m.garantieVersee?"ok":"no"
   );
 
-  g.membres.forEach(m=>{
-    const p=Array.isArray(g.paiements)
-      ?g.paiements.find(p=>memeId(p.id,m.id))
-      :null;
+  if(!m.garantieVersee&&!g.demarree){
+   bouton(
+    "Confirmer la garantie",
+    ()=>confirmerGarantie(m.id),
+    div
+   );
+  }
+  el("membres").appendChild(div);
+ });
 
-    const div=document.createElement("div");
-    div.className="item";
+ /* ORDRE DE PASSAGE */
+ el("mode").value=g.mode||"tirage";
+ el("mode").disabled=Boolean(g.demarree);
 
-    ligne(
-      div,
-      m.nom+" : "+
-      (p&&p.verse
-        ?"Cotisation confirmée"
-        :"Cotisation non versée")
-    );
+ el("tirageBtn").disabled=
+  Boolean(g.demarree)||
+  g.mode!=="tirage"||
+  g.membres.length<2;
 
-    if(p&&!p.verse) {
-      bouton(
-        "Confirmer la cotisation",
-        ()=>confirmerCotisation(m.id),
-        div
-      );
-    }
+ g.ordre.forEach((id,i)=>{
+  const m=trouverMembre(g,id);
+  if(!m) return;
+  const div=document.createElement("div");
+  div.className="item";
+  ligne(div,"Tour "+(i+1)+" : "+m.nom);
 
-    tours.appendChild(div);
-  });
+  if(g.mode==="collectif"&&!g.demarree){
+   const row=document.createElement("div");
+   row.className="row";
+   bouton(
+    "Monter",
+    ()=>deplacer(i,-1),
+    row,
+    i===0
+   );
+   bouton(
+    "Descendre",
+    ()=>deplacer(i,1),
+    row,
+    i===g.ordre.length-1
+   );
+   div.appendChild(row);
+  }
+  el("ordre").appendChild(div);
+ });
 
-  const complet=
-    Array.isArray(g.paiements) &&
-    g.paiements.length===g.membres.length &&
-    g.paiements.every(p=>p.verse===true);
-
+ if(!g.demarree&&ordreComplet(g)){
   bouton(
-    "Valider le tour et passer au suivant",
-    validerTour,
-    tours,
-    !complet
+   g.ordreValide?"Ordre validé":"Valider cet ordre",
+   validerOrdre,
+   el("ordre"),
+   g.ordreValide
   );
+ }
+
+ /* CONDITIONS DE DEMARRAGE */
+ el("conditions").textContent=
+  "Garanties : "+
+  g.membres.filter(m=>m.garantieVersee).length+
+  "/"+g.membres.length+
+  " | Ordre : "+
+  (g.ordreValide?"validé":"non validé");
+
+ el("demarrerBtn").disabled=
+  Boolean(g.demarree)||!peutDemarrer(g);
+
+ /* SUIVI DES TOURS */
+ const tours=el("tours");
+
+ if(!g.demarree){
+  tours.textContent="La tontine n'a pas démarré.";
+  return;
+ }
+ if(g.tourActuel>=g.ordre.length){
+  tours.textContent="Tous les tours sont terminés.";
+  return;
+ }
+
+ const beneficiaire=trouverMembre(
+  g,g.ordre[g.tourActuel]
+ );
+ if(!beneficiaire){
+  tours.textContent="Bénéficiaire introuvable.";
+  return;
+ }
+
+ const titre=document.createElement("h3");
+ titre.textContent=
+  "Tour "+(g.tourActuel+1)+
+  " / "+g.ordre.length+
+  " — Bénéficiaire : "+beneficiaire.nom;
+ tours.appendChild(titre);
+
+ ligne(
+  tours,
+  "Cagnotte prévue : "+
+  argent(g.cotisation*g.membres.length)
+ );
+
+ g.membres.forEach(m=>{
+  const p=Array.isArray(g.paiements)
+   ?g.paiements.find(p=>memeId(p.id,m.id))
+   :null;
+
+  const div=document.createElement("div");
+  div.className="item";
+  ligne(
+   div,
+   m.nom+" : "+
+   (p&&p.verse
+    ?"Cotisation confirmée"
+    :"Cotisation non versée")
+  );
+  if(p&&!p.verse){
+   bouton(
+    "Confirmer la cotisation",
+    ()=>confirmerCotisation(m.id),
+    div
+   );
+  }
+  tours.appendChild(div);
+ });
+
+ const complet=
+  Array.isArray(g.paiements)&&
+  g.paiements.length===g.membres.length&&
+  g.paiements.every(p=>p.verse===true);
+
+ bouton(
+  "Valider le tour et passer au suivant",
+  validerTour,
+  tours,
+  !complet
+ );
 }
 
-/* DEMARRAGE DE L'APPLICATION */
-
+/* INITIALISATION */
 afficherAcces();
 
-/* Aucune connexion automatique :
-   le mot de passe est demandé à chaque ouverture. */
-
+/*
+ Aucune connexion automatique.
+ Le mot de passe est demandé
+ à chaque ouverture de l'application.
+*/
 </script>
+
 </body>
 </html>
