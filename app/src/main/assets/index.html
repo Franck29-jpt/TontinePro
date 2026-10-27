@@ -171,6 +171,21 @@ function argent(n) {
   return Number(n).toLocaleString("fr-FR") + " FCFA";
 }
 
+
+function enregistrerOperation(g, type, membre, montant, tour) {
+  if (!Array.isArray(g.historique)) {
+    g.historique = [];
+  }
+
+  g.historique.push({
+    type: type,
+    membreId: membre.id,
+    membreNom: membre.nom,
+    montant: montant,
+    tour: tour,
+    date: new Date().toLocaleString("fr-FR")
+  });
+}
 function creerGroupe() {
   const nom = document.getElementById("nom").value.trim();
   const cotisation = Number(
@@ -265,8 +280,18 @@ function confirmerGarantie(id) {
   )) return;
 
   m.garantieVersee = true;
-  sauvegarder();
-  afficher();
+
+enregistrerOperation(
+  g,
+  "Dépôt de garantie",
+  m,
+  g.garantie,
+  0
+);
+
+sauvegarder();
+afficher();
+
 }
 
 function changerMode() {
@@ -391,9 +416,19 @@ function confirmerCotisation(id) {
     argent(g.cotisation) + " pour " + m.nom + " ?"
   )) return;
 
-  p.verse = true;
-  sauvegarder();
-  afficher();
+ p.verse = true;
+
+enregistrerOperation(
+  g,
+  "Cotisation - Tour " + (g.tourActuel + 1),
+  m,
+  g.cotisation,
+  g.tourActuel + 1
+);
+
+sauvegarder();
+afficher();
+
 }
 
 function validerTour() {
@@ -415,6 +450,14 @@ function validerTour() {
     argent(g.cotisation * g.membres.length) +
     " à " + beneficiaire.nom + " ?"
   )) return;
+
+enregistrerOperation(
+  g,
+  "Cagnotte reçue - Tour " + (g.tourActuel + 1),
+  beneficiaire,
+  g.cotisation * g.membres.length,
+  g.tourActuel + 1
+);
 
   g.tourActuel++;
 
