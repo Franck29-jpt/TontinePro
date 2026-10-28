@@ -1,121 +1,135 @@
-package tg.tontinepro.app;
+package tg.tontinepro.app
 
-import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.webkit.ValueCallback;
-import android.webkit.WebChromeClient;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.webkit.WebSettings;
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
+import android.webkit.ValueCallback
+import android.webkit.WebChromeClient
+import android.webkit.WebView
+import android.webkit.WebViewClient
+import android.webkit.WebSettings
+import android.webkit.WebResourceRequest
+import android.webkit.WebResourceResponse
+import androidx.webkit.WebViewAssetLoader
+import androidx.webkit.WebViewClientCompat
 
-public class MainActivity extends Activity {
+class MainActivity : Activity() {
 
-    private WebView webView;
+    private lateinit var webView: WebView
 
-    private ValueCallback<Uri[]> fileCallback;
+    private var fileCallback: ValueCallback<Array<Uri>>? = null
 
-    private static final int FILE_REQUEST_CODE = 1001;
+    private val FILE_REQUEST_CODE = 1001
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-        webView = new WebView(this);
-        setContentView(webView);
+        webView = WebView(this)
+        setContentView(webView)
 
-        WebSettings settings = webView.getSettings();
+        val settings = webView.settings
 
-        settings.setJavaScriptEnabled(true);
-        settings.setDomStorageEnabled(true);
-        settings.setAllowFileAccess(true);
+        settings.javaScriptEnabled = true
+        settings.domStorageEnabled = true
+        settings.allowFileAccess = true
 
-        webView.setWebViewClient(new WebViewClient());
+        val assetLoader = WebViewAssetLoader.Builder()
+            .addPathHandler(
+                "/assets/",
+                WebViewAssetLoader.AssetsPathHandler(this)
+            )
+            .build()
 
-        webView.setWebChromeClient(new WebChromeClient() {
+        webView.webViewClient = object : WebViewClientCompat() {
 
-            @Override
-            public boolean onShowFileChooser(
-                    WebView view,
-                    ValueCallback<Uri[]> callback,
-                    FileChooserParams params) {
+            override fun shouldInterceptRequest(
+                view: WebView,
+                request: WebResourceRequest
+            ): WebResourceResponse? {
+                return assetLoader.shouldInterceptRequest(
+                    request.url
+                )
+            }
+        }
 
-                if (fileCallback != null) {
-                    fileCallback.onReceiveValue(null);
-                }
+        webView.webChromeClient = object : WebChromeClient() {
 
-                fileCallback = callback;
+            override fun onShowFileChooser(
+                webView: WebView?,
+                filePathCallback: ValueCallback<Array<Uri>>?,
+                fileChooserParams: FileChooserParams?
+            ): Boolean {
 
-                try {
-                    Intent intent = params.createIntent();
+                fileCallback?.onReceiveValue(null)
+                fileCallback = filePathCallback
+
+                return try {
+
+                    val intent = fileChooserParams?.createIntent()
+                        ?: Intent(Intent.ACTION_GET_CONTENT).apply {
+                            type = "*/*"
+                            addCategory(Intent.CATEGORY_OPENABLE)
+                        }
 
                     startActivityForResult(
-                            intent,
-                            FILE_REQUEST_CODE
-                    );
+                        intent,
+                        FILE_REQUEST_CODE
+                    )
 
-                    return true;
+                    true
 
-                } catch (Exception e) {
+                } catch (e: Exception) {
 
-                    fileCallback = null;
+                    fileCallback?.onReceiveValue(null)
+                    fileCallback = null
 
-                    callback.onReceiveValue(null);
-
-                    return true;
+                    true
                 }
             }
-        });
+        }
 
         webView.loadUrl(
-            "file:///android_asset/index.html"
-        );
+            "https://appassets.androidplatform.net/assets/index.html"
+        )
     }
 
-    @Override
-    protected void onActivityResult(
-            int requestCode,
-            int resultCode,
-            Intent data) {
-
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent?
+    ) {
         super.onActivityResult(
-                requestCode,
-                resultCode,
-                data
-        );
+            requestCode,
+            resultCode,
+            data
+        )
 
         if (requestCode == FILE_REQUEST_CODE) {
 
-            if (fileCallback == null) {
-                return;
-            }
+            val results =
+                if (resultCode == Activity.RESULT_OK) {
+                    WebChromeClient.FileChooserParams.parseResult(
+                        resultCode,
+                        data
+                    )
+                } else {
+                    null
+                }
 
-            Uri[] results = null;
-
-            if (resultCode == RESULT_OK) {
-
-                results =
-                    WebChromeClient.FileChooserParams
-                        .parseResult(
-                            resultCode,
-                            data
-                        );
-            }
-
-            fileCallback.onReceiveValue(results);
-
-            fileCallback = null;
+            fileCallback?.onReceiveValue(results)
+            fileCallback = null
         }
     }
 
-    @Override
-    public void onBackPressed() {
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
 
         if (webView.canGoBack()) {
-            webView.goBack();
+            webView.goBack()
         } else {
-            super.onBackPressed();
+            super.onBackPressed()
         }
     }
 }
