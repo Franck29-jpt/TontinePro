@@ -699,6 +699,49 @@ footer {
 
 </main>
 
+<div id="fenetreDocument" hidden
+     style="
+       position:fixed;
+       inset:0;
+       background:rgba(0,0,0,0.8);
+       z-index:100;
+       overflow:auto;
+       padding:12px;
+     ">
+
+  <div style="
+       background:white;
+       border-radius:12px;
+       padding:15px;
+       max-width:800px;
+       margin:20px auto;
+     ">
+
+    <h3 id="nomDocumentAffiche">
+      Pièce justificative
+    </h3>
+
+    <div id="contenuDocument"
+         style="
+           width:100%;
+           max-height:75vh;
+           overflow:auto;
+           text-align:center;
+         ">
+    </div>
+
+    <p id="messageDocument"
+       class="note">
+    </p>
+
+    <button type="button"
+            onclick="fermerDocument()">
+      Fermer le document
+    </button>
+
+  </div>
+</div>
+
 <footer>
 Une application issue des travaux de recherche doctorale
 <br>© 2026 — TontinePro Togo
@@ -1143,30 +1186,224 @@ async function supprimerDocument(id) {
   }
 }
 
-async function consulterDocument(id) {
-  try {
-    const d = await lireDocument(id);
 
-    if (!d || !d.fichier) {
-      alert("Document introuvable.");
-      return;
+let urlDocumentAffiche = null;
+
+function fermerDocument() {
+    const fenetre =
+        document.getElementById("fenetreDocument");
+
+    const contenu =
+        document.getElementById("contenuDocument");
+
+    if (fenetre) fenetre.hidden = true;
+    if (contenu) contenu.replaceChildren();
+
+    if (urlDocumentAffiche) {
+        URL.revokeObjectURL(urlDocumentAffiche);
     }
 
-    const url = URL.createObjectURL(d.fichier);
-    const a = document.createElement("a");
+    urlDocumentAffiche = null;
+}
 
-    a.href = url;
-    a.download = d.nom || "document";
+async function visualiserDocument(id) {
 
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
+    if (!connecte) return;
 
-    setTimeout(() => URL.revokeObjectURL(url),60000);
+    fermerDocument();
 
-  } catch(e) {
-    alert("Erreur : " + e.message);
-  }
+    try {
+        const d = await lireDocument(id);
+
+        if (!d || !d.fichier) {
+            throw Error(
+                "Document introuvable sur cet appareil."
+            );
+        }
+
+        const fichier = d.fichier;
+
+        const type = (
+            fichier.type ||
+            d.type ||
+            ""
+        ).toLowerCase();
+
+        urlDocumentAffiche =
+            URL.createObjectURL(fichier);
+
+        document.getElementById(
+            "nomDocumentAffiche"
+        ).textContent =
+            d.nom || "Pièce justificative";
+
+        const zone =
+            document.getElementById(
+                "contenuDocument"
+            );
+
+        const message =
+            document.getElementById(
+                "messageDocument"
+            );
+
+        message.textContent = "";
+
+        if (type.startsWith("image/")) {
+
+            const img =
+                document.createElement("img");
+
+            img.src = urlDocumentAffiche;
+            img.alt = "Document du membre";
+            img.style.maxWidth = "100%";
+            img.style.height = "auto";
+
+            zone.appendChild(img);
+
+        } else if (
+            type === "application/pdf" ||
+            /\.pdf$/i.test(d.nom || "")
+        ) {
+
+            const frame =
+                document.createElement("iframe");
+
+            frame.src = urlDocumentAffiche;
+            frame.title = "Document PDF";
+            frame.style.width = "100%";
+            frame.style.height = "65vh";
+            frame.style.border = "none";
+
+            zone.appendChild(frame);
+
+            message.textContent =
+                "Si le PDF ne s'affiche pas, " +
+                "utilisez Télécharger pour " +
+                "l'ouvrir sur votre téléphone.";
+
+        } else {
+            throw Error(
+                "Format de document non reconnu."
+            );
+        }
+
+        document.getElementById(
+            "fenetreDocument"
+        ).hidden = false;
+
+    } catch (e) {
+
+        fermerDocument();
+
+        alert(
+            "Visualisation impossible : " +
+            e.message
+        );
+    }
+}
+
+async function telechargerDocument(id) {
+
+    if (!connecte) return;
+
+    try {
+
+        const d = await lireDocument(id);
+
+        if (!d || !d.fichier) {
+            throw Error(
+                "Document introuvable sur cet appareil."
+            );
+        }
+
+        const fichier = d.fichier;
+
+        const nom = (
+            d.nom || "document"
+        ).replace(
+            /[\\/:*?"<>|\x00-\x1f]/g,
+            "_"
+        );
+
+        const type =
+            fichier.type ||
+            d.type ||
+            "application/octet-stream";
+
+        if (
+            window.TontineAndroid &&
+            typeof window.TontineAndroid
+                .enregistrerFichier === "function"
+        ) {
+
+            const base64 =
+                await new Promise(
+                    (resolve, reject) => {
+
+                        const lecteur =
+                            new FileReader();
+
+                        lecteur.onload = () => {
+                            resolve(
+                                String(
+                                    lecteur.result
+                                ).split(",")[1]
+                            );
+                        };
+
+                        lecteur.onerror = () => {
+                            reject(
+                                Error(
+                                    "Lecture impossible."
+                                )
+                            );
+                        };
+
+                        lecteur.readAsDataURL(
+                            fichier
+                        );
+                    }
+                );
+
+            window.TontineAndroid
+                .enregistrerFichier(
+                    nom,
+                    type,
+                    base64
+                );
+
+        } else {
+
+            const url =
+                URL.createObjectURL(
+                    fichier
+                );
+
+            const a =
+                document.createElement("a");
+
+            a.href = url;
+            a.download = nom;
+
+            document.body.appendChild(a);
+
+            a.click();
+            a.remove();
+
+            setTimeout(
+                () => URL.revokeObjectURL(url),
+                60000
+            );
+        }
+
+    } catch (e) {
+
+        alert(
+            "Téléchargement impossible : " +
+            e.message
+        );
+    }
 }
 
 function nettoyerDocument() {
@@ -1834,14 +2071,28 @@ function afficher() {
         "note"
       );
 
-      if (m.verificationIdentite.fichierNom) {
-        bouton(
-          "Consulter / exporter la pièce",
-          () => consulterDocument(m.id),
-          d
-        );
-      }
-    } else {
+      
+if (m.verificationIdentite.fichierNom) {
+
+    const actionsDocument =
+        document.createElement("div");
+
+    actionsDocument.className = "row";
+
+    bouton(
+        "👁 Visualiser",
+        () => visualiserDocument(m.id),
+        actionsDocument
+    );
+
+    bouton(
+        "⬇ Télécharger",
+        () => telechargerDocument(m.id),
+        actionsDocument
+    );
+
+    d.appendChild(actionsDocument);
+} else {
       ligne(d,"Pièce justificative non renseignée.","note");
     }
 
