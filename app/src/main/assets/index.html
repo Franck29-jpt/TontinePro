@@ -2,52 +2,56 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#123D78">
 <title>TontinePro Togo</title>
 <style>
-:root{--bleu:#123D78;--fond:#eef3f9;--bord:#d8e1ec}
+:root{--bleu:#123d78;--clair:#eaf1fb;--fond:#eef3f9;--bord:#d8e1ec}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-body{margin:0;background:var(--fond);color:#203047;font:14px/1.5 Arial,sans-serif;overflow-x:hidden}
+body{margin:0;background:var(--fond);color:#203047;font:14px/1.5 Arial,sans-serif}
 button,input,select{font:inherit;max-width:100%}
 button{background:var(--bleu);color:white;border:0;border-radius:8px;padding:11px;min-height:42px;cursor:pointer;font-weight:bold}
 button:disabled{opacity:.5}
-input,select{display:block;width:100%;padding:11px;margin:5px 0 12px;border:1px solid #b9c8da;border-radius:8px;background:white}
+input,select{display:block;width:100%;padding:10px;margin:5px 0 12px;border:1px solid #b9c8da;border-radius:8px;background:white}
 label{display:block;font-weight:bold;margin-top:10px}
 h1{font-size:21px}h2{font-size:18px;color:var(--bleu)}h3{font-size:15px}
-main{max-width:850px;margin:auto;padding:10px}
-.card{max-width:650px;margin:10px auto;padding:14px;background:white;border:1px solid var(--bord);border-radius:12px;overflow-wrap:anywhere}
-.item{border-bottom:1px solid var(--bord);padding:12px 0;overflow-wrap:anywhere}
-.item button{margin:4px 4px 4px 0}
+main{max-width:900px;margin:auto;padding:10px}
+.card{max-width:800px;margin:10px auto;padding:15px;background:white;border:1px solid var(--bord);border-radius:12px;overflow-wrap:anywhere}
+.item{border-bottom:1px solid var(--bord);padding:12px 0}
 .note{font-size:12px;color:#596779}
-.ok{color:#176c46;font-weight:bold}
-.no{color:#b42335;font-weight:bold}
-.row{display:flex;flex-wrap:wrap;gap:8px}
-.row button{flex:1 1 110px}
-.secondaire{background:#eaf1fb;color:var(--bleu);border:1px solid #cadcf1}
-#ecranAcces{min-height:100dvh;padding:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#123D78,#2463aa)}
-.auth{background:white;border-radius:15px;padding:20px;width:100%;max-width:400px}
+.ok{color:#176c46;font-weight:bold}.no{color:#b42335;font-weight:bold}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.row button{flex:1 1 125px}
+.secondaire{background:var(--clair);color:var(--bleu);border:1px solid #cadcf1}
+#ecranAcces{min-height:100vh;min-height:100dvh;padding:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#123d78,#2463aa)}
+.auth{background:white;border-radius:15px;padding:20px;width:100%;max-width:420px}
 .auth h1{text-align:center;color:var(--bleu)}
 .auth button{width:100%;margin-top:8px}
 body:not(.connecte) main,body:not(.connecte) footer,body:not(.connecte) #menuBouton,body:not(.connecte) #menu,body:not(.connecte) #fondMenu{display:none!important}
 body.connecte #ecranAcces{display:none!important}
-#menuBouton{position:fixed;right:12px;bottom:20px;width:52px;height:52px;border-radius:50%;background:white;color:var(--bleu);border:2px solid var(--bleu);font-size:23px;z-index:10;padding:0}
+#menuBouton{position:fixed;right:12px;bottom:20px;width:54px;height:54px;border-radius:50%;background:white;color:var(--bleu);border:2px solid var(--bleu);font-size:24px;z-index:10;padding:0}
 #fondMenu{position:fixed;inset:0;background:#0009;z-index:11}
-#menu{display:none;position:fixed;top:0;left:0;width:85vw;max-width:320px;height:100dvh;padding:12px;background:var(--bleu);overflow:auto;z-index:12}
+#menu{display:none;position:fixed;top:0;left:0;width:85vw;max-width:320px;height:100vh;height:100dvh;padding:12px;background:var(--bleu);overflow:auto;z-index:12}
 #menu.ouvert{display:block}
 #menu h2{color:white}
 #menu button{display:block;width:100%;margin:8px 0;background:white;color:var(--bleu);text-align:left;font-size:13px}
 .entete{background:var(--bleu);color:white;border-radius:10px;text-align:center;padding:18px 12px}
 .grille{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:14px 0}
-.grille button{background:#eaf1fb;color:var(--bleu);min-height:70px}
+.grille button{background:var(--clair);color:var(--bleu);min-height:70px}
 .document{border:1px solid var(--bord);background:#f5f8fc;border-radius:10px;padding:12px;margin:12px 0}
 #apercu{max-width:100%;max-height:220px;display:block;margin:10px auto}
 .consentement{display:flex;gap:10px;align-items:flex-start;font-weight:normal}
 .consentement input{width:20px;flex-shrink:0}
-.resume{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:9px}
-.resume div{background:#eaf1fb;padding:12px;border-radius:8px}
-.resume strong{display:block;color:var(--bleu)}
+.resume{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:9px;margin:10px 0}
+.resume div{background:var(--clair);padding:12px;border-radius:8px}
+.resume strong{display:block;color:var(--bleu);font-size:16px}
+.table-wrap{overflow-x:auto;margin:12px 0}
+table{width:100%;border-collapse:collapse;min-width:550px;background:white}
+th,td{border:1px solid var(--bord);padding:9px;text-align:left;font-size:12px}
+th{background:var(--bleu);color:white}
+tbody tr:nth-child(even){background:#f5f8fc}
+tfoot{font-weight:bold;background:var(--clair)}
 footer{text-align:center;background:var(--bleu);color:white;padding:14px;font-size:12px}
 #fenetreDocument{position:fixed;inset:0;background:#000c;z-index:100;overflow:auto;padding:12px}
 #boiteDocument{background:white;border-radius:12px;padding:15px;max-width:800px;margin:20px auto}
@@ -71,11 +75,11 @@ footer{text-align:center;background:var(--bleu);color:white;padding:14px;font-si
 
 <form id="formCreation" hidden>
 <h2>Créer mon compte</h2>
-<label>Identifiant</label>
+<label for="nouvelIdentifiant">Identifiant</label>
 <input id="nouvelIdentifiant" minlength="3" maxlength="40" required>
-<label>Mot de passe (4 lettres ou chiffres)</label>
+<label for="nouveauMot">Mot de passe (4 lettres ou chiffres)</label>
 <input id="nouveauMot" type="password" minlength="4" maxlength="4" pattern="[A-Za-z0-9]{4}" required>
-<label>Confirmer le mot de passe</label>
+<label for="confirmationMot">Confirmer le mot de passe</label>
 <input id="confirmationMot" type="password" minlength="4" maxlength="4" pattern="[A-Za-z0-9]{4}" required>
 <button type="submit">Créer mon compte</button>
 <button type="button" class="secondaire" onclick="retourAcces()">Retour</button>
@@ -83,16 +87,16 @@ footer{text-align:center;background:var(--bleu);color:white;padding:14px;font-si
 
 <form id="formConnexion" hidden>
 <h2>Connexion</h2>
-<label>Identifiant</label>
+<label for="identifiantConnexion">Identifiant</label>
 <input id="identifiantConnexion" required>
-<label>Mot de passe</label>
+<label for="motConnexion">Mot de passe</label>
 <input id="motConnexion" type="password" required>
 <button type="submit">Valider la connexion</button>
 <button type="button" class="secondaire" onclick="retourAcces()">Retour</button>
 </form>
 
 <p id="messageAcces" class="no" role="alert"></p>
-<p class="note">Prototype local non synchronisé entre téléphones.</p>
+<p class="note">Prototype local : les comptes et les groupes ne sont pas synchronisés entre appareils.</p>
 </div>
 </section>
 
@@ -107,7 +111,7 @@ footer{text-align:center;background:var(--bleu);color:white;padding:14px;font-si
 <button onclick="rubrique(3)">3. Inscrire les membres</button>
 <button onclick="rubrique(4)">4. Ordre de passage</button>
 <button onclick="rubrique(5)">5. Démarrer la tontine</button>
-<button onclick="rubrique(6)">6. Suivi des tours</button>
+<button onclick="rubrique(6)">6. Suivi des cotisations</button>
 <button onclick="rubrique(7)">7. Historique financier</button>
 <button onclick="rubrique(8)">8. Tableau financier individuel</button>
 <button onclick="deconnexion()">Se déconnecter</button>
@@ -123,33 +127,36 @@ footer{text-align:center;background:var(--bleu);color:white;padding:14px;font-si
 <h2>Accès rapides</h2>
 <div class="grille">
 <button onclick="rubrique(2)">👥 Mes groupes</button>
-<button onclick="rubrique(6)">💰 Mes tontines</button>
+<button onclick="rubrique(6)">💰 Cotisations</button>
 <button onclick="rubrique(8)">📊 Mes finances</button>
-<button onclick="rubrique(7)">📋 Historique financier</button>
+<button onclick="rubrique(7)">📋 Historique</button>
 </div>
-<p class="note">Utilisez le bouton ☰ pour les huit rubriques.</p>
+<p class="note">Utilisez le bouton ☰ pour accéder aux huit rubriques.</p>
 </div>
 
 <section class="card" hidden>
 <h2>1. Créer un groupe</h2>
-<label>Nom du groupe</label>
-<input id="nom">
-<label>Cotisation par membre (FCFA)</label>
-<input id="cotisation" type="number" min="1">
-<label>Garantie initiale (FCFA)</label>
-<input id="garantie" type="number" min="1">
-<label>Périodicité</label>
+<label for="nom">Nom du groupe</label>
+<input id="nom" maxlength="120" required>
+<label for="dateCreation">Date de création du groupe</label>
+<input id="dateCreation" type="date" required>
+<label for="cotisation">Cotisation par membre (FCFA)</label>
+<input id="cotisation" type="number" min="1" step="1">
+<label for="garantie">Dépôt de garantie initial (FCFA)</label>
+<input id="garantie" type="number" min="1" step="1">
+<label for="periode">Périodicité</label>
 <select id="periode">
 <option>Journalière</option>
 <option>Hebdomadaire</option>
 <option>Mensuelle</option>
 </select>
+<p class="note">Le nombre de membres sera calculé automatiquement à partir des inscriptions.</p>
 <button onclick="creerGroupe()">Créer le groupe</button>
 </section>
 
 <section class="card" hidden>
 <h2>2. Groupe sélectionné</h2>
-<label>Choisir un groupe</label>
+<label for="groupes">Choisir un groupe</label>
 <select id="groupes" onchange="changerGroupe()"></select>
 <p id="details"></p>
 <p id="statut"></p>
@@ -157,17 +164,26 @@ footer{text-align:center;background:var(--bleu);color:white;padding:14px;font-si
 
 <section class="card" hidden>
 <h2>3. Inscrire les membres</h2>
-<label>Nom et prénom</label>
-<input id="membre" placeholder="Nom complet">
+<label for="membre">Nom et prénom</label>
+<input id="membre" maxlength="150">
+<label for="dateNaissance">Date de naissance</label>
+<input id="dateNaissance" type="date">
+<label for="lieuNaissance">Lieu de naissance</label>
+<input id="lieuNaissance" maxlength="150">
+<label for="profession">Profession</label>
+<input id="profession" maxlength="150">
+<label for="revenuMensuel">Revenu mensuel déclaré (FCFA)</label>
+<input id="revenuMensuel" type="number" min="0" step="1">
+
 <div class="document">
 <h3>Pièce justificative</h3>
-<label>Type de document</label>
+<label for="typeDocument">Type de document</label>
 <select id="typeDocument">
 <option value="">Choisir un document</option>
 <option value="Carte nationale d'identité">Carte nationale d'identité</option>
 <option value="Acte de naissance">Acte de naissance</option>
 </select>
-<label>Joindre la pièce en photo ou PDF</label>
+<label for="fichierDocument">Joindre la pièce en photo ou PDF</label>
 <input id="fichierDocument" type="file" accept=".jpg,.jpeg,.png,.webp,.pdf,image/jpeg,image/png,image/webp,application/pdf">
 <p id="informationDocument" class="note">Aucun fichier sélectionné.</p>
 <img id="apercu" alt="Aperçu" hidden>
@@ -175,15 +191,16 @@ footer{text-align:center;background:var(--bleu);color:white;padding:14px;font-si
 <input id="consentementDocument" type="checkbox">
 <span>Je confirme avoir informé le membre et recueilli son accord pour l'utilisation de sa pièce justificative.</span>
 </label>
-<p class="note">Utilisez uniquement des documents fictifs pour les essais. Les fichiers sont conservés localement sans chiffrement.</p>
+<p class="note">Pour les essais, utilisez des documents fictifs. Les fichiers sont stockés localement sans chiffrement.</p>
 </div>
+
 <button id="ajoutBtn" onclick="ajouterMembre()">Enregistrer le membre</button>
 <div id="membres"></div>
 </section>
 
 <section class="card" hidden>
 <h2>4. Ordre de passage</h2>
-<label>Mode de désignation</label>
+<label for="mode">Mode de désignation</label>
 <select id="mode" onchange="changerMode()">
 <option value="tirage">Tirage au sort</option>
 <option value="collectif">Choix collectif</option>
@@ -199,20 +216,25 @@ footer{text-align:center;background:var(--bleu);color:white;padding:14px;font-si
 </section>
 
 <section class="card" hidden>
-<h2>6. Suivi des tours</h2>
+<h2>6. Suivi des cotisations</h2>
 <div id="tours"></div>
+<h3>Situation des cotisations</h3>
+<div id="resumeCotisations" class="resume"></div>
+<div id="tableauCotisations" class="table-wrap"></div>
+<button id="exportCotisationsBtn" type="button" onclick="exporterCotisationsPDF()">Télécharger la situation en PDF</button>
+<p class="note">Les montants représentent les confirmations enregistrées dans le prototype, et non des transactions bancaires vérifiées.</p>
 </section>
 
 <section class="card" hidden>
 <h2>7. Historique financier</h2>
-<label>Sélectionner un membre</label>
+<label for="historiqueMembre">Sélectionner un membre</label>
 <select id="historiqueMembre" onchange="afficherHistorique()"></select>
 <div id="historiqueFinancier"></div>
 </section>
 
 <section class="card" hidden>
 <h2>8. Tableau financier individuel</h2>
-<label>Choisir un membre</label>
+<label for="ficheMembre">Choisir un membre</label>
 <select id="ficheMembre" onchange="afficherFicheFinanciere()"></select>
 <div id="ficheFinanciere"></div>
 </section>
@@ -228,7 +250,7 @@ footer{text-align:center;background:var(--bleu);color:white;padding:14px;font-si
 </div>
 
 <footer>
-Une application issue des travaux de recherche doctorale
+Application issue des travaux de recherche doctorale
 <br>© 2026 — TontinePro Togo
 </footer>
 
@@ -253,6 +275,20 @@ const argent=n=>Number(n).toLocaleString("fr-FR")+" FCFA";
 const memeId=(a,b)=>String(a)===String(b);
 const actuel=()=>groupes[selection]||null;
 
+function dateLocale(){
+ const d=new Date();
+ return d.getFullYear()+"-"+
+  String(d.getMonth()+1).padStart(2,"0")+"-"+
+  String(d.getDate()).padStart(2,"0");
+}
+function dateValide(v){
+ if(!/^\d{4}-\d{2}-\d{2}$/.test(v))return false;
+ const d=new Date(v+"T12:00:00");
+ return !Number.isNaN(d.getTime())&&
+  d.getFullYear()===Number(v.slice(0,4))&&
+  d.getMonth()+1===Number(v.slice(5,7))&&
+  d.getDate()===Number(v.slice(8,10));
+}
 function uid(){
  if(crypto.randomUUID)return crypto.randomUUID();
  const b=new Uint8Array(16);
@@ -270,23 +306,32 @@ function bouton(texte,action,parent,disabled=false){
  const b=document.createElement("button");
  b.type="button";b.textContent=texte;b.disabled=disabled;
  b.addEventListener("click",action);
- parent.appendChild(b);return b;
+ parent.appendChild(b);
+ return b;
 }
 function sauvegarder(){
  try{
   localStorage.setItem(CLE,JSON.stringify(groupes));
   return true;
- }catch(e){alert("Impossible d'enregistrer les données.");return false}
+ }catch(e){
+  alert("Impossible d'enregistrer les données locales.");
+  return false;
+ }
 }
 function transaction(modification){
- const copie=JSON.stringify(groupes),ancienne=selection;
+ const copie=JSON.stringify(groupes);
+ const ancienne=selection;
  try{
   modification();
   if(!sauvegarder())throw Error("Échec de sauvegarde");
-  afficher();return true;
+  afficher();
+  return true;
  }catch(e){
-  groupes=JSON.parse(copie);selection=ancienne;
-  afficher();alert("Opération annulée : "+e.message);return false;
+  groupes=JSON.parse(copie);
+  selection=ancienne;
+  afficher();
+  alert("Opération annulée : "+e.message);
+  return false;
  }
 }
 try{
@@ -297,22 +342,32 @@ try{
  compte=JSON.parse(localStorage.getItem(CLE_COMPTE));
 }catch(e){}
 
-function motValide(m){return /^[A-Za-z0-9]{4}$/.test(m)}
+/* AUTHENTIFICATION */
+function motValide(m){
+ return /^[A-Za-z0-9]{4}$/.test(m);
+}
 function hex(b){
  return Array.from(new Uint8Array(b),x=>x.toString(16).padStart(2,"0")).join("");
 }
 function octetsHex(s){
- if(!/^(?:[0-9a-f]{2})+$/i.test(s))throw Error("Sel invalide");
+ if(!/^(?:[0-9a-f]{2})+$/i.test(s))throw Error("Format cryptographique invalide.");
  return new Uint8Array(s.match(/.{2}/g).map(x=>parseInt(x,16)));
 }
 function nouveauSel(){
- const b=new Uint8Array(16);crypto.getRandomValues(b);return hex(b);
+ const b=new Uint8Array(16);
+ crypto.getRandomValues(b);
+ return hex(b);
 }
 async function deriveMot(mot,salt){
- if(!crypto.subtle)throw Error("Contexte sécurisé indisponible");
- const k=await crypto.subtle.importKey("raw",new TextEncoder().encode(mot),"PBKDF2",false,["deriveBits"]);
+ if(!crypto.subtle)throw Error("Contexte sécurisé requis.");
+ const k=await crypto.subtle.importKey(
+  "raw",new TextEncoder().encode(mot),"PBKDF2",false,["deriveBits"]
+ );
  const bits=await crypto.subtle.deriveBits({
-  name:"PBKDF2",salt:octetsHex(salt),iterations:310000,hash:"SHA-256"
+  name:"PBKDF2",
+  salt:octetsHex(salt),
+  iterations:310000,
+  hash:"SHA-256"
  },k,256);
  return hex(bits);
 }
@@ -324,7 +379,8 @@ function retourAcces(){
 }
 function ouvrirConnexion(){
  if(!compte){
-  el("messageAcces").textContent="Aucun compte sur cet appareil. Créez d'abord un compte.";
+  el("messageAcces").textContent=
+   "Aucun compte sur cet appareil. Créez d'abord un compte.";
   return;
  }
  el("choixAcces").hidden=true;
@@ -334,7 +390,8 @@ function ouvrirConnexion(){
 }
 function ouvrirCreation(){
  if(compte){
-  el("messageAcces").textContent="Un compte existe déjà. Utilisez Se connecter.";
+  el("messageAcces").textContent=
+   "Un compte existe déjà. Utilisez Se connecter.";
   return;
  }
  el("choixAcces").hidden=true;
@@ -346,13 +403,18 @@ el("formCreation").addEventListener("submit",async e=>{
  e.preventDefault();
  const identifiant=el("nouvelIdentifiant").value.trim().toLowerCase();
  const mot=el("nouveauMot").value;
+ const confirmation=el("confirmationMot").value;
  if(!/^[a-z0-9._-]{3,40}$/.test(identifiant)){
-  el("messageAcces").textContent="Identifiant invalide.";return;
+  el("messageAcces").textContent="Identifiant invalide.";
+  return;
  }
- if(!motValide(mot)||mot!==el("confirmationMot").value){
-  el("messageAcces").textContent="Mot de passe invalide ou confirmation différente.";return;
+ if(!motValide(mot)||mot!==confirmation){
+  el("messageAcces").textContent=
+   "Le mot de passe doit contenir exactement quatre lettres ou chiffres, avec une confirmation identique.";
+  return;
  }
- const b=e.submitter;if(b)b.disabled=true;
+ const b=e.submitter;
+ if(b)b.disabled=true;
  try{
   const salt=nouveauSel();
   const empreinte=await deriveMot(mot,salt);
@@ -362,8 +424,11 @@ el("formCreation").addEventListener("submit",async e=>{
   el("nouveauMot").value="";
   el("confirmationMot").value="";
   connecter();
- }catch(err){el("messageAcces").textContent=err.message}
- finally{if(b)b.disabled=false}
+ }catch(err){
+  el("messageAcces").textContent=err.message;
+ }finally{
+  if(b)b.disabled=false;
+ }
 });
 el("formConnexion").addEventListener("submit",async e=>{
  e.preventDefault();
@@ -371,31 +436,43 @@ el("formConnexion").addEventListener("submit",async e=>{
  const identifiant=el("identifiantConnexion").value.trim().toLowerCase();
  const mot=el("motConnexion").value;
  if(!motValide(mot)){
-  el("messageAcces").textContent="Saisissez exactement 4 lettres ou chiffres.";return;
+  el("messageAcces").textContent="Saisissez exactement quatre lettres ou chiffres.";
+  return;
  }
- const b=e.submitter;if(b)b.disabled=true;
+ const b=e.submitter;
+ if(b)b.disabled=true;
  try{
   const empreinte=await deriveMot(mot,compte.salt);
   if(identifiant!==compte.identifiant||empreinte!==compte.empreinte){
-   el("messageAcces").textContent="Identifiant ou mot de passe incorrect.";return;
+   el("messageAcces").textContent="Identifiant ou mot de passe incorrect.";
+   return;
   }
   el("motConnexion").value="";
   connecter();
- }catch(err){el("messageAcces").textContent=err.message}
- finally{if(b)b.disabled=false}
+ }catch(err){
+  el("messageAcces").textContent=err.message;
+ }finally{
+  if(b)b.disabled=false;
+ }
 });
 function connecter(){
  connecte=true;
  document.body.classList.add("connecte");
- afficher();accueil();
+ afficher();
+ accueil();
 }
 function deconnexion(){
  if(!confirm("Voulez-vous vous déconnecter ?"))return;
- fermerDocument();nettoyerDocument();
- connecte=false;document.body.classList.remove("connecte");
+ fermerDocument();
+ nettoyerDocument();
+ connecte=false;
+ document.body.classList.remove("connecte");
  el("motConnexion").value="";
- fermerMenu();retourAcces();
+ fermerMenu();
+ retourAcces();
 }
+
+/* NAVIGATION */
 function fermerMenu(){
  el("menu").classList.remove("ouvert");
  el("fondMenu").hidden=true;
@@ -408,8 +485,10 @@ function basculerMenu(){
 function accueil(){
  if(!connecte)return;
  el("pageAccueil").hidden=false;
- document.querySelectorAll("main > section.card").forEach(s=>s.hidden=true);
- fermerMenu();window.scrollTo(0,0);
+ document.querySelectorAll("main > section.card")
+  .forEach(s=>s.hidden=true);
+ fermerMenu();
+ window.scrollTo(0,0);
 }
 function rubrique(n){
  if(!connecte)return;
@@ -417,17 +496,22 @@ function rubrique(n){
  if(n<1||n>sections.length)return;
  el("pageAccueil").hidden=true;
  sections.forEach((s,i)=>s.hidden=i!==n-1);
- fermerMenu();window.scrollTo(0,0);
+ fermerMenu();
+ window.scrollTo(0,0);
 }
 
-/* DOCUMENTS : STOCKAGE LOCAL */
+/* DOCUMENTS */
 function ouvrirDB(){
  return new Promise((resolve,reject)=>{
-  if(!window.indexedDB){reject(Error("IndexedDB indisponible"));return}
+  if(!window.indexedDB){
+   reject(Error("IndexedDB indisponible."));
+   return;
+  }
   const r=indexedDB.open(DB_NOM,1);
   r.onupgradeneeded=()=>{
-   if(!r.result.objectStoreNames.contains(DB_STORE))
+   if(!r.result.objectStoreNames.contains(DB_STORE)){
     r.result.createObjectStore(DB_STORE,{keyPath:"id"});
+   }
   };
   r.onsuccess=()=>resolve(r.result);
   r.onerror=()=>reject(r.error);
@@ -438,12 +522,16 @@ async function enregistrerDocument(id,fichier){
  try{
   await new Promise((resolve,reject)=>{
    const tx=db.transaction(DB_STORE,"readwrite");
-   tx.objectStore(DB_STORE).put({id,nom:fichier.name,type:fichier.type,fichier});
+   tx.objectStore(DB_STORE).put({
+    id,nom:fichier.name,type:fichier.type,fichier
+   });
    tx.oncomplete=()=>resolve();
    tx.onerror=()=>reject(tx.error);
    tx.onabort=()=>reject(tx.error);
   });
- }finally{db.close()}
+ }finally{
+  db.close();
+ }
 }
 async function lireDocument(id){
  const db=await ouvrirDB();
@@ -454,7 +542,9 @@ async function lireDocument(id){
    r.onsuccess=()=>resolve(r.result||null);
    r.onerror=()=>reject(r.error);
   });
- }finally{db.close()}
+ }finally{
+  db.close();
+ }
 }
 async function supprimerDocument(id){
  const db=await ouvrirDB();
@@ -466,7 +556,9 @@ async function supprimerDocument(id){
    tx.onerror=()=>reject(tx.error);
    tx.onabort=()=>reject(tx.error);
   });
- }finally{db.close()}
+ }finally{
+  db.close();
+ }
 }
 function fermerDocument(){
  el("fenetreDocument").hidden=true;
@@ -488,46 +580,62 @@ async function visualiserDocument(id){
   if(type.startsWith("image/")){
    const img=document.createElement("img");
    img.src=urlDocumentAffiche;
-   img.alt="Pièce justificative";
+   img.alt="Document du membre";
    el("contenuDocument").appendChild(img);
   }else if(type==="application/pdf"||/\.pdf$/i.test(d.nom||"")){
    const frame=document.createElement("iframe");
    frame.src=urlDocumentAffiche;
    frame.title="Document PDF";
    el("contenuDocument").appendChild(frame);
-   el("messageDocument").textContent="Si le PDF ne s'affiche pas, utilisez Télécharger pour l'ouvrir avec une application PDF.";
-  }else throw Error("Format non reconnu.");
+   el("messageDocument").textContent=
+    "Si le PDF ne s'affiche pas, utilisez Télécharger pour l'ouvrir sur votre téléphone.";
+  }else{
+   throw Error("Format non reconnu.");
+  }
   el("fenetreDocument").hidden=false;
- }catch(e){fermerDocument();alert("Visualisation impossible : "+e.message)}
+ }catch(e){
+  fermerDocument();
+  alert("Visualisation impossible : "+e.message);
+ }
+}
+async function enregistrerFichier(nom,type,blob){
+ if(window.TontineAndroid&&
+  typeof window.TontineAndroid.enregistrerFichier==="function"){
+  const base64=await new Promise((resolve,reject)=>{
+   const lecteur=new FileReader();
+   lecteur.onload=()=>resolve(String(lecteur.result).split(",")[1]);
+   lecteur.onerror=()=>reject(Error("Lecture impossible."));
+   lecteur.readAsDataURL(blob);
+  });
+  window.TontineAndroid.enregistrerFichier(nom,type,base64);
+ }else{
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;
+  a.download=nom;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),60000);
+ }
 }
 async function telechargerDocument(id){
  if(!connecte)return;
  try{
   const d=await lireDocument(id);
   if(!d||!d.fichier)throw Error("Document introuvable.");
-  const f=d.fichier;
   const nom=(d.nom||"document").replace(/[\\/:*?"<>|\x00-\x1f]/g,"_");
-  const type=f.type||d.type||"application/octet-stream";
-  if(window.TontineAndroid&&typeof window.TontineAndroid.enregistrerFichier==="function"){
-   const base64=await new Promise((resolve,reject)=>{
-    const lecteur=new FileReader();
-    lecteur.onload=()=>resolve(String(lecteur.result).split(",")[1]);
-    lecteur.onerror=()=>reject(Error("Lecture impossible"));
-    lecteur.readAsDataURL(f);
-   });
-   window.TontineAndroid.enregistrerFichier(nom,type,base64);
-  }else{
-   const url=URL.createObjectURL(f);
-   const a=document.createElement("a");
-   a.href=url;a.download=nom;
-   document.body.appendChild(a);a.click();a.remove();
-   setTimeout(()=>URL.revokeObjectURL(url),60000);
-  }
- }catch(e){alert("Téléchargement impossible : "+e.message)}
+  await enregistrerFichier(
+   nom,d.fichier.type||d.type||"application/octet-stream",d.fichier
+  );
+ }catch(e){
+  alert("Téléchargement impossible : "+e.message);
+ }
 }
 function nettoyerDocument(){
  if(documentURL)URL.revokeObjectURL(documentURL);
- documentURL=null;fichierSelectionne=null;
+ documentURL=null;
+ fichierSelectionne=null;
  el("fichierDocument").value="";
  el("typeDocument").value="";
  el("consentementDocument").checked=false;
@@ -537,84 +645,139 @@ function nettoyerDocument(){
 }
 el("fichierDocument").addEventListener("change",e=>{
  if(documentURL)URL.revokeObjectURL(documentURL);
- documentURL=null;fichierSelectionne=null;
+ documentURL=null;
+ fichierSelectionne=null;
  el("apercu").hidden=true;
  const f=e.target.files[0];
- if(!f){el("informationDocument").textContent="Aucun fichier sélectionné.";return}
+ if(!f){
+  el("informationDocument").textContent="Aucun fichier sélectionné.";
+  return;
+ }
  const types=["image/jpeg","image/png","image/webp","application/pdf"];
  const ext=f.name.split(".").pop().toLowerCase();
- if(!types.includes(f.type)||!["jpg","jpeg","png","webp","pdf"].includes(ext)){
-  alert("Formats autorisés : JPG, PNG, WebP, PDF.");e.target.value="";return;
+ if(!types.includes(f.type)||
+  !["jpg","jpeg","png","webp","pdf"].includes(ext)){
+  alert("Formats autorisés : JPG, PNG, WebP et PDF.");
+  e.target.value="";
+  return;
  }
  if(f.size===0||f.size>8*1024*1024){
-  alert("Le document doit être non vide et ne pas dépasser 8 Mo.");e.target.value="";return;
+  alert("Document non vide, de 8 Mo maximum.");
+  e.target.value="";
+  return;
  }
  fichierSelectionne=f;
  el("informationDocument").textContent="Fichier : "+f.name;
  if(f.type.startsWith("image/")){
   documentURL=URL.createObjectURL(f);
-  el("apercu").src=documentURL;el("apercu").hidden=false;
+  el("apercu").src=documentURL;
+  el("apercu").hidden=false;
  }
 });
 
-/* GROUPES */
+/* CREATION DES GROUPES */
 function creerGroupe(){
  if(!connecte)return;
  const nom=el("nom").value.trim();
+ const dateCreation=el("dateCreation").value;
  const cotisation=Number(el("cotisation").value);
  const garantie=Number(el("garantie").value);
- if(!nom||!Number.isSafeInteger(cotisation)||!Number.isSafeInteger(garantie)||cotisation<=0||garantie<=0){
-  alert("Renseignez correctement le groupe.");return;
+ if(!nom||!dateValide(dateCreation)||dateCreation>dateLocale()){
+  alert("Renseignez le nom et une date de création valide.");
+  return;
+ }
+ if(!Number.isSafeInteger(cotisation)||
+  !Number.isSafeInteger(garantie)||
+  cotisation<=0||garantie<=0){
+  alert("Les montants doivent être des entiers positifs.");
+  return;
  }
  if(!transaction(()=>{
   groupes.push({
-   id:uid(),nom,cotisation,garantie,periode:el("periode").value,
-   membres:[],mode:"tirage",ordre:[],ordreValide:false,
-   demarree:false,tourActuel:0,paiements:[],historique:[]
+   id:uid(),nom,dateCreation,cotisation,garantie,
+   periode:el("periode").value,
+   membres:[],mode:"tirage",ordre:[],
+   ordreValide:false,demarree:false,
+   tourActuel:0,paiements:[],historique:[]
   });
   selection=groupes.length-1;
  }))return;
- el("nom").value="";el("cotisation").value="";el("garantie").value="";
+ el("nom").value="";
+ el("cotisation").value="";
+ el("garantie").value="";
+ el("dateCreation").value=dateLocale();
  rubrique(3);
 }
 function changerGroupe(){
  const i=Number(el("groupes").value);
- if(groupes[i]){selection=i;afficher()}
+ if(groupes[i]){
+  selection=i;
+  afficher();
+ }
 }
 
-/* MEMBRES */
+/* INSCRIPTION DES MEMBRES */
 async function ajouterMembre(){
  const g=actuel();
- if(!g||g.demarree){alert("Choisissez un groupe en préparation.");return}
+ if(!g||g.demarree){
+  alert("Choisissez un groupe en préparation.");
+  return;
+ }
  const nom=el("membre").value.trim();
+ const dateNaissance=el("dateNaissance").value;
+ const lieuNaissance=el("lieuNaissance").value.trim();
+ const profession=el("profession").value.trim();
+ const revenuTexte=el("revenuMensuel").value.trim();
+ const revenuMensuel=Number(revenuTexte);
  const type=el("typeDocument").value;
- if(!nom){alert("Saisissez le nom.");return}
+ if(!nom||!lieuNaissance||!profession||
+  !dateValide(dateNaissance)||dateNaissance>dateLocale()||
+  revenuTexte===""||
+  !Number.isSafeInteger(revenuMensuel)||revenuMensuel<0){
+  alert("Renseignez correctement l'identité, la profession et le revenu mensuel.");
+  return;
+ }
  if(g.membres.some(m=>m.nom.toLowerCase()===nom.toLowerCase())){
-  alert("Ce membre est déjà inscrit.");return;
+  alert("Ce membre est déjà inscrit.");
+  return;
  }
- if(!type||!fichierSelectionne||!el("consentementDocument").checked){
-  alert("Joignez la pièce et confirmez l'accord du membre.");return;
+ if(!type||!fichierSelectionne||
+  !el("consentementDocument").checked){
+  alert("Joignez la pièce justificative et confirmez l'accord du membre.");
+  return;
  }
- const id=uid(),f=fichierSelectionne;
+ const id=uid();
+ const f=fichierSelectionne;
  const membre={
-  id,nom,garantieVersee:false,
-  verificationIdentite:{type,fichierNom:f.name,date:new Date().toISOString()}
+  id,nom,dateNaissance,lieuNaissance,profession,revenuMensuel,
+  garantieVersee:false,
+  verificationIdentite:{
+   type,fichierNom:f.name,date:new Date().toISOString()
+  }
  };
  el("ajoutBtn").disabled=true;
  try{
   await enregistrerDocument(id,f);
   if(!transaction(()=>{
-   g.membres.push(membre);g.ordre=[];g.ordreValide=false;
+   g.membres.push(membre);
+   g.ordre=[];
+   g.ordreValide=false;
   })){
-   await supprimerDocument(id);return;
+   await supprimerDocument(id);
+   return;
   }
-  el("membre").value="";nettoyerDocument();
+  ["membre","dateNaissance","lieuNaissance",
+   "profession","revenuMensuel"].forEach(id=>el(id).value="");
+  nettoyerDocument();
   alert("Membre enregistré.");
- }catch(e){alert("Erreur d'enregistrement : "+e.message)}
- finally{el("ajoutBtn").disabled=false}
+ }catch(e){
+  alert("Erreur d'enregistrement : "+e.message);
+ }finally{
+  el("ajoutBtn").disabled=false;
+ }
 }
 
-/* OPERATIONS FINANCIERES */
+/* HISTORIQUE DES OPERATIONS */
 function operation(g,type,m,montant,tour){
  if(!Array.isArray(g.historique))g.historique=[];
  g.historique.push({
@@ -622,12 +785,19 @@ function operation(g,type,m,montant,tour){
   montant,tour,date:new Date().toLocaleString("fr-FR")
  });
 }
-function operations(g){return Array.isArray(g.historique)?g.historique:[]}
-function membreParId(g,id){return g.membres.find(m=>memeId(m.id,id))}
+function operations(g){
+ return Array.isArray(g.historique)?g.historique:[];
+}
+function membreParId(g,id){
+ return g.membres.find(m=>memeId(m.id,id));
+}
 function confirmerGarantie(id){
- const g=actuel();if(!g||g.demarree)return;
- const m=membreParId(g,id);if(!m||m.garantieVersee)return;
- if(!confirm("Confirmer le dépôt simulé de "+argent(g.garantie)+" pour "+m.nom+" ?"))return;
+ const g=actuel();
+ if(!g||g.demarree)return;
+ const m=membreParId(g,id);
+ if(!m||m.garantieVersee)return;
+ if(!confirm("Confirmer le dépôt simulé de "+
+  argent(g.garantie)+" pour "+m.nom+" ?"))return;
  transaction(()=>{
   m.garantieVersee=true;
   operation(g,"Dépôt de garantie",m,g.garantie,0);
@@ -636,29 +806,36 @@ function confirmerGarantie(id){
 
 /* ORDRE DE PASSAGE */
 function changerMode(){
- const g=actuel();if(!g||g.demarree)return;
+ const g=actuel();
+ if(!g||g.demarree)return;
  transaction(()=>{
   g.mode=el("mode").value;
-  g.ordre=g.mode==="collectif"?g.membres.map(m=>m.id):[];
+  g.ordre=g.mode==="collectif"
+   ?g.membres.map(m=>m.id):[];
   g.ordreValide=false;
  });
 }
 function tirerAuSort(){
  const g=actuel();
- if(!g||g.demarree||g.mode!=="tirage"||g.membres.length<2)return;
+ if(!g||g.demarree||g.mode!=="tirage"||
+  g.membres.length<2)return;
  const ids=g.membres.map(m=>m.id);
  for(let i=ids.length-1;i>0;i--){
-  const b=new Uint32Array(1);
-  crypto.getRandomValues(b);
-  const j=b[0]%(i+1);
+  const a=new Uint32Array(1);
+  crypto.getRandomValues(a);
+  const j=a[0]%(i+1);
   [ids[i],ids[j]]=[ids[j],ids[i]];
  }
- transaction(()=>{g.ordre=ids;g.ordreValide=false});
+ transaction(()=>{
+  g.ordre=ids;
+  g.ordreValide=false;
+ });
 }
 function deplacer(i,d){
  const g=actuel();
  if(!g||g.demarree||g.mode!=="collectif")return;
- const j=i+d;if(j<0||j>=g.ordre.length)return;
+ const j=i+d;
+ if(j<0||j>=g.ordre.length)return;
  transaction(()=>{
   [g.ordre[i],g.ordre[j]]=[g.ordre[j],g.ordre[i]];
   g.ordreValide=false;
@@ -666,130 +843,377 @@ function deplacer(i,d){
 }
 function ordreComplet(g){
  return !!g&&g.membres.length>=2&&
- g.ordre.length===g.membres.length&&
- new Set(g.ordre.map(String)).size===g.membres.length&&
- g.ordre.every(id=>g.membres.some(m=>memeId(m.id,id)));
+  g.ordre.length===g.membres.length&&
+  new Set(g.ordre.map(String)).size===g.membres.length&&
+  g.ordre.every(id=>g.membres.some(m=>memeId(m.id,id)));
 }
 function validerOrdre(){
  const g=actuel();
  if(!g||g.demarree||!ordreComplet(g))return;
- if(confirm("Valider l'ordre de passage ?"))
+ if(confirm("Valider l'ordre de passage ?")){
   transaction(()=>{g.ordreValide=true});
+ }
 }
 function peutDemarrer(g){
  return !!g&&g.membres.length>=2&&
- g.membres.every(m=>m.garantieVersee)&&
- g.ordreValide&&ordreComplet(g);
+  g.membres.every(m=>m.garantieVersee)&&
+  g.ordreValide&&ordreComplet(g);
 }
 function demarrer(){
  const g=actuel();
  if(!g||g.demarree||!peutDemarrer(g)){
-  alert("Garanties ou ordre incomplets.");return;
+  alert("Garanties ou ordre incomplets.");
+  return;
  }
  if(!confirm("Démarrer la tontine ?"))return;
  if(transaction(()=>{
-  g.demarree=true;g.tourActuel=0;
+  g.demarree=true;
+  g.tourActuel=0;
   g.paiements=g.membres.map(m=>({id:m.id,verse:false}));
- }))rubrique(6);
+ })){
+  rubrique(6);
+ }
 }
 
-/* COTISATIONS ET TOURS */
+/* COTISATIONS */
 function confirmerCotisation(id){
  const g=actuel();
  if(!g||!g.demarree||g.tourActuel>=g.ordre.length)return;
  const p=g.paiements.find(x=>memeId(x.id,id));
  const m=membreParId(g,id);
  if(!p||p.verse||!m)return;
- if(!confirm("Confirmer "+argent(g.cotisation)+" pour "+m.nom+" ?"))return;
+ if(!confirm("Confirmer la cotisation simulée de "+
+  argent(g.cotisation)+" pour "+m.nom+" ?"))return;
  transaction(()=>{
   p.verse=true;
-  operation(g,"Cotisation - Tour "+(g.tourActuel+1),m,g.cotisation,g.tourActuel+1);
+  operation(
+   g,"Cotisation - Tour "+(g.tourActuel+1),
+   m,g.cotisation,g.tourActuel+1
+  );
  });
 }
 function tourComplet(g){
  return Array.isArray(g.paiements)&&
- g.paiements.length===g.membres.length&&
- g.paiements.every(p=>p.verse===true);
+  g.paiements.length===g.membres.length&&
+  g.paiements.every(p=>p.verse===true);
 }
 function validerTour(){
  const g=actuel();
  if(!g||!g.demarree||g.tourActuel>=g.ordre.length)return;
- if(!tourComplet(g)){alert("Cotisations incomplètes.");return}
+ if(!tourComplet(g)){
+  alert("Cotisations incomplètes.");
+  return;
+ }
  const m=membreParId(g,g.ordre[g.tourActuel]);
  const montant=g.cotisation*g.membres.length;
- if(!m||!Number.isSafeInteger(montant)){alert("Cagnotte invalide.");return}
- if(!confirm("Confirmer la cagnotte simulée de "+argent(montant)+" pour "+m.nom+" ?"))return;
+ if(!m||!Number.isSafeInteger(montant)){
+  alert("Cagnotte invalide.");
+  return;
+ }
+ if(!confirm("Confirmer la cagnotte simulée de "+
+  argent(montant)+" pour "+m.nom+" ?"))return;
  transaction(()=>{
-  operation(g,"Cagnotte reçue - Tour "+(g.tourActuel+1),m,montant,g.tourActuel+1);
+  operation(
+   g,"Cagnotte reçue - Tour "+(g.tourActuel+1),
+   m,montant,g.tourActuel+1
+  );
   g.tourActuel++;
   g.paiements=g.tourActuel<g.ordre.length
    ?g.membres.map(m=>({id:m.id,verse:false})):[];
  });
 }
 
-/* HISTORIQUE ET FINANCES */
+/* SELECTEURS ET HISTORIQUES */
 function remplirSelect(id,membres,texte){
- const s=el(id),ancien=s.value;
+ const s=el(id);
+ const ancien=s.value;
  s.replaceChildren();
  const vide=document.createElement("option");
- vide.value="";vide.textContent=texte;s.appendChild(vide);
+ vide.value="";
+ vide.textContent=texte;
+ s.appendChild(vide);
  membres.forEach(m=>{
   const o=document.createElement("option");
-  o.value=String(m.id);o.textContent=m.nom;s.appendChild(o);
+  o.value=String(m.id);
+  o.textContent=m.nom;
+  s.appendChild(o);
  });
- if(Array.from(s.options).some(o=>o.value===ancien))s.value=ancien;
+ if(Array.from(s.options).some(o=>o.value===ancien)){
+  s.value=ancien;
+ }
 }
 function afficherHistorique(){
- const z=el("historiqueFinancier");z.replaceChildren();
+ const z=el("historiqueFinancier");
+ z.replaceChildren();
  const g=actuel();
- if(!g){z.textContent="Aucun groupe.";return}
+ if(!g){
+  z.textContent="Aucun groupe.";
+  return;
+ }
  const id=el("historiqueMembre").value;
  const ops=operations(g).filter(o=>!id||memeId(o.membreId,id));
- if(!ops.length){z.textContent="Aucune opération.";return}
+ if(!ops.length){
+  z.textContent="Aucune opération.";
+  return;
+ }
  ops.slice().reverse().forEach(o=>{
-  const d=document.createElement("div");d.className="item";
+  const d=document.createElement("div");
+  d.className="item";
   ligne(d,o.type+" — "+o.membreNom);
   ligne(d,argent(o.montant)+" — "+o.date,"note");
   z.appendChild(d);
  });
 }
 function afficherFicheFinanciere(){
- const z=el("ficheFinanciere");z.replaceChildren();
- const g=actuel(),id=el("ficheMembre").value;
- if(!g||!id){z.textContent="Sélectionnez un membre.";return}
- const m=membreParId(g,id);if(!m)return;
+ const z=el("ficheFinanciere");
+ z.replaceChildren();
+ const g=actuel();
+ const id=el("ficheMembre").value;
+ if(!g||!id){
+  z.textContent="Sélectionnez un membre.";
+  return;
+ }
+ const m=membreParId(g,id);
+ if(!m)return;
  const ops=operations(g).filter(o=>memeId(o.membreId,id));
  const total=p=>ops.filter(o=>o.type.startsWith(p))
   .reduce((s,o)=>s+Number(o.montant||0),0);
  ligne(z,"Situation de "+m.nom);
- const r=document.createElement("div");r.className="resume";
+ const r=document.createElement("div");
+ r.className="resume";
  [
   ["Garanties",total("Dépôt de garantie")],
   ["Cotisations",total("Cotisation - Tour")],
   ["Cagnottes reçues",total("Cagnotte reçue - Tour")]
  ].forEach(([nom,montant])=>{
   const d=document.createElement("div");
-  const l=document.createElement("span");l.textContent=nom;
-  const v=document.createElement("strong");v.textContent=argent(montant);
-  d.append(l,v);r.appendChild(d);
+  const l=document.createElement("span");
+  l.textContent=nom;
+  const v=document.createElement("strong");
+  v.textContent=argent(montant);
+  d.append(l,v);
+  r.appendChild(d);
  });
  z.appendChild(r);
  ligne(z,"Montants simulés enregistrés localement.","note");
 }
 
+/* TABLEAU DE COTISATIONS */
+function situationCotisations(g){
+ const tour=g.demarree&&g.tourActuel<g.ordre.length
+  ?g.tourActuel+1:0;
+ const lignes=g.membres.map(m=>{
+  const attendu=tour?Number(g.cotisation):0;
+  const p=tour&&Array.isArray(g.paiements)
+   ?g.paiements.find(x=>memeId(x.id,m.id)):null;
+  const verse=p&&p.verse?attendu:0;
+  return {
+   nom:m.nom,
+   attendu,verse,
+   reste:attendu-verse,
+   statut:!tour?"Aucun tour actif":
+    verse===attendu?"Payé":"En attente"
+  };
+ });
+ return {
+  tour,lignes,
+  attendu:lignes.reduce((s,x)=>s+x.attendu,0),
+  verse:lignes.reduce((s,x)=>s+x.verse,0),
+  reste:lignes.reduce((s,x)=>s+x.reste,0)
+ };
+}
+function cellule(tr,texte,balise="td"){
+ const c=document.createElement(balise);
+ c.textContent=texte;
+ tr.appendChild(c);
+ return c;
+}
+function afficherTableauCotisations(){
+ const zone=el("tableauCotisations");
+ const resume=el("resumeCotisations");
+ const exportBtn=el("exportCotisationsBtn");
+ zone.replaceChildren();
+ resume.replaceChildren();
+ const g=actuel();
+ if(!g){
+  zone.textContent="Aucun groupe sélectionné.";
+  exportBtn.disabled=true;
+  return;
+ }
+ const s=situationCotisations(g);
+ exportBtn.disabled=!s.tour;
+ [
+  ["Attendu",s.attendu],
+  ["Versé",s.verse],
+  ["Reste à payer",s.reste]
+ ].forEach(([titre,montant])=>{
+  const d=document.createElement("div");
+  const p=document.createElement("span");
+  p.textContent=titre;
+  const v=document.createElement("strong");
+  v.textContent=argent(montant);
+  d.append(p,v);
+  resume.appendChild(d);
+ });
+ if(!s.tour){
+  zone.textContent="Aucun tour de cotisation en cours.";
+  return;
+ }
+ const table=document.createElement("table");
+ const thead=document.createElement("thead");
+ const tr=document.createElement("tr");
+ ["Membre","Attendu (FCFA)","Versé (FCFA)",
+  "Reste (FCFA)","Statut"].forEach(x=>cellule(tr,x,"th"));
+ thead.appendChild(tr);
+ table.appendChild(thead);
+ const tbody=document.createElement("tbody");
+ s.lignes.forEach(x=>{
+  const r=document.createElement("tr");
+  [
+   x.nom,String(x.attendu),String(x.verse),
+   String(x.reste),x.statut
+  ].forEach(v=>cellule(r,v));
+  tbody.appendChild(r);
+ });
+ table.appendChild(tbody);
+ const foot=document.createElement("tfoot");
+ const r=document.createElement("tr");
+ [
+  "TOTAL",String(s.attendu),String(s.verse),
+  String(s.reste),"Tour "+s.tour
+ ].forEach(v=>cellule(r,v));
+ foot.appendChild(r);
+ table.appendChild(foot);
+ zone.appendChild(table);
+}
+
+/* EXPORT PDF AUTONOME */
+function pdfAscii(v){
+ return String(v)
+  .normalize("NFKD")
+  .replace(/[\u0300-\u036f]/g,"")
+  .replace(/[^\x20-\x7E]/g,"?");
+}
+function pdfTexte(v){
+ return pdfAscii(v)
+  .replace(/\\/g,"\\\\")
+  .replace(/\(/g,"\\(")
+  .replace(/\)/g,"\\)");
+}
+function creerPDF(pages){
+ const objets=[null];
+ function ajouter(s){
+  objets.push(s);
+  return objets.length-1;
+ }
+ const catalogue=ajouter("");
+ const pagesId=ajouter("");
+ const police=ajouter("<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>");
+ const pagesRefs=[];
+ pages.forEach(lignes=>{
+  const commandes=["BT","/F1 10 Tf","14 TL","40 800 Td"];
+  lignes.forEach((texte,i)=>{
+   if(i)commandes.push("T*");
+   commandes.push("("+pdfTexte(texte)+") Tj");
+  });
+  commandes.push("ET");
+  const flux=commandes.join("\n")+"\n";
+  const contenu=ajouter(
+   "<< /Length "+flux.length+" >>\nstream\n"+
+   flux+"endstream"
+  );
+  const page=ajouter(
+   "<< /Type /Page /Parent "+pagesId+
+   " 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 "+
+   police+" 0 R >> >> /Contents "+contenu+" 0 R >>"
+  );
+  pagesRefs.push(page);
+ });
+ objets[pagesId]="<< /Type /Pages /Count "+pagesRefs.length+
+  " /Kids ["+pagesRefs.map(n=>n+" 0 R").join(" ")+"] >>";
+ objets[catalogue]="<< /Type /Catalog /Pages "+pagesId+" 0 R >>";
+ let pdf="%PDF-1.4\n";
+ const offsets=[0];
+ for(let i=1;i<objets.length;i++){
+  offsets[i]=pdf.length;
+  pdf+=i+" 0 obj\n"+objets[i]+"\nendobj\n";
+ }
+ const debut=pdf.length;
+ pdf+="xref\n0 "+objets.length+"\n";
+ pdf+="0000000000 65535 f \n";
+ for(let i=1;i<objets.length;i++){
+  pdf+=String(offsets[i]).padStart(10,"0")+" 00000 n \n";
+ }
+ pdf+="trailer\n<< /Size "+objets.length+
+  " /Root "+catalogue+" 0 R >>\n";
+ pdf+="startxref\n"+debut+"\n%%EOF";
+ return new Blob([pdf],{type:"application/pdf"});
+}
+async function exporterCotisationsPDF(){
+ const g=actuel();
+ if(!g)return;
+ const s=situationCotisations(g);
+ if(!s.tour){
+  alert("Aucun tour actif à exporter.");
+  return;
+ }
+ const entete=[
+  "TONTINEPRO TOGO - SITUATION DES COTISATIONS",
+  "Groupe : "+g.nom,
+  "Date de creation : "+(g.dateCreation||"Non renseignee"),
+  "Nombre de membres : "+g.membres.length,
+  "Tour : "+s.tour+" / "+g.ordre.length,
+  "Date d'edition : "+new Date().toLocaleString("fr-FR"),
+  "-------------------------------------------------------------",
+  "Membre | Attendu | Verse | Reste | Statut"
+ ];
+ const lignes=s.lignes.map(x=>
+  x.nom.slice(0,20)+" | "+x.attendu+
+  " | "+x.verse+" | "+x.reste+" | "+x.statut
+ );
+ const fin=[
+  "-------------------------------------------------------------",
+  "TOTAL ATTENDU : "+s.attendu+" FCFA",
+  "TOTAL VERSE : "+s.verse+" FCFA",
+  "TOTAL RESTANT : "+s.reste+" FCFA",
+  "Document de simulation - montants non verifies par banque."
+ ];
+ const pages=[];
+ const taille=47;
+ for(let i=0;i<lignes.length;i+=taille){
+  pages.push([
+   ...entete,
+   ...lignes.slice(i,i+taille),
+   ...(i+taille>=lignes.length?fin:[])
+  ]);
+ }
+ if(!pages.length)pages.push([...entete,...fin]);
+ const pdf=creerPDF(pages);
+ const nom="cotisations_"+dateLocale()+".pdf";
+ try{
+  await enregistrerFichier(nom,"application/pdf",pdf);
+ }catch(e){
+  alert("Export PDF impossible : "+e.message);
+ }
+}
+
 /* AFFICHAGE GENERAL */
 function afficher(){
- const s=el("groupes");s.replaceChildren();
+ const select=el("groupes");
+ select.replaceChildren();
  if(!groupes[selection])selection=0;
  groupes.forEach((g,i)=>{
   const o=document.createElement("option");
-  o.value=i;o.textContent=g.nom;s.appendChild(o);
+  o.value=i;
+  o.textContent=g.nom;
+  select.appendChild(o);
  });
- if(groupes.length)s.value=String(selection);
+ if(groupes.length)select.value=String(selection);
  const g=actuel();
  remplirSelect("historiqueMembre",g?g.membres:[],"Tous les membres");
  remplirSelect("ficheMembre",g?g.membres:[],"Sélectionner un membre");
- afficherHistorique();afficherFicheFinanciere();
+ afficherHistorique();
+ afficherFicheFinanciere();
  ["membres","ordre","tours"].forEach(id=>el(id).replaceChildren());
  if(!g){
   el("details").textContent="Créez votre premier groupe.";
@@ -798,10 +1222,15 @@ function afficher(){
   ["ajoutBtn","tirageBtn","demarrerBtn","mode"]
    .forEach(id=>el(id).disabled=true);
   el("tours").textContent="Aucune tontine.";
+  afficherTableauCotisations();
   return;
  }
- el("details").textContent="Cotisation : "+argent(g.cotisation)+
-  " | Garantie : "+argent(g.garantie)+" | Période : "+g.periode;
+ el("details").textContent=
+  "Date de création : "+(g.dateCreation||"Non renseignée (ancien groupe)")+
+  " | Membres : "+g.membres.length+
+  " | Cotisation : "+argent(g.cotisation)+
+  " | Garantie : "+argent(g.garantie)+
+  " | Période : "+g.periode;
  el("statut").textContent=g.demarree
   ?(g.tourActuel>=g.ordre.length?"Statut : CYCLE TERMINÉ":"Statut : EN COURS")
   :"Statut : EN PRÉPARATION";
@@ -809,14 +1238,23 @@ function afficher(){
 
  /* MEMBRES */
  g.membres.forEach(m=>{
-  const d=document.createElement("div");d.className="item";
+  const d=document.createElement("div");
+  d.className="item";
   const titre=document.createElement("strong");
-  titre.textContent=m.nom;d.appendChild(titre);
+  titre.textContent=m.nom;
+  d.appendChild(titre);
+  ligne(d,
+   "Naissance : "+(m.dateNaissance||"Non renseignée")+
+   " à "+(m.lieuNaissance||"Non renseigné"),"note");
+  ligne(d,"Profession : "+(m.profession||"Non renseignée"),"note");
+  ligne(d,"Revenu mensuel déclaré : "+
+   (Number.isSafeInteger(m.revenuMensuel)
+    ?argent(m.revenuMensuel):"Non renseigné"),"note");
 
   if(m.verificationIdentite){
    ligne(d,"Pièce : "+m.verificationIdentite.type,"note");
-   ligne(d,"Fichier : "+(m.verificationIdentite.fichierNom||"Non disponible"),"note");
-
+   ligne(d,"Fichier : "+
+    (m.verificationIdentite.fichierNom||"Non disponible"),"note");
    if(m.verificationIdentite.fichierNom){
     const actions=document.createElement("div");
     actions.className="row";
@@ -828,63 +1266,91 @@ function afficher(){
    ligne(d,"Pièce justificative non renseignée.","note");
   }
 
-  ligne(d,m.garantieVersee?"Garantie confirmée":"Garantie non versée",
+  ligne(d,
+   m.garantieVersee?"Garantie confirmée":"Garantie non versée",
    m.garantieVersee?"ok":"no");
-  if(!m.garantieVersee&&!g.demarree)
+  if(!m.garantieVersee&&!g.demarree){
    bouton("Confirmer la garantie",()=>confirmerGarantie(m.id),d);
+  }
   el("membres").appendChild(d);
  });
 
- /* ORDRE */
+ /* ORDRE DE PASSAGE */
  el("mode").value=g.mode||"tirage";
  el("mode").disabled=!!g.demarree;
- el("tirageBtn").disabled=!!g.demarree||g.mode!=="tirage"||g.membres.length<2;
+ el("tirageBtn").disabled=!!g.demarree||
+  g.mode!=="tirage"||g.membres.length<2;
  g.ordre.forEach((id,i)=>{
-  const m=membreParId(g,id);if(!m)return;
-  const d=document.createElement("div");d.className="item";
+  const m=membreParId(g,id);
+  if(!m)return;
+  const d=document.createElement("div");
+  d.className="item";
   ligne(d,"Tour "+(i+1)+" : "+m.nom);
   if(g.mode==="collectif"&&!g.demarree){
-   const r=document.createElement("div");r.className="row";
+   const r=document.createElement("div");
+   r.className="row";
    bouton("Monter",()=>deplacer(i,-1),r,i===0);
    bouton("Descendre",()=>deplacer(i,1),r,i===g.ordre.length-1);
    d.appendChild(r);
   }
   el("ordre").appendChild(d);
  });
- if(!g.demarree&&ordreComplet(g))
-  bouton(g.ordreValide?"Ordre validé":"Valider cet ordre",
-   validerOrdre,el("ordre"),g.ordreValide);
+ if(!g.demarree&&ordreComplet(g)){
+  bouton(
+   g.ordreValide?"Ordre validé":"Valider cet ordre",
+   validerOrdre,el("ordre"),g.ordreValide
+  );
+ }
 
- /* CONDITIONS */
- el("conditions").textContent="Garanties : "+
-  g.membres.filter(m=>m.garantieVersee).length+"/"+g.membres.length+
+ /* DEMARRAGE */
+ el("conditions").textContent=
+  "Garanties : "+g.membres.filter(m=>m.garantieVersee).length+
+  "/"+g.membres.length+
   " | Ordre : "+(g.ordreValide?"validé":"non validé");
  el("demarrerBtn").disabled=!!g.demarree||!peutDemarrer(g);
 
- /* TOURS */
+ /* SUIVI DES TOURS */
  const z=el("tours");
- if(!g.demarree){z.textContent="La tontine n'a pas démarré.";return}
- if(g.tourActuel>=g.ordre.length){
-  z.textContent="Tous les tours sont terminés.";return;
+ if(!g.demarree){
+  z.textContent="La tontine n'a pas démarré.";
+ }else if(g.tourActuel>=g.ordre.length){
+  z.textContent="Tous les tours sont terminés.";
+ }else{
+  const beneficiaire=membreParId(g,g.ordre[g.tourActuel]);
+  if(!beneficiaire){
+   z.textContent="Bénéficiaire introuvable.";
+  }else{
+   ligne(z,"Tour "+(g.tourActuel+1)+
+    " / "+g.ordre.length+
+    " — Bénéficiaire : "+beneficiaire.nom);
+   ligne(z,"Cagnotte prévue : "+
+    argent(g.cotisation*g.membres.length));
+   g.membres.forEach(m=>{
+    const p=Array.isArray(g.paiements)
+     ?g.paiements.find(x=>memeId(x.id,m.id)):null;
+    const d=document.createElement("div");
+    d.className="item";
+    ligne(d,m.nom+" : "+
+     (p&&p.verse?"Cotisation confirmée":"Cotisation non versée"));
+    if(p&&!p.verse){
+     bouton("Confirmer la cotisation",
+      ()=>confirmerCotisation(m.id),d);
+    }
+    z.appendChild(d);
+   });
+   bouton(
+    "Valider le tour et passer au suivant",
+    validerTour,z,!tourComplet(g)
+   );
+  }
  }
- const beneficiaire=membreParId(g,g.ordre[g.tourActuel]);
- if(!beneficiaire){z.textContent="Bénéficiaire introuvable.";return}
- ligne(z,"Tour "+(g.tourActuel+1)+" / "+g.ordre.length+
-  " — Bénéficiaire : "+beneficiaire.nom);
- ligne(z,"Cagnotte prévue : "+argent(g.cotisation*g.membres.length));
- g.membres.forEach(m=>{
-  const p=Array.isArray(g.paiements)
-   ?g.paiements.find(x=>memeId(x.id,m.id)):null;
-  const d=document.createElement("div");d.className="item";
-  ligne(d,m.nom+" : "+(p&&p.verse?"Cotisation confirmée":"Cotisation non versée"));
-  if(p&&!p.verse)
-   bouton("Confirmer la cotisation",()=>confirmerCotisation(m.id),d);
-  z.appendChild(d);
- });
- bouton("Valider le tour et passer au suivant",validerTour,z,!tourComplet(g));
+ afficherTableauCotisations();
 }
 
 /* INITIALISATION */
+el("dateCreation").value=dateLocale();
+el("dateCreation").max=dateLocale();
+el("dateNaissance").max=dateLocale();
 retourAcces();
 
 </script>
