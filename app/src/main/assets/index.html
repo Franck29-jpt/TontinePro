@@ -122,6 +122,22 @@ footer {
   }
 }
 </style>
+
+<!-- Connexion Supabase - TontinePro Togo -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+
+<script>
+  const SUPABASE_URL =
+    "https://ctltbvmfdyiauafmybnz.supabase.co";
+
+  const SUPABASE_PUBLISHABLE_KEY =
+    "COLLER_ICI_VOTRE_CLE_PUBLIQUE";
+
+  const tontineSupabase = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+</script>
 </head>
 <body>
 
