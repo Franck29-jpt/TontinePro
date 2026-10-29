@@ -59,6 +59,68 @@ footer{text-align:center;background:var(--bleu);color:white;padding:14px;font-si
 #contenuDocument img{max-width:100%;height:auto}
 #contenuDocument iframe{width:100%;height:65vh;border:0}
 @media(max-width:360px){body{font-size:13px}.card{padding:10px}.grille button{font-size:12px}}
+
+/* TontinePro Togo — Interface professionnelle */
+
+:focus-visible {
+  outline: 3px solid #efb94f;
+  outline-offset: 3px;
+}
+
+button {
+  min-height: 46px;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+.card {
+  box-shadow: 0 5px 22px #123d7810;
+}
+
+.entete {
+  background: linear-gradient(135deg, #123d78, #225d9d);
+}
+
+#messageOperation {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 24px);
+  max-width: 520px;
+  background: #e5f6eb;
+  border: 1px solid #83c7a0;
+  border-radius: 12px;
+  padding: 14px 18px;
+  color: #145d39;
+  font-weight: 700;
+  z-index: 150;
+}
+
+#messageOperation.erreur {
+  background: #fff1f0;
+  color: #9d2323;
+  border-color: #f3a29c;
+}
+
+footer {
+  flex-shrink: 0;
+  margin-top: auto;
+  text-align: center;
+  background: #123d78;
+  color: white;
+  padding: 14px 70px 14px 14px;
+  font-size: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *:before, *:after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
 </style>
 </head>
 <body>
@@ -100,6 +162,13 @@ footer{text-align:center;background:var(--bleu);color:white;padding:14px;font-si
 </div>
 </section>
 
+
+<div
+  id="messageOperation"
+  role="status"
+  aria-live="polite"
+  hidden>
+</div>
 <button id="menuBouton" type="button" onclick="basculerMenu()">☰</button>
 <div id="fondMenu" onclick="fermerMenu()" hidden></div>
 
@@ -257,7 +326,23 @@ Application issue des travaux de recherche doctorale
 <script>
 "use strict";
 
-const CLE="tontinepro_rotation_v1";
+let minuteurMessage;
+
+function notifier(texte, erreur = false) {
+  const zone = document.getElementById("messageOperation");
+
+  zone.textContent = (erreur ? "⚠ " : "✓ ") + texte;
+  zone.classList.toggle("erreur", erreur);
+  zone.hidden = false;
+
+  clearTimeout(minuteurMessage);
+
+  minuteurMessage = setTimeout(() => {
+    zone.hidden = true;
+  }, 5200);
+}
+notifier("Enregistrement effectué avec succès.");
+ const CLE="tontinepro_rotation_v1";
 const CLE_COMPTE="tontinepro_compte_local_v2";
 const DB_NOM="TontineProDocuments";
 const DB_STORE="documents";
