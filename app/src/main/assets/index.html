@@ -1572,5 +1572,796 @@ el("dateNaissance").max=dateLocale();
 retourAcces();
 
 </script>
+
+<!-- ==========================================
+     TONTINEPRO TOGO
+     MODULE ECOSYSTEME FINANCIER
+     Version prototype
+========================================== -->
+
+<style>
+  #tp-finance * {
+    box-sizing: border-box;
+  }
+
+  #tp-finance {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 5000;
+    overflow-y: auto;
+    background: #f2f6fc;
+    color: #173451;
+    font-family: Arial, sans-serif;
+    padding: 14px;
+  }
+
+  #tp-finance .tp-container {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  #tp-finance .tp-header {
+    background: #074789;
+    color: white;
+    border-radius: 14px;
+    padding: 17px;
+    margin-bottom: 14px;
+  }
+
+  #tp-finance h2 {
+    font-size: 20px;
+    margin: 0 0 8px;
+  }
+
+  #tp-finance h3 {
+    font-size: 16px;
+    margin: 0 0 12px;
+  }
+
+  #tp-finance .tp-card {
+    background: white;
+    border: 1px solid #d6e2f0;
+    border-radius: 13px;
+    padding: 15px;
+    margin-bottom: 13px;
+  }
+
+  #tp-finance label {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 12px 0 5px;
+  }
+
+  #tp-finance input,
+  #tp-finance select,
+  #tp-finance textarea {
+    display: block;
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #b8cbe0;
+    border-radius: 8px;
+    background: white;
+    color: #173451;
+    font-size: 14px;
+  }
+
+  #tp-finance button,
+  #tp-finance .tp-button {
+    border: 0;
+    border-radius: 9px;
+    background: #0862b5;
+    color: white;
+    padding: 11px 13px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  #tp-finance .tp-secondary {
+    background: #e4eefb;
+    color: #074789;
+  }
+
+  #tp-finance .tp-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  #tp-finance .tp-row > button {
+    flex: 1;
+  }
+
+  #tp-finance .tp-muted {
+    color: #58718a;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  #tp-finance .tp-item {
+    border-top: 1px solid #e4ebf4;
+    padding: 11px 0;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  #tp-finance .tp-item:first-child {
+    border-top: 0;
+  }
+
+  #tp-finance .tp-status {
+    display: inline-block;
+    background: #e4eefb;
+    color: #07539c;
+    padding: 4px 8px;
+    border-radius: 20px;
+    font-size: 11px;
+    margin-top: 5px;
+  }
+
+  #tp-finance .tp-hidden {
+    display: none;
+  }
+
+  #tp-finance-open {
+    position: fixed;
+    right: 12px;
+    bottom: 16px;
+    z-index: 4900;
+    background: #074789;
+    color: white;
+    border: 0;
+    border-radius: 25px;
+    padding: 13px 16px;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0 4px 14px #0003;
+  }
+</style>
+
+<button
+  id="tp-finance-open"
+  type="button"
+  onclick="TPFinance.ouvrir()">
+  🏦 Partenaires financiers
+</button>
+
+<section id="tp-finance" aria-label="Ecosystème financier">
+  <div class="tp-container">
+
+    <div class="tp-header">
+      <div class="tp-row">
+        <div style="flex:1">
+          <h2>Écosystème financier</h2>
+          <div style="font-size:13px">
+            TontinePro Togo
+          </div>
+        </div>
+        <button
+          type="button"
+          onclick="TPFinance.fermer()"
+          style="background:#ffffff25">
+          ✕ Fermer
+        </button>
+      </div>
+    </div>
+
+    <div class="tp-card">
+      <div class="tp-row">
+        <button
+          type="button"
+          onclick="TPFinance.afficher('partenaires')">
+          Partenaires
+        </button>
+        <button
+          type="button"
+          onclick="TPFinance.afficher('demande')">
+          Demander un service
+        </button>
+        <button
+          type="button"
+          onclick="TPFinance.afficher('suivi')">
+          Suivi
+        </button>
+      </div>
+    </div>
+
+    <!-- PARTENAIRES -->
+
+    <div id="tp-page-partenaires">
+      <div class="tp-card">
+        <h3>Répertoire des acteurs financiers</h3>
+
+        <label for="tp-filtre">
+          Catégorie d'acteur
+        </label>
+        <select id="tp-filtre"
+          onchange="TPFinance.listerPartenaires()">
+          <option value="">
+            Toutes les catégories
+          </option>
+          <option value="microfinance">
+            Institutions de microfinance
+          </option>
+          <option value="banque">Banques</option>
+          <option value="paiement">
+            Mobile money / Paiement
+          </option>
+          <option value="assurance">
+            Assurances
+          </option>
+          <option value="garantie">
+            Fonds de garantie
+          </option>
+          <option value="investisseur">
+            Investisseurs
+          </option>
+          <option value="public">
+            Organismes publics
+          </option>
+          <option value="cooperative">
+            Coopératives
+          </option>
+        </select>
+
+        <div id="tp-liste-partenaires"></div>
+      </div>
+
+      <div class="tp-card">
+        <h3>Enregistrer un partenaire</h3>
+
+        <p class="tp-muted">
+          Prototype : enregistrement local
+          uniquement. Aucun partenaire
+          n'est considéré comme agréé
+          ou officiellement connecté.
+        </p>
+
+        <form id="tp-form-partenaire">
+          <label for="tp-nom-partenaire">
+            Nom de l'institution
+          </label>
+          <input
+            id="tp-nom-partenaire"
+            maxlength="120"
+            required>
+
+          <label for="tp-type-partenaire">
+            Type d'acteur
+          </label>
+          <select id="tp-type-partenaire" required>
+            <option value="microfinance">
+              Microfinance
+            </option>
+            <option value="banque">Banque</option>
+            <option value="paiement">
+              Prestataire de paiement
+            </option>
+            <option value="assurance">
+              Assurance
+            </option>
+            <option value="garantie">
+              Fonds de garantie
+            </option>
+            <option value="investisseur">
+              Investisseur
+            </option>
+            <option value="public">
+              Organisme public
+            </option>
+            <option value="cooperative">
+              Coopérative
+            </option>
+          </select>
+
+          <label for="tp-service-partenaire">
+            Services proposés
+          </label>
+          <textarea
+            id="tp-service-partenaire"
+            rows="3"
+            maxlength="500"
+            required></textarea>
+
+          <button type="submit"
+            style="margin-top:12px;width:100%">
+            Enregistrer le partenaire
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- DEMANDES -->
+
+    <div id="tp-page-demande" class="tp-hidden">
+      <div class="tp-card">
+        <h3>Nouvelle demande financière</h3>
+
+        <p class="tp-muted">
+          La demande est enregistrée
+          localement. Elle n'est pas
+          transmise à une institution.
+        </p>
+
+        <form id="tp-form-demande">
+
+          <label for="tp-demandeur">
+            Nom du demandeur
+          </label>
+          <input
+            id="tp-demandeur"
+            maxlength="120"
+            required>
+
+          <label for="tp-groupe">
+            Groupe de tontine
+          </label>
+          <input
+            id="tp-groupe"
+            maxlength="120"
+            required>
+
+          <label for="tp-partenaire-cible">
+            Institution sollicitée
+          </label>
+          <select
+            id="tp-partenaire-cible"
+            required>
+          </select>
+
+          <label for="tp-type-service">
+            Service souhaité
+          </label>
+          <select id="tp-type-service" required>
+            <option value="credit">
+              Crédit
+            </option>
+            <option value="epargne">
+              Épargne
+            </option>
+            <option value="paiement">
+              Paiement électronique
+            </option>
+            <option value="assurance">
+              Assurance
+            </option>
+            <option value="garantie">
+              Garantie financière
+            </option>
+            <option value="investissement">
+              Investissement
+            </option>
+            <option value="accompagnement">
+              Accompagnement
+            </option>
+          </select>
+
+          <label for="tp-montant">
+            Montant sollicité (FCFA)
+          </label>
+          <input
+            id="tp-montant"
+            type="number"
+            min="0"
+            step="1"
+            required>
+
+          <label for="tp-objet">
+            Objet de la demande
+          </label>
+          <textarea
+            id="tp-objet"
+            rows="3"
+            maxlength="600"
+            required></textarea>
+
+          <label>
+            <input
+              id="tp-consentement"
+              type="checkbox"
+              required
+              style="display:inline;width:auto">
+            Je confirme l'enregistrement
+            de cette demande dans
+            cette démonstration.
+          </label>
+
+          <button
+            type="submit"
+            style="width:100%;margin-top:12px">
+            Enregistrer la demande
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- SUIVI -->
+
+    <div id="tp-page-suivi" class="tp-hidden">
+      <div class="tp-card">
+        <h3>Suivi des demandes</h3>
+        <p class="tp-muted">
+          Statuts indicatifs.
+          Aucune décision bancaire réelle.
+        </p>
+        <div id="tp-liste-demandes"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function () {
+  "use strict";
+
+  const CLE_PARTENAIRES =
+    "tp_demo_partenaires_v1";
+
+  const CLE_DEMANDES =
+    "tp_demo_demandes_v1";
+
+  const TYPES = {
+    microfinance: "Microfinance",
+    banque: "Banque",
+    paiement: "Mobile money / Paiement",
+    assurance: "Assurance",
+    garantie: "Fonds de garantie",
+    investisseur: "Investisseur",
+    public: "Organisme public",
+    cooperative: "Coopérative"
+  };
+
+  function lire(cle) {
+    try {
+      const valeur = JSON.parse(
+        localStorage.getItem(cle) || "[]"
+      );
+      return Array.isArray(valeur) ? valeur : [];
+    } catch (erreur) {
+      console.error(erreur);
+      return [];
+    }
+  }
+
+  function enregistrer(cle, valeur) {
+    try {
+      localStorage.setItem(
+        cle,
+        JSON.stringify(valeur)
+      );
+      return true;
+    } catch (erreur) {
+      console.error(erreur);
+      informer("Enregistrement impossible.", true);
+      return false;
+    }
+  }
+
+  function informer(message, erreur = false) {
+    if (typeof window.notifier === "function") {
+      window.notifier(message, erreur);
+    } else {
+      const zone = document.createElement("div");
+      zone.textContent = message;
+      zone.setAttribute("role", "status");
+      zone.style.cssText =
+        "position:fixed;top:15px;left:5%;" +
+        "width:90%;background:#074789;" +
+        "color:white;padding:14px;" +
+        "border-radius:10px;z-index:99999";
+      document.body.appendChild(zone);
+      setTimeout(() => zone.remove(), 5000);
+    }
+  }
+
+  function element(texte, classe) {
+    const div = document.createElement("div");
+    if (classe) div.className = classe;
+    div.textContent = texte;
+    return div;
+  }
+
+  function identifiant() {
+    if (window.crypto &&
+        typeof crypto.randomUUID === "function") {
+      return crypto.randomUUID();
+    }
+    return String(Date.now()) +
+      "-" + Math.random().toString(36).slice(2);
+  }
+
+  function ouvrir() {
+    document.getElementById(
+      "tp-finance"
+    ).style.display = "block";
+
+    afficher("partenaires");
+  }
+
+  function fermer() {
+    document.getElementById(
+      "tp-finance"
+    ).style.display = "none";
+  }
+
+  function afficher(page) {
+    ["partenaires", "demande", "suivi"]
+      .forEach(nom => {
+        document.getElementById(
+          "tp-page-" + nom
+        ).classList.toggle(
+          "tp-hidden",
+          nom !== page
+        );
+      });
+
+    if (page === "partenaires") {
+      listerPartenaires();
+    }
+
+    if (page === "demande") {
+      chargerChoixPartenaires();
+    }
+
+    if (page === "suivi") {
+      listerDemandes();
+    }
+  }
+
+  function listerPartenaires() {
+    const liste = document.getElementById(
+      "tp-liste-partenaires"
+    );
+
+    const filtre = document.getElementById(
+      "tp-filtre"
+    ).value;
+
+    liste.replaceChildren();
+
+    const partenaires = lire(
+      CLE_PARTENAIRES
+    ).filter(p => !filtre || p.type === filtre);
+
+    if (!partenaires.length) {
+      liste.appendChild(
+        element(
+          "Aucun partenaire enregistré.",
+          "tp-muted"
+        )
+      );
+      return;
+    }
+
+    partenaires.forEach(p => {
+      const carte = document.createElement("div");
+      carte.className = "tp-item";
+
+      const titre = document.createElement("strong");
+      titre.textContent = p.nom;
+
+      carte.appendChild(titre);
+      carte.appendChild(
+        element(TYPES[p.type] || p.type)
+      );
+      carte.appendChild(
+        element(p.services)
+      );
+      carte.appendChild(
+        element(
+          "Statut : partenaire non vérifié",
+          "tp-status"
+        )
+      );
+
+      liste.appendChild(carte);
+    });
+  }
+
+  function chargerChoixPartenaires() {
+    const choix = document.getElementById(
+      "tp-partenaire-cible"
+    );
+
+    choix.replaceChildren();
+
+    const initial = document.createElement("option");
+    initial.value = "";
+    initial.textContent =
+      "Sélectionnez une institution";
+    choix.appendChild(initial);
+
+    lire(CLE_PARTENAIRES).forEach(p => {
+      const option = document.createElement("option");
+      option.value = p.id;
+      option.textContent = p.nom;
+      choix.appendChild(option);
+    });
+  }
+
+  function listerDemandes() {
+    const liste = document.getElementById(
+      "tp-liste-demandes"
+    );
+
+    liste.replaceChildren();
+
+    const demandes = lire(CLE_DEMANDES);
+
+    if (!demandes.length) {
+      liste.appendChild(
+        element(
+          "Aucune demande enregistrée.",
+          "tp-muted"
+        )
+      );
+      return;
+    }
+
+    demandes.forEach(d => {
+      const carte = document.createElement("div");
+      carte.className = "tp-item";
+
+      const titre = document.createElement("strong");
+      titre.textContent = d.demandeur;
+
+      carte.appendChild(titre);
+      carte.appendChild(
+        element("Groupe : " + d.groupe)
+      );
+      carte.appendChild(
+        element("Institution : " + d.partenaireNom)
+      );
+      carte.appendChild(
+        element("Service : " + d.service)
+      );
+      carte.appendChild(
+        element(
+          "Montant : " +
+          Number(d.montant).toLocaleString("fr-FR") +
+          " FCFA"
+        )
+      );
+      carte.appendChild(
+        element("Objet : " + d.objet)
+      );
+      carte.appendChild(
+        element(
+          "Statut : " + d.statut,
+          "tp-status"
+        )
+      );
+      carte.appendChild(
+        element(
+          "Date : " +
+          new Date(d.date).toLocaleString("fr-FR"),
+          "tp-muted"
+        )
+      );
+
+      liste.appendChild(carte);
+    });
+  }
+
+  document.getElementById(
+    "tp-form-partenaire"
+  ).addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const nom = document.getElementById(
+      "tp-nom-partenaire"
+    ).value.trim();
+
+    const type = document.getElementById(
+      "tp-type-partenaire"
+    ).value;
+
+    const services = document.getElementById(
+      "tp-service-partenaire"
+    ).value.trim();
+
+    if (!nom || !services || !TYPES[type]) {
+      informer("Veuillez compléter le formulaire.", true);
+      return;
+    }
+
+    const partenaires = lire(CLE_PARTENAIRES);
+
+    partenaires.push({
+      id: identifiant(),
+      nom,
+      type,
+      services,
+      statut: "non_verifie",
+      date: new Date().toISOString()
+    });
+
+    if (enregistrer(CLE_PARTENAIRES, partenaires)) {
+      this.reset();
+      listerPartenaires();
+      informer("Partenaire enregistré localement.");
+    }
+  });
+
+  document.getElementById(
+    "tp-form-demande"
+  ).addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const demandeur = document.getElementById(
+      "tp-demandeur"
+    ).value.trim();
+
+    const groupe = document.getElementById(
+      "tp-groupe"
+    ).value.trim();
+
+    const partenaireId = document.getElementById(
+      "tp-partenaire-cible"
+    ).value;
+
+    const service = document.getElementById(
+      "tp-type-service"
+    ).value;
+
+    const montant = Number(
+      document.getElementById("tp-montant").value
+    );
+
+    const objet = document.getElementById(
+      "tp-objet"
+    ).value.trim();
+
+    const consentement = document.getElementById(
+      "tp-consentement"
+    ).checked;
+
+    const partenaire = lire(
+      CLE_PARTENAIRES
+    ).find(p => p.id === partenaireId);
+
+    if (!demandeur || !groupe || !partenaire ||
+        !objet || !consentement ||
+        !Number.isSafeInteger(montant) ||
+        montant < 0) {
+      informer("Vérifiez les informations saisies.", true);
+      return;
+    }
+
+    const demandes = lire(CLE_DEMANDES);
+
+    demandes.push({
+      id: identifiant(),
+      demandeur,
+      groupe,
+      partenaireId,
+      partenaireNom: partenaire.nom,
+      service,
+      montant,
+      objet,
+      statut: "Brouillon local",
+      date: new Date().toISOString()
+    });
+
+    if (enregistrer(CLE_DEMANDES, demandes)) {
+      this.reset();
+      informer("Demande enregistrée en brouillon.");
+      afficher("suivi");
+    }
+  });
+
+  window.TPFinance = Object.freeze({
+    ouvrir,
+    fermer,
+    afficher,
+    listerPartenaires
+  });
+})();
+</script>
+
+<!-- FIN MODULE ECOSYSTEME FINANCIER -->
 </body>
 </html>
