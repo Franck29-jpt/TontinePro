@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -348,6 +347,7 @@ footer {
   aria-live="polite"
   hidden>
 </div>
+
 <button id="menuBouton" type="button" onclick="basculerMenu()">☰</button>
 <div id="fondMenu" onclick="fermerMenu()" hidden></div>
 
@@ -398,9 +398,12 @@ footer {
 <input id="nom" maxlength="120" required>
 <label for="dateCreation">Date de création du groupe</label>
 <input id="dateCreation" type="date" required>
-<label for="cotisation">Cotisation par membre (FCFA)</label>
+<label for="paysGroupe">Pays du groupe</label>
+<select id="paysGroupe"></select>
+<p id="deviseGroupeInfo" class="note">Devise du groupe : XOF</p>
+<label for="cotisation">Cotisation par membre (devise du groupe)</label>
 <input id="cotisation" type="number" min="1" step="1">
-<label for="garantie">Dépôt de garantie initial (FCFA)</label>
+<label for="garantie">Dépôt de garantie initial (devise du groupe)</label>
 <input id="garantie" type="number" min="1" step="1">
 <label for="periode">Périodicité</label>
 <select id="periode">
@@ -476,6 +479,7 @@ footer {
 <section class="card" hidden>
 <h2>6. Suivi des cotisations</h2>
 <div id="tours"></div>
+<div class="document" id="tpPaiementModule"><h3>Paiement électronique sécurisé</h3><p class="note">Le paiement réel exige une identité vérifiée, des groupes synchronisés et une passerelle activée. Aucun paiement n’est confirmé localement.</p><label for="tpMembrePaiement">Membre concerné</label><select id="tpMembrePaiement"></select><label for="tpPasserelle">Passerelle</label><select id="tpPasserelle"></select><p id="tpPaiementResume" class="note" role="status"></p><button type="button" id="tpPayer" onclick="TPPaiement.demarrer()" disabled>Payer ma cotisation</button><button type="button" class="secondaire" onclick="TPPaiement.rafraichir()">Actualiser</button><p id="tpPaiementEtat" class="note" role="status"></p></div>
 <h3>Situation des cotisations</h3>
 <div id="resumeCotisations" class="resume"></div>
 <div id="tableauCotisations" class="table-wrap"></div>
@@ -540,7 +544,7 @@ function notifier(texte, erreur = false) {
   const message = document.createElement("div");
   message.className = "notification-message";
   message.textContent = String(texte);
-  texteZone.append(titre, message);
+  texteZone.appendChild(titre, message);
 
   const fermer = document.createElement("button");
   fermer.type = "button";
@@ -693,7 +697,357 @@ function ouvrirConnexion(){
   return;
  }
  el("choixAcces").hidden=true;
+
+<button id="menuBouton" type="button" onclick="basculerMenu()">☰</button>
+<div id="fondMenu" onclick="fermerMenu()" hidden></div>
+
+<nav id="menu">
+<h2>TontinePro Togo</h2>
+<button onclick="accueil()">Accueil</button>
+<button onclick="rubrique(1)">1. Créer un groupe</button>
+<button onclick="rubrique(2)">2. Groupe sélectionné</button>
+<button onclick="rubrique(3)">3. Inscrire les membres</button>
+<button onclick="rubrique(4)">4. Ordre de passage</button>
+<button onclick="rubrique(5)">5. Démarrer la tontine</button>
+<button onclick="rubrique(6)">6. Suivi des cotisations</button>
+<button onclick="rubrique(7)">7. Historique financier</button>
+<button onclick="rubrique(8)">8. Tableau financier individuel</button>
+  <button
+  type="button"
+  onclick="ouvrirEcosystemeFinancier()">
+  9. Écosystème financier
+</button>
+<button onclick="deconnexion()">Se déconnecter</button>
+</nav>
+
+<main>
+<div id="pageAccueil" class="card">
+<div class="entete">
+<h1>Bienvenue sur TontinePro Togo</h1>
+<p>Ensemble, finançons nos activités.</p>
+<p>Gestion des tontines rotatives, garanties, cotisations et cagnottes.</p>
+</div>
+<h2>Accès rapides</h2>
+<div class="grille">
+  <button
+  type="button"
+  onclick="ouvrirEcosystemeFinancier()">
+  🏦 Partenaires financiers
+</button>
+<button onclick="rubrique(2)">👥 Mes groupes</button>
+<button onclick="rubrique(6)">💰 Cotisations</button>
+<button onclick="rubrique(8)">📊 Mes finances</button>
+<button onclick="rubrique(7)">📋 Historique</button>
+</div>
+<p class="note">Utilisez le bouton ☰ pour accéder aux neuf rubriques.</p>
+</div>
+
+<section class="card" hidden>
+<h2>1. Créer un groupe</h2>
+<label for="nom">Nom du groupe</label>
+<input id="nom" maxlength="120" required>
+<label for="dateCreation">Date de création du groupe</label>
+<input id="dateCreation" type="date" required>
+<label for="paysGroupe">Pays du groupe</label>
+<select id="paysGroupe"></select>
+<p id="deviseGroupeInfo" class="note">Devise du groupe : XOF</p>
+<label for="cotisation">Cotisation par membre (devise du groupe)</label>
+<input id="cotisation" type="number" min="1" step="1">
+<label for="garantie">Dépôt de garantie initial (devise du groupe)</label>
+<input id="garantie" type="number" min="1" step="1">
+<label for="periode">Périodicité</label>
+<select id="periode">
+<option>Journalière</option>
+<option>Hebdomadaire</option>
+<option>Mensuelle</option>
+</select>
+<p class="note">Le nombre de membres sera calculé automatiquement à partir des inscriptions.</p>
+<button onclick="creerGroupe()">Créer le groupe</button>
+</section>
+
+<section class="card" hidden>
+<h2>2. Groupe sélectionné</h2>
+<label for="groupes">Choisir un groupe</label>
+<select id="groupes" onchange="changerGroupe()"></select>
+<p id="details"></p>
+<p id="statut"></p>
+</section>
+
+<section class="card" hidden>
+<h2>3. Inscrire les membres</h2>
+<label for="membre">Nom et prénom</label>
+<input id="membre" maxlength="150">
+<label for="dateNaissance">Date de naissance</label>
+<input id="dateNaissance" type="date">
+<label for="lieuNaissance">Lieu de naissance</label>
+<input id="lieuNaissance" maxlength="150">
+<label for="profession">Profession</label>
+<input id="profession" maxlength="150">
+<label for="revenuMensuel">Revenu mensuel déclaré (FCFA)</label>
+<input id="revenuMensuel" type="number" min="0" step="1">
+
+<div class="document">
+<h3>Pièce justificative</h3>
+<label for="typeDocument">Type de document</label>
+<select id="typeDocument">
+<option value="">Choisir un document</option>
+<option value="Carte nationale d'identité">Carte nationale d'identité</option>
+<option value="Acte de naissance">Acte de naissance</option>
+</select>
+<label for="fichierDocument">Joindre la pièce en photo ou PDF</label>
+<input id="fichierDocument" type="file" accept=".jpg,.jpeg,.png,.webp,.pdf,image/jpeg,image/png,image/webp,application/pdf">
+<p id="informationDocument" class="note">Aucun fichier sélectionné.</p>
+<img id="apercu" alt="Aperçu" hidden>
+<label class="consentement">
+<input id="consentementDocument" type="checkbox">
+<span>Je confirme avoir informé le membre et recueilli son accord pour l'utilisation de sa pièce justificative.</span>
+</label>
+<p class="note">Pour les essais, utilisez des documents fictifs. Les fichiers sont stockés localement sans chiffrement.</p>
+</div>
+
+<button id="ajoutBtn" onclick="ajouterMembre()">Enregistrer le membre</button>
+<div id="membres"></div>
+</section>
+
+<section class="card" hidden>
+<h2>4. Ordre de passage</h2>
+<label for="mode">Mode de désignation</label>
+<select id="mode" onchange="changerMode()">
+<option value="tirage">Tirage au sort</option>
+<option value="collectif">Choix collectif</option>
+</select>
+<button id="tirageBtn" onclick="tirerAuSort()">Effectuer le tirage</button>
+<div id="ordre"></div>
+</section>
+
+<section class="card" hidden>
+<h2>5. Démarrer la tontine</h2>
+<p id="conditions"></p>
+<button id="demarrerBtn" onclick="demarrer()">Démarrer la tontine</button>
+</section>
+
+<section class="card" hidden>
+<h2>6. Suivi des cotisations</h2>
+<div id="tours"></div>
+<div class="document" id="tpPaiementModule"><h3>Paiement électronique sécurisé</h3><p class="note">Le paiement réel exige une identité vérifiée, des groupes synchronisés et une passerelle activée. Aucun paiement n’est confirmé localement.</p><label for="tpMembrePaiement">Membre concerné</label><select id="tpMembrePaiement"></select><label for="tpPasserelle">Passerelle</label><select id="tpPasserelle"></select><p id="tpPaiementResume" class="note" role="status"></p><button type="button" id="tpPayer" onclick="TPPaiement.demarrer()" disabled>Payer ma cotisation</button><button type="button" class="secondaire" onclick="TPPaiement.rafraichir()">Actualiser</button><p id="tpPaiementEtat" class="note" role="status"></p></div>
+<h3>Situation des cotisations</h3>
+<div id="resumeCotisations" class="resume"></div>
+<div id="tableauCotisations" class="table-wrap"></div>
+<button id="exportCotisationsBtn" type="button" onclick="exporterCotisationsPDF()">Télécharger la situation en PDF</button>
+<p class="note">Les montants représentent les confirmations enregistrées dans le prototype, et non des transactions bancaires vérifiées.</p>
+</section>
+
+<section class="card" hidden>
+<h2>7. Historique financier</h2>
+<label for="historiqueMembre">Sélectionner un membre</label>
+<select id="historiqueMembre" onchange="afficherHistorique()"></select>
+<div id="historiqueFinancier"></div>
+</section>
+
+<section class="card" hidden>
+<h2>8. Tableau financier individuel</h2>
+<label for="ficheMembre">Choisir un membre</label>
+<select id="ficheMembre" onchange="afficherFicheFinanciere()"></select>
+<div id="ficheFinanciere"></div>
+</section>
+</main>
+
+<div id="fenetreDocument" hidden>
+<div id="boiteDocument">
+<h3 id="nomDocumentAffiche">Pièce justificative</h3>
+<div id="contenuDocument"></div>
+<p id="messageDocument" class="note"></p>
+<button onclick="fermerDocument()">Fermer le document</button>
+</div>
+</div>
+
+<footer>
+Application issue des travaux de recherche doctorale
+<br>© 2026 — TontinePro Togo
+</footer>
+
+<script>
+"use strict";
+
+let minuteurMessage;
+
+function notifier(texte, erreur = false) {
+  const zone = document.getElementById("messageOperation");
+  if (!zone) return;
+
+  clearTimeout(minuteurMessage);
+  zone.replaceChildren();
+  zone.classList.toggle("erreur", erreur);
+
+  const contenu = document.createElement("div");
+  contenu.className = "notification-contenu";
+  const icone = document.createElement("span");
+  icone.className = "notification-icone";
+  icone.textContent = erreur ? "!" : "✓";
+  icone.setAttribute("aria-hidden", "true");
+
+  const texteZone = document.createElement("div");
+  texteZone.className = "notification-texte";
+  const titre = document.createElement("strong");
+  titre.className = "notification-titre";
+  titre.textContent = erreur ? "Attention" : "Information";
+  const message = document.createElement("div");
+  message.className = "notification-message";
+  message.textContent = String(texte);
+  texteZone.appendChild(titre, message);
+
+  const fermer = document.createElement("button");
+  fermer.type = "button";
+  fermer.className = "notification-fermer";
+  fermer.textContent = "×";
+  fermer.setAttribute("aria-label", "Fermer la notification");
+  fermer.addEventListener("click", () => {
+    clearTimeout(minuteurMessage);
+    zone.hidden = true;
+  });
+  contenu.append(icone, texteZone, fermer);
+
+  const barre = document.createElement("div");
+  barre.className = "notification-barre";
+  const progression = document.createElement("div");
+  progression.className = "notification-progression";
+  barre.appendChild(progression);
+
+  zone.append(contenu, barre);
+  zone.hidden = false;
+  progression.style.animation = "none";
+  void progression.offsetWidth;
+  progression.style.animation = "";
+  minuteurMessage = setTimeout(() => { zone.hidden = true; }, 5000);
+}
+ const CLE="tontinepro_rotation_v1";
+const CLE_COMPTE="tontinepro_compte_local_v2";
+const DB_NOM="TontineProDocuments";
+const DB_STORE="documents";
+
+let groupes=[];
+let selection=0;
+let compte=null;
+let connecte=false;
+let fichierSelectionne=null;
+let documentURL=null;
+let urlDocumentAffiche=null;
+
+const el=id=>document.getElementById(id);
+const argent=n=>Number(n).toLocaleString("fr-FR")+" FCFA";
+const memeId=(a,b)=>String(a)===String(b);
+const actuel=()=>groupes[selection]||null;
+
+function dateLocale(){
+ const d=new Date();
+ return d.getFullYear()+"-"+
+  String(d.getMonth()+1).padStart(2,"0")+"-"+
+  String(d.getDate()).padStart(2,"0");
+}
+function dateValide(v){
+ if(!/^\d{4}-\d{2}-\d{2}$/.test(v))return false;
+ const d=new Date(v+"T12:00:00");
+ return !Number.isNaN(d.getTime())&&
+  d.getFullYear()===Number(v.slice(0,4))&&
+  d.getMonth()+1===Number(v.slice(5,7))&&
+  d.getDate()===Number(v.slice(8,10));
+}
+function uid(){
+ if(crypto.randomUUID)return crypto.randomUUID();
+ const b=new Uint8Array(16);
+ crypto.getRandomValues(b);
+ return Array.from(b,x=>x.toString(16).padStart(2,"0")).join("");
+}
+function ligne(parent,texte,classe=""){
+ const p=document.createElement("p");
+ p.textContent=texte;
+ if(classe)p.className=classe;
+ parent.appendChild(p);
+ return p;
+}
+function bouton(texte,action,parent,disabled=false){
+ const b=document.createElement("button");
+ b.type="button";b.textContent=texte;b.disabled=disabled;
+ b.addEventListener("click",action);
+ parent.appendChild(b);
+ return b;
+}
+function sauvegarder(){
+ try{
+  localStorage.setItem(CLE,JSON.stringify(groupes));
+  return true;
+ }catch(e){
+  alert("Impossible d'enregistrer les données locales.");
+  return false;
+ }
+}
+function transaction(modification){
+ const copie=JSON.stringify(groupes);
+ const ancienne=selection;
+ try{
+  modification();
+  if(!sauvegarder())throw Error("Échec de sauvegarde");
+  afficher();
+  return true;
+ }catch(e){
+  groupes=JSON.parse(copie);
+  selection=ancienne;
+  afficher();
+  alert("Opération annulée : "+e.message);
+  return false;
+ }
+}
+try{
+ const d=JSON.parse(localStorage.getItem(CLE));
+ if(Array.isArray(d))groupes=d;
+}catch(e){}
+try{
+ compte=JSON.parse(localStorage.getItem(CLE_COMPTE));
+}catch(e){}
+
+/* AUTHENTIFICATION */
+function motValide(m){
+ return /^[A-Za-z0-9]{4}$/.test(m);
+}
+function hex(b){
+ return Array.from(new Uint8Array(b),x=>x.toString(16).padStart(2,"0")).join("");
+}
+function octetsHex(s){
+ if(!/^(?:[0-9a-f]{2})+$/i.test(s))throw Error("Format cryptographique invalide.");
+ return new Uint8Array(s.match(/.{2}/g).map(x=>parseInt(x,16)));
+}
+function nouveauSel(){
+ const b=new Uint8Array(16);
+ crypto.getRandomValues(b);
+ return hex(b);
+}
+async function deriveMot(mot,salt){
+ if(!crypto.subtle)throw Error("Contexte sécurisé requis.");
+ const k=await crypto.subtle.importKey(
+  "raw",new TextEncoder().encode(mot),"PBKDF2",false,["deriveBits"]
+ );
+ const bits=await crypto.subtle.deriveBits({
+  name:"PBKDF2",
+  salt:octetsHex(salt),
+  iterations:310000,
+  hash:"SHA-256"
+ },k,256);
+ return hex(bits);
+}
+function retourAcces(){
+ el("choixAcces").hidden=false;
  el("formCreation").hidden=true;
+ el("formConnexion").hidden=true;
+ el("messageAcces").textContent="";
+}
+function ouvrirConnexion(){
+ if(!compte){
+  el("messageAcces").textContent=
+   "Aucun compte sur cet appareil. Créez d'abord un compte.";
+  return;
+ }
+ el("choixAcces").hidden=true;
+
  el("formConnexion").hidden=false;
  el("messageAcces").textContent="";
 }
@@ -1027,6 +1381,7 @@ function creerGroupe(){
  if(!transaction(()=>{
   groupes.push({
    id:uid(),nom,dateCreation,cotisation,garantie,
+    pays:el("paysGroupe").value,devise:TPPaiement.devise(el("paysGroupe").value),
    periode:el("periode").value,
    membres:[],mode:"tirage",ordre:[],
    ordreValide:false,demarree:false,
@@ -1043,6 +1398,7 @@ function creerGroupe(){
 function changerGroupe(){
  const i=Number(el("groupes").value);
  if(groupes[i]){
+
   selection=i;
   afficher();
  }
@@ -1393,355 +1749,7 @@ function afficherTableauCotisations(){
   return;
  }
  const table=document.createElement("table");
- const thead=document.createElement("thead");
- const tr=document.createElement("tr");
- ["Membre","Attendu (FCFA)","Versé (FCFA)",
-  "Reste (FCFA)","Statut"].forEach(x=>cellule(tr,x,"th"));
- thead.appendChild(tr);
- table.appendChild(thead);
- const tbody=document.createElement("tbody");
- s.lignes.forEach(x=>{
 
-  const r=document.createElement("tr");
-  [
-   x.nom,String(x.attendu),String(x.verse),
-   String(x.reste),x.statut
-  ].forEach(v=>cellule(r,v));
-  tbody.appendChild(r);
- });
- table.appendChild(tbody);
- const foot=document.createElement("tfoot");
- const r=document.createElement("tr");
- [
-  "TOTAL",String(s.attendu),String(s.verse),
-  String(s.reste),"Tour "+s.tour
- ].forEach(v=>cellule(r,v));
- foot.appendChild(r);
- table.appendChild(foot);
- zone.appendChild(table);
-}
-
-/* EXPORT PDF AUTONOME */
-function pdfAscii(v){
- return String(v)
-  .normalize("NFKD")
-  .replace(/[\u0300-\u036f]/g,"")
-  .replace(/[^\x20-\x7E]/g,"?");
-}
-function pdfTexte(v){
- return pdfAscii(v)
-  .replace(/\\/g,"\\\\")
-  .replace(/\(/g,"\\(")
-  .replace(/\)/g,"\\)");
-}
-function creerPDF(pages){
- const objets=[null];
- function ajouter(s){
-  objets.push(s);
-  return objets.length-1;
- }
- const catalogue=ajouter("");
- const pagesId=ajouter("");
- const police=ajouter("<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>");
- const pagesRefs=[];
- pages.forEach(lignes=>{
-  const commandes=["BT","/F1 10 Tf","14 TL","40 800 Td"];
-  lignes.forEach((texte,i)=>{
-   if(i)commandes.push("T*");
-   commandes.push("("+pdfTexte(texte)+") Tj");
-  });
-  commandes.push("ET");
-  const flux=commandes.join("\n")+"\n";
-  const contenu=ajouter(
-   "<< /Length "+flux.length+" >>\nstream\n"+
-   flux+"endstream"
-  );
-  const page=ajouter(
-   "<< /Type /Page /Parent "+pagesId+
-   " 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 "+
-   police+" 0 R >> >> /Contents "+contenu+" 0 R >>"
-  );
-  pagesRefs.push(page);
- });
- objets[pagesId]="<< /Type /Pages /Count "+pagesRefs.length+
-  " /Kids ["+pagesRefs.map(n=>n+" 0 R").join(" ")+"] >>";
- objets[catalogue]="<< /Type /Catalog /Pages "+pagesId+" 0 R >>";
- let pdf="%PDF-1.4\n";
- const offsets=[0];
- for(let i=1;i<objets.length;i++){
-  offsets[i]=pdf.length;
-  pdf+=i+" 0 obj\n"+objets[i]+"\nendobj\n";
- }
- const debut=pdf.length;
- pdf+="xref\n0 "+objets.length+"\n";
- pdf+="0000000000 65535 f \n";
- for(let i=1;i<objets.length;i++){
-  pdf+=String(offsets[i]).padStart(10,"0")+" 00000 n \n";
- }
- pdf+="trailer\n<< /Size "+objets.length+
-  " /Root "+catalogue+" 0 R >>\n";
- pdf+="startxref\n"+debut+"\n%%EOF";
- return new Blob([pdf],{type:"application/pdf"});
-}
-async function exporterCotisationsPDF(){
- const g=actuel();
- if(!g)return;
- const s=situationCotisations(g);
- if(!s.tour){
-  alert("Aucun tour actif à exporter.");
-  return;
- }
- const entete=[
-  "TONTINEPRO TOGO - SITUATION DES COTISATIONS",
-  "Groupe : "+g.nom,
-  "Date de creation : "+(g.dateCreation||"Non renseignee"),
-  "Nombre de membres : "+g.membres.length,
-  "Tour : "+s.tour+" / "+g.ordre.length,
-  "Date d'edition : "+new Date().toLocaleString("fr-FR"),
-  "-------------------------------------------------------------",
-  "Membre | Attendu | Verse | Reste | Statut"
- ];
- const lignes=s.lignes.map(x=>
-  x.nom.slice(0,20)+" | "+x.attendu+
-  " | "+x.verse+" | "+x.reste+" | "+x.statut
- );
- const fin=[
-  "-------------------------------------------------------------",
-  "TOTAL ATTENDU : "+s.attendu+" FCFA",
-  "TOTAL VERSE : "+s.verse+" FCFA",
-  "TOTAL RESTANT : "+s.reste+" FCFA",
-  "Document de simulation - montants non verifies par banque."
- ];
- const pages=[];
- const taille=47;
- for(let i=0;i<lignes.length;i+=taille){
-  pages.push([
-   ...entete,
-   ...lignes.slice(i,i+taille),
-   ...(i+taille>=lignes.length?fin:[])
-  ]);
- }
- if(!pages.length)pages.push([...entete,...fin]);
- const pdf=creerPDF(pages);
- const nom="cotisations_"+dateLocale()+".pdf";
- try{
-  await enregistrerFichier(nom,"application/pdf",pdf);
- }catch(e){
-  alert("Export PDF impossible : "+e.message);
- }
-}
-
-/* AFFICHAGE GENERAL */
-function afficher(){
- const select=el("groupes");
- select.replaceChildren();
- if(!groupes[selection])selection=0;
- groupes.forEach((g,i)=>{
-  const o=document.createElement("option");
-  o.value=i;
-  o.textContent=g.nom;
-  select.appendChild(o);
- });
- if(groupes.length)select.value=String(selection);
- const g=actuel();
- remplirSelect("historiqueMembre",g?g.membres:[],"Tous les membres");
- remplirSelect("ficheMembre",g?g.membres:[],"Sélectionner un membre");
- afficherHistorique();
- afficherFicheFinanciere();
- ["membres","ordre","tours"].forEach(id=>el(id).replaceChildren());
- if(!g){
-  el("details").textContent="Créez votre premier groupe.";
-  el("statut").textContent="";
-  el("conditions").textContent="";
-  ["ajoutBtn","tirageBtn","demarrerBtn","mode"]
-   .forEach(id=>el(id).disabled=true);
-  el("tours").textContent="Aucune tontine.";
-  afficherTableauCotisations();
-  return;
- }
- el("details").textContent=
-  "Date de création : "+(g.dateCreation||"Non renseignée (ancien groupe)")+
-  " | Membres : "+g.membres.length+
-  " | Cotisation : "+argent(g.cotisation)+
-  " | Garantie : "+argent(g.garantie)+
-  " | Période : "+g.periode;
- el("statut").textContent=g.demarree
-  ?(g.tourActuel>=g.ordre.length?"Statut : CYCLE TERMINÉ":"Statut : EN COURS")
-  :"Statut : EN PRÉPARATION";
- el("ajoutBtn").disabled=!!g.demarree;
-
- /* MEMBRES */
- g.membres.forEach(m=>{
-  const d=document.createElement("div");
-  d.className="item";
-  const titre=document.createElement("strong");
-  titre.textContent=m.nom;
-  d.appendChild(titre);
-  ligne(d,
-   "Naissance : "+(m.dateNaissance||"Non renseignée")+
-   " à "+(m.lieuNaissance||"Non renseigné"),"note");
-  ligne(d,"Profession : "+(m.profession||"Non renseignée"),"note");
-  ligne(d,"Revenu mensuel déclaré : "+
-   (Number.isSafeInteger(m.revenuMensuel)
-    ?argent(m.revenuMensuel):"Non renseigné"),"note");
-
-  if(m.verificationIdentite){
-   ligne(d,"Pièce : "+m.verificationIdentite.type,"note");
-   ligne(d,"Fichier : "+
-    (m.verificationIdentite.fichierNom||"Non disponible"),"note");
-   if(m.verificationIdentite.fichierNom){
-    const actions=document.createElement("div");
-    actions.className="row";
-    bouton("👁 Visualiser",()=>visualiserDocument(m.id),actions);
-    bouton("⬇ Télécharger",()=>telechargerDocument(m.id),actions);
-    d.appendChild(actions);
-   }
-  }else{
-   ligne(d,"Pièce justificative non renseignée.","note");
-  }
-
-  ligne(d,
-   m.garantieVersee?"Garantie confirmée":"Garantie non versée",
-   m.garantieVersee?"ok":"no");
-  if(!m.garantieVersee&&!g.demarree){
-   bouton("Confirmer la garantie",()=>confirmerGarantie(m.id),d);
-  }
-  el("membres").appendChild(d);
- });
-
- /* ORDRE DE PASSAGE */
- el("mode").value=g.mode||"tirage";
- el("mode").disabled=!!g.demarree;
- el("tirageBtn").disabled=!!g.demarree||
-  g.mode!=="tirage"||g.membres.length<2;
- g.ordre.forEach((id,i)=>{
-  const m=membreParId(g,id);
-  if(!m)return;
-  const d=document.createElement("div");
-  d.className="item";
-  ligne(d,"Tour "+(i+1)+" : "+m.nom);
-  if(g.mode==="collectif"&&!g.demarree){
-   const r=document.createElement("div");
-   r.className="row";
-   bouton("Monter",()=>deplacer(i,-1),r,i===0);
-   bouton("Descendre",()=>deplacer(i,1),r,i===g.ordre.length-1);
-   d.appendChild(r);
-  }
-  el("ordre").appendChild(d);
- });
- if(!g.demarree&&ordreComplet(g)){
-  bouton(
-   g.ordreValide?"Ordre validé":"Valider cet ordre",
-   validerOrdre,el("ordre"),g.ordreValide
-  );
- }
-
- /* DEMARRAGE */
- el("conditions").textContent=
-  "Garanties : "+g.membres.filter(m=>m.garantieVersee).length+
-  "/"+g.membres.length+
-  " | Ordre : "+(g.ordreValide?"validé":"non validé");
- el("demarrerBtn").disabled=!!g.demarree||!peutDemarrer(g);
-
- /* SUIVI DES TOURS */
- const z=el("tours");
- if(!g.demarree){
-  z.textContent="La tontine n'a pas démarré.";
- }else if(g.tourActuel>=g.ordre.length){
-  z.textContent="Tous les tours sont terminés.";
- }else{
-  const beneficiaire=membreParId(g,g.ordre[g.tourActuel]);
-  if(!beneficiaire){
-   z.textContent="Bénéficiaire introuvable.";
-  }else{
-   ligne(z,"Tour "+(g.tourActuel+1)+
-    " / "+g.ordre.length+
-    " — Bénéficiaire : "+beneficiaire.nom);
-   ligne(z,"Cagnotte prévue : "+
-    argent(g.cotisation*g.membres.length));
-   g.membres.forEach(m=>{
-    const p=Array.isArray(g.paiements)
-     ?g.paiements.find(x=>memeId(x.id,m.id)):null;
-    const d=document.createElement("div");
-    d.className="item";
-    ligne(d,m.nom+" : "+
-     (p&&p.verse?"Cotisation confirmée":"Cotisation non versée"));
-    if(p&&!p.verse){
-     bouton("Confirmer la cotisation",
-      ()=>confirmerCotisation(m.id),d);
-    }
-    z.appendChild(d);
-   });
-   bouton(
-    "Valider le tour et passer au suivant",
-    validerTour,z,!tourComplet(g)
-   );
-  }
- }
- afficherTableauCotisations();
-}
-
-/* INITIALISATION */
-
-el("dateCreation").value=dateLocale();
-el("dateCreation").max=dateLocale();
-el("dateNaissance").max=dateLocale();
-retourAcces();
-
-</script>
-
-<!-- ==========================================
-     TONTINEPRO TOGO
-     MODULE ECOSYSTEME FINANCIER
-========================================== -->
-
-<style>
-#tp-finance {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 5000;
-  overflow-y: auto;
-  background: #f2f6fc;
-  color: #173451;
-  font-family: Arial, sans-serif;
-  padding: 14px;
-}
-
-#tp-finance * {
-  box-sizing: border-box;
-}
-
-#tp-finance .tp-container {
-  max-width: 760px;
-  margin: 0 auto;
-}
-
-#tp-finance .tp-header {
-  background: #074789;
-  color: white;
-  border-radius: 14px;
-  padding: 17px;
-  margin-bottom: 14px;
-}
-
-#tp-finance h2 {
-  font-size: 20px;
-  margin: 0 0 8px;
-  color: white;
-}
-
-#tp-finance h3 {
-  font-size: 16px;
-  margin: 0 0 12px;
-  color: #074789;
-}
-
-#tp-finance .tp-card {
-  background: white;
-  border: 1px solid #d6e2f0;
-  border-radius: 13px;
-  padding: 15px;
   margin-bottom: 13px;
 }
 
@@ -2092,6 +2100,7 @@ retourAcces();
 
             <option value="paiement">
               Paiement électronique
+
             </option>
 
             <option value="assurance">
@@ -2442,6 +2451,7 @@ retourAcces();
     if (!document.body.classList.contains("connecte")) return;
 
     const nom = document.getElementById(
+
       "tp-nom-partenaire"
     ).value.trim();
 
@@ -2756,6 +2766,39 @@ function ouvrirEcosystemeFinancier() {
     }
   }
 }
+</script>
+
+<script>
+/* TontinePro : interface multipays, mode préparation sécurisé */
+(function(){
+ "use strict";
+ const PAYS={TG:["Togo","XOF"],BJ:["Bénin","XOF"],CI:["Côte d’Ivoire","XOF"],SN:["Sénégal","XOF"],BF:["Burkina Faso","XOF"],ML:["Mali","XOF"],NE:["Niger","XOF"],GW:["Guinée-Bissau","XOF"],CM:["Cameroun","XAF"],GA:["Gabon","XAF"],CG:["Congo","XAF"],CD:["RD Congo","CDF"],GN:["Guinée","GNF"],GH:["Ghana","GHS"],NG:["Nigeria","NGN"],KE:["Kenya","KES"],UG:["Ouganda","UGX"],TZ:["Tanzanie","TZS"],RW:["Rwanda","RWF"],ZM:["Zambie","ZMW"]};
+ const PASSERELLES={cinetpay:{nom:"CinetPay",actif:false},flutterwave:{nom:"Flutterwave",actif:false},paystack:{nom:"Paystack",actif:false}};
+ const $=id=>document.getElementById(id);
+ const devise=p=>PAYS[p]?.[1]||"XOF";
+ const montant=(n,d)=>new Intl.NumberFormat("fr-FR",{style:"currency",currency:d}).format(Number(n)||0);
+ const selectPays=$("paysGroupe");
+ Object.entries(PAYS).forEach(([code,[nom,monnaie]])=>{const o=new Option(`${nom} (${monnaie})`,code);selectPays.add(o)});
+ selectPays.value="TG";
+ selectPays.addEventListener("change",()=>{$("deviseGroupeInfo").textContent="Devise du groupe : "+devise(selectPays.value)});
+ function rafraichir(){
+   const g=typeof actuel==="function"?actuel():null;
+   const s=$("tpMembrePaiement"),p=$("tpPasserelle"),etat=$("tpPaiementEtat");
+   const ancien=s.value;s.replaceChildren();p.replaceChildren();
+   if(g){for(const m of g.membres){s.add(new Option(m.nom,m.id))}if([...s.options].some(o=>o.value===ancien))s.value=ancien;}
+   for(const [code,x] of Object.entries(PASSERELLES)){const o=new Option(x.nom+(x.actif?"":" — non activée"),code);o.disabled=!x.actif;p.add(o)}
+   $("tpPaiementResume").textContent=g?`Groupe : ${g.nom} | Pays : ${PAYS[g.pays]?.[0]||"Togo (ancien groupe)"} | Cotisation : ${montant(g.cotisation,g.devise||"XOF")}`:"Sélectionnez un groupe.";
+   // Bloqué tant que l'identité, le groupe et les prestataires ne sont pas reliés à l'API.
+   $("tpPayer").disabled=true;
+   etat.textContent="Paiements réels désactivés : authentification serveur, migration des groupes et contrats prestataires requis.";
+ }
+ async function demarrer(){
+   // Interdiction d'enregistrer un paiement depuis le navigateur : aucun appel en production tant que le backend n'est pas prêt.
+   $("tpPaiementEtat").textContent="Paiement indisponible. Aucune cotisation n'a été marquée comme payée.";
+ }
+ window.TPPaiement=Object.freeze({PAYS,PASSERELLES,devise,montant,rafraichir,demarrer});
+ rafraichir();
+})();
 </script>
 
 </body>
